@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3b484cc87b537743891ba47a48f81ba, type: 3}
+  m_Name: Basic Tower
+  m_EditorClassIdentifier: 
+  price: 0
+  attackSpeed: 0
+  shot: {fileID: 2300681177784688363, guid: 02d61a8b8735d9c4a8fdff2ad39c2d7c, type: 3}
