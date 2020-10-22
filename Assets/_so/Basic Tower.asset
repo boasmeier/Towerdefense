@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   price: 10
   attackSpeed: 2
+  velocity: 10
   shot: {fileID: 2667120749479865547, guid: 02d61a8b8735d9c4a8fdff2ad39c2d7c, type: 3}

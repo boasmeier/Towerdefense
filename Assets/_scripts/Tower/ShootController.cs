@@ -27,6 +27,6 @@ public class ShootController : MonoBehaviour
     {
         Debug.Log("Shoot");
         Rigidbody p = Instantiate(this.tower.Shot, transform);
-        p.velocity = transform.forward * 10;
+        p.velocity = transform.forward * this.tower.Velocity;
     }
 }

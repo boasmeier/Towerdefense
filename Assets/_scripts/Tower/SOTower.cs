@@ -5,9 +5,11 @@ public class SOTower : ScriptableObject
 {
     [SerializeField] private int price;
     [SerializeField] private float attackSpeed;
+    [SerializeField] private float velocity;
     [SerializeField] private Rigidbody shot;
 
     public int Price { get { return this.price; } }
+    public float Velocity { get { return this.velocity; } }
     public float AttackSpeed { get { return this.attackSpeed; } }
     public Rigidbody Shot { get { return this.shot; } }
 }

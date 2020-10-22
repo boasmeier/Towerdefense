@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6390f9bda626958449ccafc79fd44564, type: 3}
   m_Name: Basic Shot
   m_EditorClassIdentifier: 
-  velocity: 0
-  damage: 0
+  velocity: 10
+  damage: 5
