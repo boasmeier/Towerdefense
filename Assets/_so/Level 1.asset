@@ -12,11 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c88fb0f2f1741424da8c8cb32dd48b5b, type: 3}
   m_Name: Level 1
   m_EditorClassIdentifier: 
-  startMoney: 0
-  totalWaves: 0
+  startMoney: 100
+  totalWaves: 2
   route:
-  - {x: 0, y: 1, z: 0}
-  - {x: 1, y: 0, z: 0}
-  - {x: 0, y: 1, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 1, z: 0}
+  - {x: 9.5, y: 0.5, z: 7.5}
+  - {x: -2.5, y: 0.5, z: 7.5}
+  - {x: -2.5, y: 0.5, z: 3.5}
+  - {x: 6.5, y: 0.5, z: 3.5}
+  - {x: 6.5, y: 0.5, z: -5.5}
+  - {x: -4.5, y: 0.5, z: -5.5}
+  - {x: -4.5, y: 0.5, z: -1.5}
+  - {x: -8.5, y: 0.5, z: -1.5}
