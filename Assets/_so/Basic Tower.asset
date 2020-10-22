@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3b484cc87b537743891ba47a48f81ba, type: 3}
   m_Name: Basic Tower
   m_EditorClassIdentifier: 
-  price: 0
-  attackSpeed: 0
-  shot: {fileID: 2300681177784688363, guid: 02d61a8b8735d9c4a8fdff2ad39c2d7c, type: 3}
+  price: 10
+  attackSpeed: 2
+  shot: {fileID: 2667120749479865547, guid: 02d61a8b8735d9c4a8fdff2ad39c2d7c, type: 3}

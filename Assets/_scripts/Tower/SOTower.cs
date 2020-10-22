@@ -1,22 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 [CreateAssetMenu(fileName = "Tower", menuName = "Tower")]
 public class SOTower : ScriptableObject
 {
     [SerializeField] private int price;
-    [SerializeField] private int attackSpeed;
-    [SerializeField] private GameObject shot;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private float attackSpeed;
+    [SerializeField] private Rigidbody shot;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public int Price { get { return this.price; } }
+    public float AttackSpeed { get { return this.attackSpeed; } }
+    public Rigidbody Shot { get { return this.shot; } }
 }
