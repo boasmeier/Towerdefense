@@ -9,15 +9,9 @@ public class SOLevel : ScriptableObject
     [SerializeField] private int startMoney;
     [SerializeField] private int totalWaves;
     [SerializeField] private List<Vector3> route;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    
+    public int StartMoney { get { return this.startMoney; } }
+    public int TotalWaves { get { return this.totalWaves; } }
+    public List<Vector3> Route { get { return this.route; } }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
