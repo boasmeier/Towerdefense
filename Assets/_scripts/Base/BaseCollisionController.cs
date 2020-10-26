@@ -26,7 +26,7 @@ public class BaseCollisionController : MonoBehaviour
         Debug.Log(enemyLayer);
         if(collision.gameObject.layer == enemyLayer)
         {
-            Debug.Log("Collided");
+            Debug.Log("Base collided");
             HandleCollision();
             Destroy(collision.gameObject);
         }

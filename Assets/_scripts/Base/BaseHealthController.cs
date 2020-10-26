@@ -44,8 +44,8 @@ public class BaseHealthController : MonoBehaviour
     //Gets called if collision is received by collisoncontroller
     private void GetDamage()
     {
-        Debug.Log("base lost health");
         currentHealth -= 1;
+        Debug.Log("Base lost health (current healt: " + currentHealth + ")");
         HandleHealthChange(currentHealth);
         if (currentHealth <= 0)
         {
