@@ -6,6 +6,8 @@ using UnityEngine;
 public class SOShot : ScriptableObject
 {
     [SerializeField] private int damage;
+    public int Damage { get { return this.damage; } }
+
     // Start is called before the first frame update
     void Start()
     {
