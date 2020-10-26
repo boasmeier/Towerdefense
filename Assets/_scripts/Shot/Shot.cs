@@ -5,6 +5,7 @@ using UnityEngine;
 public class Shot : MonoBehaviour
 {
     [SerializeField] private SOShot shot;
+    public int Damage{get { return this.shot.Damage; }}
     // Start is called before the first frame update
     void Start()
     {
