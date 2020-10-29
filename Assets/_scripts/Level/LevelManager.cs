@@ -46,7 +46,6 @@ public class LevelManager : MonoBehaviour
     void Start()
     {
         this.money = this._level.StartMoney;
-        this.remainingWaves = this._level.TotalWaves;
     }
 
     // Update is called once per frame
