@@ -17,7 +17,6 @@ public class ShootController : MonoBehaviour
     {
         if(Time.time >= this.lastShot + ( 1f / this.tower.AttackSpeed))
         {
-            print(this.tower.AttackSpeed);
             this.lastShot = Time.time;
             this.Shoot();
         }
@@ -25,7 +24,6 @@ public class ShootController : MonoBehaviour
 
     private void Shoot()
     {
-        Debug.Log("Shoot");
         Rigidbody p = Instantiate(this.tower.Shot, transform);
         p.velocity = transform.forward * this.tower.Velocity;
     }
