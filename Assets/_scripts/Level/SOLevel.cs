@@ -7,7 +7,6 @@ public class SOLevel : ScriptableObject
 
 {
     [SerializeField] private int startMoney;
-    [SerializeField] private int totalWaves;
     [SerializeField] private List<Vector3> route;
     [SerializeField] private List<Wave> waves;
     
