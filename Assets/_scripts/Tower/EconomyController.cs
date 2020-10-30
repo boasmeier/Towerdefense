@@ -1,19 +1,65 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class EconomyController : MonoBehaviour
 {
-    [SerializeField] private SOTower tower;
-    // Start is called before the first frame update
-    void Start()
+    //[SerializeField] private SOTower tower;
+    private PlaceholderInputController _pic;
+
+    private GlobalInputController _gic;
+
+    private void Start()
     {
-        
+        _pic = GetComponent<PlaceholderInputController>();
+        if (_pic != null)
+        {
+            _pic.HandleMouse += SelectPlaceholder;
+        }
+
+        _gic = GetComponent<GlobalInputController>();
+        if (_gic != null)
+        {
+            _gic.HandleLeft += MoveArrowLeft;
+            _gic.HandleRight += MoveArrowLeft;
+            _gic.HandleUp += MoveArrowLeft;
+            _gic.HandleDown += MoveArrowLeft;
+            _gic.HandleOne += InstantiateBasic;
+            _gic.HandleTwo += InstantiateFreeze;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+    }
+
+    private void SelectPlaceholder(Vector3 position)
+    {
+        Debug.Log(string.Format("Select Placeholder (x: {0}, z: {1})", position.x, position.z));
+    }
+
+    private void MoveArrowLeft()
+    {
+        Debug.Log("Move Arrow Left");
+    }
+
+    private void MoveArrowRight()
+    {
+    }
+
+    private void MoveArrowUp()
+    {
+    }
+
+    private void MoveArrowDown()
+    {
+    }
+
+    private void InstantiateBasic()
+    {
+        Debug.Log("Instantiate Basic Tower");
+    }
+
+    private void InstantiateFreeze()
+    {
+        Debug.Log("Instantiate Freeze Tower");
     }
 }
