@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -9,21 +9,28 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private SOLevel _level;
 
     public event Action<int> HandleBaseHealthChange = delegate { };
+    public event Action<int> HandleMoneyChange = delegate { };
+    public event Action<int, int> HandleWaveChange = delegate { };
+    public event Action<int> SpawnWave = delegate { };
     public SOLevel Level
     {
         get { return this._level; }
     }
 
     private int money;
-    private int remainingWaves;
+    private int totalWave;
+    private int currentWave;
+    private int timer;
 
     private BaseHealthController bhc;
     private BaseDeathController bdc;
+    private EnemyManager em;
 
     private void Awake()
     {
         bhc = FindObjectOfType<BaseHealthController>();
         bdc = FindObjectOfType<BaseDeathController>();
+        em = FindObjectOfType<EnemyManager>();
         bhc.HandleHealthChange += DisplayHealthChange;
         bdc.HandleBaseDeath += GameOver;
     }
@@ -31,6 +38,18 @@ public class LevelManager : MonoBehaviour
     private void DisplayHealthChange(int newHealth)
     {
         HandleBaseHealthChange(newHealth);
+    }
+
+    private void DisplayMoneyChange(int money)
+    {
+        this.money += money;
+        HandleMoneyChange(money);
+    }
+
+    private void DisplayWaveChange()
+    {
+        this.currentWave += 1;
+        HandleWaveChange(this.currentWave, this.totalWave);
     }
 
     private void GameOver() {
@@ -46,7 +65,10 @@ public class LevelManager : MonoBehaviour
     void Start()
     {
         this.money = this._level.StartMoney;
-        this.remainingWaves = this._level.TotalWaves;
+        this.totalWave = this._level.Waves.Count;
+        this.currentWave = 1;
+        HandleMoneyChange(money);
+        HandleWaveChange(this.currentWave, this.totalWave);
     }
 
     // Update is called once per frame
@@ -55,3 +77,4 @@ public class LevelManager : MonoBehaviour
 
     }
 }
+
