@@ -53,6 +53,7 @@ public class UIManager : MonoBehaviour
             timerIsRunning = true;
             timeRemaining = 30;
             Debug.Log("Start Timer!");
+            startWaveButton.interactable = true;
         }
         
     }
@@ -67,6 +68,9 @@ public class UIManager : MonoBehaviour
     private void ResetTimerDisplay() {
         if(timerIsRunning) {
             timeRemaining = 0;
+        } else {
+            HandleWaveStart();
+            startWaveButton.interactable = false;
         }
     }
 
@@ -84,6 +88,7 @@ public class UIManager : MonoBehaviour
                 Debug.Log("Time has run out! Next wave has started!");
                 timeRemaining = 0;
                 timerIsRunning = false;
+                startWaveButton.interactable = false;
                 HandleWaveStart();
             }
             DisplayTimer(timeRemaining);

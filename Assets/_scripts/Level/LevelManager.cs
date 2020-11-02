@@ -54,8 +54,10 @@ public class LevelManager : MonoBehaviour
 
     private void DisplayWaveChange()
     {
-        this.currentWave += 1;
-        HandleWaveChange(this.currentWave, this.totalWave);
+        if(this.currentWave < this.totalWave) {
+            this.currentWave += 1;
+            HandleWaveChange(this.currentWave, this.totalWave);
+        }
     }
 
     private void GameOver() {
@@ -79,7 +81,6 @@ public class LevelManager : MonoBehaviour
         this.currentWave = 1;
         HandleMoneyChange(money);
         HandleWaveChange(this.currentWave, this.totalWave);
-        SpawnWave(currentWave);
     }
 
     // Update is called once per frame
