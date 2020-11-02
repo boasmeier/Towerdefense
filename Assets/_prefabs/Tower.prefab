@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8677256008396809252}
   - component: {fileID: 5861235222627300759}
-  - component: {fileID: 6483874350853356220}
   m_Layer: 0
   m_Name: Tower
   m_TagString: Untagged
@@ -45,16 +44,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tower: {fileID: 0}
---- !u!114 &6483874350853356220
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7157527331462928015}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 608510a8ea2695f48a9d97e2d6765044, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tower: {fileID: 0}
+  shootSound: {fileID: 0}
