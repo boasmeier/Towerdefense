@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: Level 1
   m_EditorClassIdentifier: 
   startMoney: 100
-  totalWaves: 2
   route:
   - {x: 9.5, y: 0.51, z: 7.5}
   - {x: -2.5, y: 0.51, z: 7.5}
@@ -24,6 +23,20 @@ MonoBehaviour:
   - {x: -4.5, y: 0.51, z: -1.5}
   - {x: -8.5, y: 0.51, z: -1.5}
   waves:
+  - wave:
+    - enemy: {fileID: 5953705220294465188, guid: 3f0c15c62f043c7458184d636ad2bbad,
+        type: 3}
+      amount: 2
+    - enemy: {fileID: 5953705220294465188, guid: 3f0c15c62f043c7458184d636ad2bbad,
+        type: 3}
+      amount: 1
+  - wave:
+    - enemy: {fileID: 5953705220294465188, guid: 3f0c15c62f043c7458184d636ad2bbad,
+        type: 3}
+      amount: 2
+    - enemy: {fileID: 5953705220294465188, guid: 3f0c15c62f043c7458184d636ad2bbad,
+        type: 3}
+      amount: 1
   - wave:
     - enemy: {fileID: 5953705220294465188, guid: 3f0c15c62f043c7458184d636ad2bbad,
         type: 3}

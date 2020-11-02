@@ -25,14 +25,20 @@ public class LevelManager : MonoBehaviour
     private BaseHealthController bhc;
     private BaseDeathController bdc;
     private EnemyManager em;
+    private UIManager uim;
 
     private void Awake()
     {
         bhc = FindObjectOfType<BaseHealthController>();
         bdc = FindObjectOfType<BaseDeathController>();
         em = FindObjectOfType<EnemyManager>();
+        uim = FindObjectOfType<UIManager>();
+
         bhc.HandleHealthChange += DisplayHealthChange;
         bdc.HandleBaseDeath += GameOver;
+        em.HandleEnemyDeath += DisplayMoneyChange;
+        em.HandleAllEnemiesOfWaveDied += DisplayWaveChange;
+        uim.HandleWaveStart += StartWave;
     }
 
     private void DisplayHealthChange(int newHealth)
@@ -43,7 +49,7 @@ public class LevelManager : MonoBehaviour
     private void DisplayMoneyChange(int money)
     {
         this.money += money;
-        HandleMoneyChange(money);
+        HandleMoneyChange(this.money);
     }
 
     private void DisplayWaveChange()
@@ -54,6 +60,10 @@ public class LevelManager : MonoBehaviour
 
     private void GameOver() {
         // TODO
+    }
+
+    private void StartWave() {
+        SpawnWave(currentWave);
     }
 
     private void OnEnable()
@@ -69,6 +79,7 @@ public class LevelManager : MonoBehaviour
         this.currentWave = 1;
         HandleMoneyChange(money);
         HandleWaveChange(this.currentWave, this.totalWave);
+        SpawnWave(currentWave);
     }
 
     // Update is called once per frame
