@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     private LevelManager lm;
-    private float timeRemaining = 30;
+    private float timeRemaining;
     private bool timerIsRunning = false;
 
     [SerializeField]
@@ -33,6 +33,8 @@ public class UIManager : MonoBehaviour
         lm.HandleBaseHealthChange += DisplayHealth;
         lm.HandleMoneyChange += DisplayMoney;
         lm.HandleWaveChange += DisplayWave;
+
+        startWaveButton.onClick.AddListener(ResetTimerDisplay);
     }
 
     private void DisplayHealth(int newHealth)
@@ -49,14 +51,23 @@ public class UIManager : MonoBehaviour
         waveText.text = "Waves: " + cur + "/" + tot;
         if(cur > 1) {
             timerIsRunning = true;
+            timeRemaining = 30;
+            Debug.Log("Start Timer!");
         }
         
     }
+    
+    private void DisplayTimer(float timeToDisplay) {
+        float minutes = Mathf.FloorToInt(timeToDisplay / 60); 
+        float seconds = Mathf.FloorToInt(timeToDisplay % 60);
 
-    // Start is called before the first frame update
-    void Start()
-    {
+        timerText.text = "Next wave in: " + string.Format("{0:00}:{1:00}", minutes, seconds);
+    }
 
+    private void ResetTimerDisplay() {
+        if(timerIsRunning) {
+            timeRemaining = 0;
+        }
     }
 
     // Update is called once per frame
@@ -67,7 +78,6 @@ public class UIManager : MonoBehaviour
             if (timeRemaining > 0)
             {
                 timeRemaining -= Time.deltaTime;
-                DisplayTimer(timeRemaining);
             }
             else
             {
@@ -76,13 +86,7 @@ public class UIManager : MonoBehaviour
                 timerIsRunning = false;
                 HandleWaveStart();
             }
+            DisplayTimer(timeRemaining);
         }
-    }
-
-    private void DisplayTimer(float timeToDisplay) {
-        float minutes = Mathf.FloorToInt(timeToDisplay / 60); 
-        float seconds = Mathf.FloorToInt(timeToDisplay % 60);
-
-        timerText.text = "Next wave in: " + string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 }

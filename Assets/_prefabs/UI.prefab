@@ -35,7 +35,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 160, y: 30}
+  m_SizeDelta: {x: 200, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7807032444718892018
 CanvasRenderer:
@@ -77,7 +77,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Next wave in:'
+  m_Text: 'Next wave in: 00:00'
 --- !u!1 &7807032444810355303
 GameObject:
   m_ObjectHideFlags: 0
@@ -683,6 +683,7 @@ MonoBehaviour:
   moneyText: {fileID: 7807032446230326449}
   waveText: {fileID: 7807032445419578569}
   timerText: {fileID: 7807032444718892017}
+  startWaveButton: {fileID: 7807032445226023050}
 --- !u!1 &7807032446230326463
 GameObject:
   m_ObjectHideFlags: 0

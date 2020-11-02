@@ -33,14 +33,8 @@ MonoBehaviour:
   - wave:
     - enemy: {fileID: 5953705220294465188, guid: 3f0c15c62f043c7458184d636ad2bbad,
         type: 3}
-      amount: 2
-    - enemy: {fileID: 5953705220294465188, guid: 3f0c15c62f043c7458184d636ad2bbad,
-        type: 3}
-      amount: 1
+      amount: 4
   - wave:
     - enemy: {fileID: 5953705220294465188, guid: 3f0c15c62f043c7458184d636ad2bbad,
         type: 3}
-      amount: 2
-    - enemy: {fileID: 5953705220294465188, guid: 3f0c15c62f043c7458184d636ad2bbad,
-        type: 3}
-      amount: 1
+      amount: 5
