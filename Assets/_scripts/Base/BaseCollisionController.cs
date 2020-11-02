@@ -7,6 +7,7 @@ public class BaseCollisionController : MonoBehaviour
 {
     LayerMask enemyLayer;
     public event Action HandleCollision = delegate { };
+    public event Action HandleEnemyReachedBase = delegate { };
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +29,7 @@ public class BaseCollisionController : MonoBehaviour
         {
             Debug.Log("Base collided");
             HandleCollision();
+            HandleEnemyReachedBase();
             Destroy(collision.gameObject);
         }
     }

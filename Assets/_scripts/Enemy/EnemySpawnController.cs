@@ -4,15 +4,25 @@ using UnityEngine;
 
 public class EnemySpawnController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private Vector3 spawn;
+    private LevelManager levelManager; 
+    private EnemyManager enemyManager;
+
+    private void OnEnable()
     {
-        
+        levelManager = FindObjectOfType<LevelManager>();
+        enemyManager = GetComponent<EnemyManager>();
+        spawn = levelManager.Level.Route[0];
+        enemyManager.EnemySpawn += Spawn;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnDisable()
     {
-        
+        enemyManager.EnemySpawn -= Spawn;
+    }
+
+    void Spawn(Rigidbody enemy)
+    {
+        Instantiate(enemy, spawn + new Vector3(0,2,0), Quaternion.identity);
     }
 }

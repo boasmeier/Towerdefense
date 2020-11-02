@@ -9,7 +9,7 @@ public class EnemyDeathController : MonoBehaviour
 
     private EnemyHealthController hc;
 
-    public Action<int> HandleEnemyDeath = delegate { };
+    public static Action<int> HandleEnemyDeath = delegate { };
 
     private void Awake()
     {
