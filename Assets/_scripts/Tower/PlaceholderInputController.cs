@@ -2,7 +2,7 @@
 
 public class PlaceholderInputController : MonoBehaviour
 {
-    public event System.Action<Vector3> HandleMouse = delegate { };
+    public static event System.Action<Vector3> HandleMouse = delegate { };
 
     // Start is called before the first frame update
     private void Start()
@@ -16,6 +16,6 @@ public class PlaceholderInputController : MonoBehaviour
 
     private void OnMouseDown()
     {
-        this.HandleMouse(transform.position);
+        HandleMouse(transform.position);
     }
 }

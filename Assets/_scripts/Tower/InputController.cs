@@ -29,32 +29,26 @@ public class InputController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            Debug.Log("Pressed Left Arrow");
             this.HandleLeft();
         }
         else if (Input.GetKeyDown(KeyCode.RightArrow))
         {
-            Debug.Log("Pressed Right Arrow");
             this.HandleRight();
         }
         else if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            Debug.Log("Pressed Up Arrow");
             this.HandleUp();
         }
         else if (Input.GetKeyDown(KeyCode.DownArrow))
         {
-            Debug.Log("Pressed Down Arrow");
             this.HandleDown();
         }
         else if (Input.GetKeyDown(KeyCode.Keypad1))
         {
-            Debug.Log("Pressed Number 1");
             this.HandleOne();
         }
         else if (Input.GetKeyDown(KeyCode.Keypad2))
         {
-            Debug.Log("Pressed Number 2");
             this.HandleTwo();
         }
     }
