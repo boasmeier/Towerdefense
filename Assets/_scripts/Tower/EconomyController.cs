@@ -4,8 +4,7 @@ public class EconomyController : MonoBehaviour
 {
     //[SerializeField] private SOTower tower;
     private PlaceholderInputController _pic;
-
-    private GlobalInputController _gic;
+    private InputController _gic;
 
     private void Start()
     {
@@ -15,7 +14,7 @@ public class EconomyController : MonoBehaviour
             _pic.HandleMouse += SelectPlaceholder;
         }
 
-        _gic = GetComponent<GlobalInputController>();
+        _gic = GetComponent<InputController>();
         if (_gic != null)
         {
             _gic.HandleLeft += MoveArrowLeft;
@@ -43,6 +42,7 @@ public class EconomyController : MonoBehaviour
 
     private void MoveArrowRight()
     {
+        Debug.Log("Move Arrow Right");
     }
 
     private void MoveArrowUp()

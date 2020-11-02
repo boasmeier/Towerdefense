@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class GlobalInputController : MonoBehaviour
+public class InputController : MonoBehaviour
 {
     public event System.Action HandleLeft = delegate { };
 
