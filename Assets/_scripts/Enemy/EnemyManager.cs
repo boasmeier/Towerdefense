@@ -5,15 +5,10 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
-    // Start is called before the first frame update
     private LevelManager levelManager;
     private BaseCollisionController basis;
-    private List<Wave> waves;
-    private int currentWave = 0;
-    private int currentEnemyGroup = 0;
-    private int currentEnemyNumber = 0;
+    private EnemyWaveController waveController;
     private int aliveEnemies = 0;
-    private bool spawnFinished = false;
 
     public Action<Rigidbody> EnemySpawn = delegate { };
     public Action<int> HandleEnemyDeath = delegate { };
@@ -21,54 +16,47 @@ public class EnemyManager : MonoBehaviour
 
     private void OnEnable()
     {
+        //get objets to subscribe to
         levelManager = FindObjectOfType<LevelManager>();
         basis = FindObjectOfType<BaseCollisionController>();
 
-        waves = levelManager.Level.Waves;
+        //create EnemyWaveController
+        waveController = new EnemyWaveController(levelManager.Level.Waves);
 
+        //subscribe to events
         levelManager.SpawnWave += NewWave;
-        basis.HandleEnemyReachedBase += EnemyReachedBase;
+        basis.HandleEnemyReachedBase += EnemyDestroyed;
         EnemyDeathController.HandleEnemyDeath += EnemyDied;
     }
 
     private void OnDisable()
     {
+        //unsubscribe from events
         levelManager.SpawnWave -= NewWave;
+        basis.HandleEnemyReachedBase -= EnemyDestroyed;
+        EnemyDeathController.HandleEnemyDeath -= EnemyDied;
     }
 
-    void NextSpawn()
+    //Spawns next Enemy if available
+    private void NextSpawn()
     {
         //As long as wave is not finished
-        if (currentEnemyGroup < waves[currentWave - 1].wave.Count)
+        if (!waveController.AreAllEnemiesOfCurrentWaveSpawned())
         {
-            EnemyGroup group = waves[currentWave - 1].wave[currentEnemyGroup];
-            EnemySpawn(group.enemy);
+            EnemySpawn(waveController.NextEnemy());
             aliveEnemies += 1;
-            currentEnemyNumber++;
-            //Go to next enemy group if all enemies are spawned for current group
-            if (currentEnemyNumber >= group.amount)
-            {
-                currentEnemyNumber = 0;
-                currentEnemyGroup += 1;
-            }
-            Invoke("NextSpawn", 2.0f);
-        }
-        else
-        {
-            spawnFinished = true;
+            Invoke("NextSpawn", UnityEngine.Random.Range(1f, 3f));
         }
     }
 
-    void NewWave(int wave)
+    private void NewWave(int wave)
     {
-        spawnFinished = false;
-        currentWave = wave;
-        currentEnemyGroup = 0;
-        currentEnemyNumber = 0;
+        Debug.Log("Wave " + wave + " will be spawned");
+        waveController.CurrentWave = wave;
         NextSpawn();
     }
 
-    void EnemyReachedBase()
+    private void EnemyDestroyed()
     {
         aliveEnemies -= 1;
         checkWaveFinished();
@@ -76,16 +64,15 @@ public class EnemyManager : MonoBehaviour
 
     private void EnemyDied(int value)
     {
-        aliveEnemies -= 1;
         HandleEnemyDeath(value);
-        checkWaveFinished();
+        EnemyDestroyed();
     }
 
     private void checkWaveFinished()
     {
-        if (spawnFinished && aliveEnemies==0)
+        if (waveController.AreAllEnemiesOfCurrentWaveSpawned() && aliveEnemies<=0)
         {
-            Debug.Log("Wave finished");
+            Debug.Log("Wave " + waveController.CurrentWave +  " finished");
             HandleAllEnemiesOfWaveDied();
         }
     }
