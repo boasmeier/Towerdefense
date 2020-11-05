@@ -66,8 +66,9 @@ public class EconomyController : MonoBehaviour
         if (!this._isPlaceable && tower != null) return;
         Debug.Log("Instantiate Tower " + name);
         Instantiate(tower, this._spawnPosition, this._rotation);
-        this._isPlaceable = false;
+        Debug.Log("Tower Price: " + tower.GetComponent<ShootController>().Tower.Price);
         HandleTowerBuyOrSell(-tower.GetComponent<ShootController>().Tower.Price);
+        this._isPlaceable = false;
     }
 
     private void InstantiateBasic()
