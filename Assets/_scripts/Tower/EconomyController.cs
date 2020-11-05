@@ -11,9 +11,11 @@ public class EconomyController : MonoBehaviour
     private Vector3 _spawnPosition;
     private bool _isPlaceable;
     private Quaternion _rotation;
+    private LevelManager lM;
 
     private void Start()
     {
+        lM = FindObjectOfType<LevelManager>();
         PlaceholderInputController.HandleMouse += SelectPlaceholder;
 
         _ic = GetComponent<InputController>();
@@ -61,24 +63,30 @@ public class EconomyController : MonoBehaviour
         this.SetRotation(180);
     }
 
-    private void Instantiate(string name, GameObject tower)
+    private void CreateTower(string name, GameObject tower)
     {
         if (!this._isPlaceable && tower != null) return;
-        Debug.Log("Instantiate Tower " + name);
-        Instantiate(tower, this._spawnPosition, this._rotation);
-        Debug.Log("Tower Price: " + tower.GetComponent<ShootController>().Tower.Price);
-        HandleTowerBuyOrSell(-tower.GetComponent<ShootController>().Tower.Price);
+        GameObject towerClone = Instantiate(tower, this._spawnPosition, this._rotation);
+        //TODO: GetComponenent below maybe not state of the art??? Is there a better way?
+        int price = towerClone.GetComponent<ShootController>().Tower.Price;
+        if(lM.CheckIfEnoughMoney(price)) {
+            HandleTowerBuyOrSell(-price);
+            Debug.Log("Instantiate Tower " + name);
+        } else {
+            Destroy(towerClone);
+            Debug.Log("Not enough money to buy a tower!");
+        }
         this._isPlaceable = false;
     }
 
     private void InstantiateBasic()
     {
-        this.Instantiate("Basic", this.towers[0]);
+        this.CreateTower("Basic", this.towers[0]);
     }
 
     private void InstantiateFreeze()
     {
-        this.Instantiate("Freeze", null);
+        this.CreateTower("Freeze", null);
     }
 
     private void SetRotation(int angle)

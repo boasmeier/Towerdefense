@@ -20,6 +20,10 @@ public class LevelManager : MonoBehaviour
     {
         get { return this._running; }
     }
+    public bool CheckIfEnoughMoney(int availableMoney) 
+    {
+        return availableMoney<=this.money;
+    }
 
     private bool _running;
     private int money;

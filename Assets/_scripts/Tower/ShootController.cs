@@ -8,7 +8,6 @@ public class ShootController : MonoBehaviour
     [SerializeField] private AudioSource shootSound;
 
     private float lastShot = 0;
-    private float lastShot;
     private bool shooting;
     private LevelManager lM;
 
@@ -16,7 +15,6 @@ public class ShootController : MonoBehaviour
     {
         get { return this._tower; }
     }
-
 
     private void OnEnable()
     {
