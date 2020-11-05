@@ -8,7 +8,6 @@ public class ShootController : MonoBehaviour
     [SerializeField] private AudioSource shootSound;
 
     private float lastShot = 0;
-    private float lastShot;
     private bool shooting;
     private LevelManager lM;
 
