@@ -39,6 +39,7 @@ public class LevelManager : MonoBehaviour
         em.HandleEnemyDeath += DisplayMoneyChange;
         em.HandleAllEnemiesOfWaveDied += DisplayWaveChange;
         uim.HandleWaveStart += StartWave;
+        EconomyController.HandleTowerBuyOrSell += DisplayMoneyChange;
     }
 
     private void DisplayHealthChange(int newHealth)

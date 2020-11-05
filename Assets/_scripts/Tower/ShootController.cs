@@ -3,10 +3,15 @@ using UnityEngine;
 
 public class ShootController : MonoBehaviour
 {
-    [SerializeField] private SOTower tower;
+    [SerializeField] private SOTower _tower;
     [SerializeField] private AudioSource shootSound;
 
-    private float lastShot;
+    private float lastShot = 0;
+
+    public SOTower Tower
+    {
+        get { return this._tower; }
+    }
 
     private void Start()
     {
@@ -15,7 +20,7 @@ public class ShootController : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if(Time.time >= this.lastShot + ( 1f / this.tower.AttackSpeed))
+        if(Time.time >= this.lastShot + ( 1f / this._tower.AttackSpeed))
         {
             this.lastShot = Time.time;
             this.Shoot();
@@ -24,7 +29,7 @@ public class ShootController : MonoBehaviour
 
     private void Shoot()
     {
-        Rigidbody p = Instantiate(this.tower.Shot, transform);
-        p.velocity = transform.forward * this.tower.Velocity;
+        Rigidbody p = Instantiate(this._tower.Shot, transform);
+        p.velocity = transform.forward * this._tower.Velocity;
     }
 }
