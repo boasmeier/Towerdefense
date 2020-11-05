@@ -66,7 +66,7 @@ public class EconomyController : MonoBehaviour
         this._isPlaceable = false;
     }
 
-    private void InstantiateBasic()
+        private void InstantiateBasic()
     {
         this.Instantiate("Basic", this.towers[0]);
     }
