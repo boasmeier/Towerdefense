@@ -1,8 +1,11 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class EconomyController : MonoBehaviour
 {
     [SerializeField] private GameObject[] towers;
+
+    public static event Action<int> HandleTowerBuyOrSell = delegate { };
 
     private InputController _ic;
     private Vector3 _spawnPosition;
@@ -63,6 +66,8 @@ public class EconomyController : MonoBehaviour
         if (!this._isPlaceable && tower != null) return;
         Debug.Log("Instantiate Tower " + name);
         Instantiate(tower, this._spawnPosition, this._rotation);
+        Debug.Log("Tower Price: " + tower.GetComponent<ShootController>().Tower.Price);
+        HandleTowerBuyOrSell(-tower.GetComponent<ShootController>().Tower.Price);
         this._isPlaceable = false;
     }
 

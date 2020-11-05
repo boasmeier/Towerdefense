@@ -16,7 +16,12 @@ public class LevelManager : MonoBehaviour
     {
         get { return this._level; }
     }
+    public bool Running
+    {
+        get { return this._running; }
+    }
 
+    private bool _running;
     private int money;
     private int totalWave;
     private int currentWave;
@@ -39,6 +44,7 @@ public class LevelManager : MonoBehaviour
         em.HandleEnemyDeath += DisplayMoneyChange;
         em.HandleAllEnemiesOfWaveDied += DisplayWaveChange;
         uim.HandleWaveStart += StartWave;
+        EconomyController.HandleTowerBuyOrSell += DisplayMoneyChange;
     }
 
     private void DisplayHealthChange(int newHealth)
@@ -54,17 +60,20 @@ public class LevelManager : MonoBehaviour
 
     private void DisplayWaveChange()
     {
-        if(this.currentWave < this.totalWave) {
+        _running = false;
+
+        if (this.currentWave < this.totalWave) {
             this.currentWave += 1;
             HandleWaveChange(this.currentWave, this.totalWave);
         }
     }
 
     private void GameOver() {
-        // TODO
+        _running = false;
     }
 
     private void StartWave() {
+        _running = true;
         SpawnWave(currentWave);
     }
 
