@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BaseHealthController : MonoBehaviour
+public class BaseHealthController : MonoBehaviour, IHealthController
 {
     [SerializeField] private int health;
 
@@ -12,6 +12,7 @@ public class BaseHealthController : MonoBehaviour
 
     public event Action<int> HandleHealthChange = delegate { };
     public event Action HandleDeath = delegate { };
+    public event Action<int> HandlePercentageHealthChange = delegate { };
 
     private void Awake()
     {

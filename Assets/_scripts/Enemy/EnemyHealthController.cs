@@ -4,16 +4,17 @@ using System.Collections.Generic;
 using System.Runtime.ConstrainedExecution;
 using UnityEngine;
 
-public class EnemyHealthController : MonoBehaviour
+public class EnemyHealthController : MonoBehaviour, IHealthController
 {
     [SerializeField] private SOEnemy enemy;
 
 	private int currentHealth;
 	private EnemyCollisionController ecc;
 
-	//not sure if this event is even needed
 	public event Action<int> HandleHealthChange = delegate { };
 	public event Action HandleDeath = delegate { };
+	public event Action<int> HandlePercentageHealthChange = delegate { };
+
 
 	private void Awake()
 	{

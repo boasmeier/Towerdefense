@@ -7,13 +7,13 @@ public class EnemyDeathController : MonoBehaviour
 {
     [SerializeField] private SOEnemy enemy;
 
-    private EnemyHealthController hc;
+    private IHealthController hc;
 
     public static Action<int> HandleEnemyDeath = delegate { };
 
     private void Awake()
     {
-        hc = GetComponent<EnemyHealthController>();
+        hc = GetComponent<IHealthController>();
         hc.HandleDeath += Die;
     }
 

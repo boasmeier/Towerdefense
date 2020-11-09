@@ -6,13 +6,13 @@ using UnityEngine;
 public class BaseDeathController : MonoBehaviour
 {
 
-    private BaseHealthController bhc;
+    private IHealthController bhc;
 
     public event Action HandleBaseDeath = delegate { };
 
     private void Awake()
     {
-        bhc = GetComponent<BaseHealthController>();
+        bhc = GetComponent<IHealthController>();
         bhc.HandleDeath += Die;
     }
 

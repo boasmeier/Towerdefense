@@ -31,7 +31,7 @@ public class LevelManager : MonoBehaviour
     private int currentWave;
     private int timer;
 
-    private BaseHealthController bhc;
+    private IHealthController bhc;
     private BaseDeathController bdc;
     private EnemyManager em;
     private UIManager uim;
