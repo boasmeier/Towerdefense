@@ -45,7 +45,7 @@ public class EnemyManager : MonoBehaviour
         {
             EnemySpawn(waveController.NextEnemy());
             aliveEnemies += 1;
-            Invoke("NextSpawn", UnityEngine.Random.Range(1f, 3f));
+            Invoke("NextSpawn", UnityEngine.Random.Range(0.8f * waveController.CurrentSpawnDelay, 1.2f * waveController.CurrentSpawnDelay));
         }
     }
 
