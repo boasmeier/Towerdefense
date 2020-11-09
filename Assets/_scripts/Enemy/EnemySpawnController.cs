@@ -23,6 +23,6 @@ public class EnemySpawnController : MonoBehaviour
 
     void Spawn(Rigidbody enemy)
     {
-        Instantiate(enemy, spawn + new Vector3(0,2,0), Quaternion.identity);
+        Instantiate(enemy, spawn, Quaternion.identity);
     }
 }

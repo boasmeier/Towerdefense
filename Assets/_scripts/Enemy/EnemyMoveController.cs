@@ -5,7 +5,6 @@ using UnityEngine;
 public class EnemyMoveController : MonoBehaviour
 {
     [SerializeField] private SOEnemy enemy;
-    [SerializeField] private int height;
     private int nextPosition = 1;
     private List<Vector3> route;
 
@@ -21,10 +20,10 @@ public class EnemyMoveController : MonoBehaviour
         if(nextPosition <= route.Count)
         {
             float step = this.enemy.Speed * Time.deltaTime; // calculate distance to move
-            transform.position = Vector3.MoveTowards(transform.position, route[nextPosition] + new Vector3(0, height / 2, 0), step);
+            transform.position = Vector3.MoveTowards(transform.position, route[nextPosition],  step);
 
             // Check if the position of the enemy and the nextPosition are approximately equal.
-            if (Vector3.Distance(transform.position, route[nextPosition] + new Vector3(0, height / 2, 0)) < 0.001f)
+            if (Vector3.Distance(transform.position, route[nextPosition]) < 0.001f)
             {
                 nextPosition += 1;
             }
