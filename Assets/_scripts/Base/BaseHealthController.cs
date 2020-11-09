@@ -12,7 +12,7 @@ public class BaseHealthController : MonoBehaviour, IHealthController
 
     public event Action<int> HandleHealthChange = delegate { };
     public event Action HandleDeath = delegate { };
-    public event Action<int> HandlePercentageHealthChange = delegate { };
+    public event Action<float> HandlePercentageHealthChange = delegate { };
 
     private void Awake()
     {

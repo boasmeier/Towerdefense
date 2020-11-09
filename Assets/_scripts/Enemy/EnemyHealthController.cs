@@ -13,7 +13,7 @@ public class EnemyHealthController : MonoBehaviour, IHealthController
 
 	public event Action<int> HandleHealthChange = delegate { };
 	public event Action HandleDeath = delegate { };
-	public event Action<int> HandlePercentageHealthChange = delegate { };
+	public event Action<float> HandlePercentageHealthChange = delegate { };
 
 
 	private void Awake()
@@ -36,6 +36,7 @@ public class EnemyHealthController : MonoBehaviour, IHealthController
 	void Start()
     {
 		HandleHealthChange(currentHealth);
+		HandlePercentageHealthChange(currentHealth / (float) enemy.Health);
     }
 
 	//Gets called if collision is received by collisoncontroller
@@ -44,7 +45,8 @@ public class EnemyHealthController : MonoBehaviour, IHealthController
 		Debug.Log("lost health");
 		currentHealth -= damage;
 		HandleHealthChange(currentHealth);
-		if(currentHealth <= 0)
+		HandlePercentageHealthChange(currentHealth / (float) enemy.Health);
+		if (currentHealth <= 0)
         {
 			HandleDeath();
         }
