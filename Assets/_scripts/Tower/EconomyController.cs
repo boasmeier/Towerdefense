@@ -33,10 +33,6 @@ public class EconomyController : MonoBehaviour
         this.SetRotation(0);
     }
 
-    private void Update()
-    {
-    }
-
     private void SelectPlaceholder(Vector3 position)
     {
         Debug.Log(string.Format("Select Placeholder (x: {0}, z: {1})", position.x, position.z));

@@ -7,32 +7,52 @@ public class GameSpeedHandler : MonoBehaviour
 {
     [SerializeField]
     private Slider gameSpeedSlider;
+    int sliderValue = 2;
+
+    private UIInputController UIInputController;
     // Start is called before the first frame update
     void Start()
     {
-        gameSpeedSlider.onValueChanged.AddListener(delegate {ChangeGameSpeed();});   
+        gameSpeedSlider.onValueChanged.AddListener(delegate {ChangeGameSpeed();}); 
+        UIInputController = FindObjectOfType<UIInputController>();
+        UIInputController.HandleGameSpeedIncrease +=  Increase;
+        UIInputController.HandleGameSpeedDecrease += Decrease; 
     }
 
     private void ChangeGameSpeed() {
-        int value =  (int) gameSpeedSlider.value;
+        sliderValue =  (int) gameSpeedSlider.value;
         
-        switch(value) {
+        switch(sliderValue) {
             case 1: 
-                Time.timeScale = 1;
+                Time.timeScale = 0.5f;
                 break;
 
             case 2:
-                Time.timeScale = 2;
+                Time.timeScale = 1;
                 break;
 
             case 3: 
-                Time.timeScale = 4;
+                Time.timeScale = 2;
                 break;
 
             case 4:
+                Time.timeScale = 4;
+                break;
+
+            case 5:
                 Time.timeScale = 8;
                 break;
         }
         Debug.Log("Game speed set to: " + Time.timeScale + "x"); 
+    }
+
+    private void Increase() {
+        sliderValue++;
+        gameSpeedSlider.value = sliderValue;
+    }
+
+    private void Decrease() {
+        sliderValue--;
+        gameSpeedSlider.value = sliderValue;
     }
 }

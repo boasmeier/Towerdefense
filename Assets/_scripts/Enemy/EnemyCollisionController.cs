@@ -13,11 +13,6 @@ public class EnemyCollisionController : MonoBehaviour
         shotLayer = LayerMask.NameToLayer("Shot");
     }
 
-    // Update is called once per frame
-    private void Update()
-    {
-    }
-
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.layer == shotLayer)

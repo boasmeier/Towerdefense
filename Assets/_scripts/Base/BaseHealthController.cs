@@ -36,12 +36,6 @@ public class BaseHealthController : MonoBehaviour, IHealthController
         HandleHealthChange(currentHealth);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     //Gets called if collision is received by collisoncontroller
     private void GetDamage()
     {

@@ -81,11 +81,6 @@ public class LevelManager : MonoBehaviour
         SpawnWave(currentWave);
     }
 
-    private void OnEnable()
-    {
-
-    }
-
     // Start is called before the first frame update
     void Start()
     {
@@ -94,12 +89,6 @@ public class LevelManager : MonoBehaviour
         this.currentWave = 1;
         HandleMoneyChange(money);
         HandleWaveChange(this.currentWave, this.totalWave);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 }
 

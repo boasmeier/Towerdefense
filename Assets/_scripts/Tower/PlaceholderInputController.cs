@@ -10,10 +10,6 @@ public class PlaceholderInputController : MonoBehaviour
         HandleMouse += RemoveHighlight;
     }
 
-    // Update is called once per frame
-    private void Update()
-    {
-    }
 
     private void OnMouseDown()
     {

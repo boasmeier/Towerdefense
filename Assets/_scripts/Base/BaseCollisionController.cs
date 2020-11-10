@@ -15,12 +15,6 @@ public class BaseCollisionController : MonoBehaviour
         enemyLayer  = LayerMask.NameToLayer("Enemy");
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void OnCollisionEnter(Collision collision)
     {
         Debug.Log(collision.gameObject.layer);

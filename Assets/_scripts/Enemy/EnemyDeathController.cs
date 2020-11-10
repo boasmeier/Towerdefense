@@ -23,16 +23,4 @@ public class EnemyDeathController : MonoBehaviour
         HandleEnemyDeath(enemy.Value);
         Destroy(gameObject);
     }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
