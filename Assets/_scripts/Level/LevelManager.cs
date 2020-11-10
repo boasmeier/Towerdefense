@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
@@ -20,9 +21,9 @@ public class LevelManager : MonoBehaviour
     {
         get { return this._running; }
     }
-    public bool CheckIfEnoughMoney(int availableMoney) 
+    public bool CheckIfEnoughMoney(int availableMoney)
     {
-        return availableMoney<=this.money;
+        return availableMoney <= this.money;
     }
 
     private bool _running;
@@ -66,17 +67,21 @@ public class LevelManager : MonoBehaviour
     {
         _running = false;
 
-        if (this.currentWave < this.totalWave) {
+        if (this.currentWave < this.totalWave)
+        {
             this.currentWave += 1;
             HandleWaveChange(this.currentWave, this.totalWave);
         }
     }
 
-    private void GameOver() {
+    private void GameOver()
+    {
         _running = false;
+        Debug.Log("GAME OVER");
     }
 
-    private void StartWave() {
+    private void StartWave()
+    {
         _running = true;
         SpawnWave(currentWave);
     }
@@ -89,6 +94,11 @@ public class LevelManager : MonoBehaviour
         this.currentWave = 1;
         HandleMoneyChange(money);
         HandleWaveChange(this.currentWave, this.totalWave);
+    }
+
+    private void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
 
