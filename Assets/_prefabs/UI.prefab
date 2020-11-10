@@ -384,12 +384,12 @@ GameObject:
   - component: {fileID: 1027634258}
   - component: {fileID: 1027634257}
   m_Layer: 5
-  m_Name: GameOverMessage
+  m_Name: GameOverPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1027634256
 RectTransform:
   m_ObjectHideFlags: 0
@@ -865,7 +865,7 @@ GameObject:
   - component: {fileID: 4132509831460704162}
   - component: {fileID: 1915074618697978614}
   m_Layer: 5
-  m_Name: Text
+  m_Name: GameOverText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1619,6 +1619,8 @@ MonoBehaviour:
   waveText: {fileID: 7807032445419578569}
   timerText: {fileID: 7807032444718892017}
   startWaveButton: {fileID: 7807032445226023050}
+  gameOverPanel: {fileID: 1027634256}
+  gameOverText: {fileID: 1915074618697978614}
 --- !u!114 &8993826464025226057
 MonoBehaviour:
   m_ObjectHideFlags: 0

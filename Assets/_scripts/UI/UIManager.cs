@@ -25,6 +25,12 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private Button startWaveButton;
 
+    [SerializeField]
+    private RectTransform gameOverPanel;
+
+    [SerializeField]
+    private Text gameOverText;
+
     public event Action HandleWaveStart = delegate { };
 
     private void Awake()
@@ -33,6 +39,7 @@ public class UIManager : MonoBehaviour
         lm.HandleBaseHealthChange += DisplayHealth;
         lm.HandleMoneyChange += DisplayMoney;
         lm.HandleWaveChange += DisplayWave;
+        lm.HandleGameOver += DisplayGameOverMessage;
 
         startWaveButton.onClick.AddListener(ResetTimerDisplay);
     }
@@ -63,6 +70,11 @@ public class UIManager : MonoBehaviour
         float seconds = Mathf.FloorToInt(timeToDisplay % 60);
 
         timerText.text = "Next wave in: " + string.Format("{0:00}:{1:00}", minutes, seconds);
+    }
+
+    private void DisplayGameOverMessage(bool isWon) {
+        gameOverPanel.gameObject.SetActive(true);
+        gameOverText.text = isWon ? "YOU WON" : "YOU LOOSE";
     }
 
     private void ResetTimerDisplay() {

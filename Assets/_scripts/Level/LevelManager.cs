@@ -1,4 +1,5 @@
-﻿﻿using System;
+﻿﻿
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -13,6 +14,7 @@ public class LevelManager : MonoBehaviour
     public event Action<int> HandleMoneyChange = delegate { };
     public event Action<int, int> HandleWaveChange = delegate { };
     public event Action<int> SpawnWave = delegate { };
+    public event Action<bool> HandleGameOver = delegate { };
     public SOLevel Level
     {
         get { return this._level; }
@@ -26,11 +28,15 @@ public class LevelManager : MonoBehaviour
         return availableMoney <= this.money;
     }
 
+    public bool IsWon;
+
     private bool _running;
     private int money;
     private int totalWave;
     private int currentWave;
     private int timer;
+
+    private float restartDelay = 4f;
 
     private IHealthController bhc;
     private BaseDeathController bdc;
@@ -71,13 +77,20 @@ public class LevelManager : MonoBehaviour
         {
             this.currentWave += 1;
             HandleWaveChange(this.currentWave, this.totalWave);
+        } else {
+            IsWon = true;
+            HandleGameOver(IsWon);
+            Invoke("Restart", restartDelay*Time.timeScale);
         }
     }
 
     private void GameOver()
     {
         _running = false;
-        Debug.Log("GAME OVER");
+        Debug.Log("GAME OVER: YOU LOOSE");
+        IsWon = false;
+        HandleGameOver(IsWon);
+        Invoke("Restart", restartDelay*Time.timeScale);
     }
 
     private void StartWave()
