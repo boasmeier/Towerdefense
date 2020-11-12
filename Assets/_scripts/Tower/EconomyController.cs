@@ -8,15 +8,11 @@ public class EconomyController : MonoBehaviour
     public static event Action<int> HandleTowerBuyOrSell = delegate { };
 
     private InputController _ic;
-    private Vector3 _spawnPosition;
     private bool _isPlaceable;
-    private Quaternion _rotation;
     private LevelManager lM;
-    private GameObject Arrow;
 
     private void Start()
     {
-        this.Arrow = GameObject.Find("Arrow");
         lM = FindObjectOfType<LevelManager>();
         PlaceholderInputController.HandleMouse += SelectPlaceholder;
 
@@ -30,42 +26,43 @@ public class EconomyController : MonoBehaviour
             _ic.HandleOne += InstantiateBasic;
             _ic.HandleTwo += InstantiateFreeze;
         }
-        this.SetRotation(0);
+        this.Rotate(0);
     }
 
     private void SelectPlaceholder(Vector3 position)
     {
         Debug.Log(string.Format("Select Placeholder (x: {0}, z: {1})", position.x, position.z));
         position.y = 1;
-        this._spawnPosition = position;
-        this._UpdateArrow(0);
+        TowerController.position = position;
+        ArrowController.position = position;
         this._isPlaceable = true;
     }
 
     private void MoveArrowLeft()
     {
-        this.SetRotation(270);
+        this.Rotate(270);
     }
 
     private void MoveArrowRight()
     {
-        this.SetRotation(90);
+        this.Rotate(90);
     }
 
     private void MoveArrowUp()
     {
-        this.SetRotation(0);
+        this.Rotate(0);
     }
 
     private void MoveArrowDown()
     {
-        this.SetRotation(180);
+        this.Rotate(180);
     }
 
     private void CreateTower(string name, GameObject tower)
     {
         if (!this._isPlaceable && tower != null) return;
-        GameObject towerClone = Instantiate(tower, this._spawnPosition, this._rotation);
+        TowerController.tower = tower;
+        GameObject towerClone = TowerController.Build();
         //TODO: GetComponenent below maybe not state of the art??? Is there a better way?
         int price = towerClone.GetComponent<ShootController>().Tower.Price;
         if (lM.CheckIfEnoughMoney(price))
@@ -91,22 +88,10 @@ public class EconomyController : MonoBehaviour
         this.CreateTower("Freeze", null);
     }
 
-    private void SetRotation(int angle)
+    private void Rotate(int angle)
     {
         if (!this._isPlaceable) return;
-        Debug.Log("Set angle: " + angle);
-        this._rotation = Quaternion.AngleAxis(angle, Vector3.up);
-        this._UpdateArrow(angle*-1);
-    }
-
-    private void _UpdateArrow(int angle)
-    {
-        if (this.Arrow != null)
-        {
-            Vector3 position = this._spawnPosition;
-            position.y = 0.6f;
-            this.Arrow.transform.position = position;
-            this.Arrow.transform.eulerAngles = new Vector3(90, 0, angle);
-        }
+        ArrowController.rotation = angle * -1;
+        TowerController.rotation = angle;
     }
 }
