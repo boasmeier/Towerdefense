@@ -77,7 +77,7 @@ public class LevelManager : MonoBehaviour
         {
             this.currentWave += 1;
             HandleWaveChange(this.currentWave, this.totalWave);
-        } else {
+        } else { 
             IsWon = true;
             HandleGameOver(IsWon);
             Invoke("Restart", restartDelay*Time.timeScale);
