@@ -6,6 +6,7 @@ public class EconomyController : MonoBehaviour
     [SerializeField] private GameObject[] towers;
 
     public static event Action<int> HandleTowerBuyOrSell = delegate { };
+    public static event Action<string> DisplayNotEnoughMoney = delegate { };
 
     private InputController _ic;
     private bool _isPlaceable;
@@ -74,6 +75,7 @@ public class EconomyController : MonoBehaviour
         {
             Destroy(towerClone);
             Debug.Log("Not enough money to buy a tower!");
+            DisplayNotEnoughMoney("Not enough money to buy a tower!");
         }
         this._isPlaceable = false;
     }
