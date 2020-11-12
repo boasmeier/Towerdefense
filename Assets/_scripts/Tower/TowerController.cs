@@ -3,7 +3,6 @@
 public class TowerController : MonoBehaviour
 {
     public static Vector3 position { get; set; }
-    private static GameObject _tower { get; set; }
     private static Quaternion _rotation;
 
     public static int rotation
@@ -11,13 +10,8 @@ public class TowerController : MonoBehaviour
         set { _rotation = Quaternion.AngleAxis(value, Vector3.up); }
     }
 
-    public static GameObject tower
+    public static void Build(GameObject tower)
     {
-        set { _tower = value; }
-    }
-
-    public static GameObject Build()
-    {
-        return Instantiate(_tower, position, _rotation);
+        Instantiate(tower, position, _rotation);
     }
 }

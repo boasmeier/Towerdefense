@@ -10,9 +10,7 @@ public class InputController : MonoBehaviour
 
     public event System.Action HandleDown = delegate { };
 
-    public event System.Action HandleOne = delegate { };
-
-    public event System.Action HandleTwo = delegate { };
+    public event System.Action<int> HandleNumber = delegate { };
 
     // Update is called once per frame
     private void Update()
@@ -38,13 +36,13 @@ public class InputController : MonoBehaviour
         {
             this.HandleDown();
         }
-        else if (Input.GetKeyDown(KeyCode.Keypad1))
+        else if (Input.GetKeyDown(KeyCode.Keypad1) || Input.GetKeyDown(KeyCode.Alpha1))
         {
-            this.HandleOne();
+            this.HandleNumber(1);
         }
-        else if (Input.GetKeyDown(KeyCode.Keypad2))
+        else if (Input.GetKeyDown(KeyCode.Keypad2) || Input.GetKeyDown(KeyCode.Alpha2))
         {
-            this.HandleTwo();
+            this.HandleNumber(2);
         }
         
     }
