@@ -3,6 +3,7 @@
 [CreateAssetMenu(fileName = "Tower", menuName = "Tower")]
 public class SOTower : ScriptableObject
 {
+    [SerializeField] private int id;
     [SerializeField] private string towerName;
     [SerializeField] private int price;
     [SerializeField] private float attackSpeed;
@@ -15,4 +16,5 @@ public class SOTower : ScriptableObject
     public float Velocity { get { return this.velocity; } }
     public Rigidbody Shot { get { return this.shot; } }
     public string Name { get { return this.towerName; } }
+    public int Id { get { return this.id; } }
 }
