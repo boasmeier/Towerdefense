@@ -32,6 +32,7 @@ public class UIManager : MonoBehaviour
     private Text gameOverText;
 
     public event Action HandleWaveStart = delegate { };
+    public event Action ResetGameSpeed = delegate { };
 
     private void Awake()
     {
@@ -75,6 +76,7 @@ public class UIManager : MonoBehaviour
     private void DisplayGameOverMessage(bool isWon) {
         gameOverPanel.gameObject.SetActive(true);
         gameOverText.text = isWon ? "YOU WON" : "YOU LOOSE";
+        ResetGameSpeed();
     }
 
     private void ResetTimerDisplay() {

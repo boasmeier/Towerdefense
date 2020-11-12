@@ -10,13 +10,16 @@ public class GameSpeedHandler : MonoBehaviour
     int sliderValue = 2;
 
     private UIInputController UIInputController;
+    private UIManager UIManager;
     // Start is called before the first frame update
     void Start()
     {
         gameSpeedSlider.onValueChanged.AddListener(delegate {ChangeGameSpeed();}); 
         UIInputController = FindObjectOfType<UIInputController>();
+        UIManager = FindObjectOfType<UIManager>();
         UIInputController.HandleGameSpeedIncrease +=  Increase;
         UIInputController.HandleGameSpeedDecrease += Decrease; 
+        UIManager.ResetGameSpeed += ResetSlider;
     }
 
     private void ChangeGameSpeed() {
@@ -54,5 +57,11 @@ public class GameSpeedHandler : MonoBehaviour
     private void Decrease() {
         sliderValue--;
         gameSpeedSlider.value = sliderValue;
+    }
+
+    private void ResetSlider() {
+        sliderValue = 2;
+        gameSpeedSlider.value = sliderValue;
+        Debug.Log("Game Speed reseted!");
     }
 }
