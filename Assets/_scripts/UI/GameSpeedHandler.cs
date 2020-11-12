@@ -62,6 +62,5 @@ public class GameSpeedHandler : MonoBehaviour
     private void ResetSlider() {
         sliderValue = 2;
         gameSpeedSlider.value = sliderValue;
-        Debug.Log("Game Speed reseted!");
     }
 }
