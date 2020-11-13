@@ -1,14 +1,15 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
-public class InputController : MonoBehaviour
+public class InputController : MonoBehaviour, IArrowsInputController
 {
-    public event System.Action HandleLeft = delegate { };
+    public event Action HandleLeft = delegate { };
 
-    public event System.Action HandleRight = delegate { };
+    public event Action HandleRight = delegate { };
 
-    public event System.Action HandleUp = delegate { };
+    public event Action HandleUp = delegate { };
 
-    public event System.Action HandleDown = delegate { };
+    public event Action HandleDown = delegate { };
 
     public event System.Action<int> HandleNumber = delegate { };
 

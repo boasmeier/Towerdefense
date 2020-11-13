@@ -817,6 +817,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6563278071357626597}
   - component: {fileID: 503308673995821595}
+  - component: {fileID: 6615968650380234674}
+  - component: {fileID: 9020839726940032090}
   m_Layer: 0
   m_Name: TowerSelectionUI
   m_TagString: Untagged
@@ -871,6 +873,30 @@ MonoBehaviour:
   m_ChildControlHeight: 0
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
+--- !u!114 &6615968650380234674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8487977647678593767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0610779022a3af8418057cf9813f49e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &9020839726940032090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8487977647678593767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3e552385fe883e4da89f398f65ad80e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &95440598367263803
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -881,7 +907,7 @@ PrefabInstance:
     - target: {fileID: 1834622293024200217, guid: ee32bad7107220249989157c2096e601,
         type: 3}
       propertyPath: m_Text
-      value: Super
+      value: '-'
       objectReference: {fileID: 0}
     - target: {fileID: 3319456163910118627, guid: ee32bad7107220249989157c2096e601,
         type: 3}
@@ -1031,7 +1057,7 @@ PrefabInstance:
     - target: {fileID: 1834622293024200217, guid: ee32bad7107220249989157c2096e601,
         type: 3}
       propertyPath: m_Text
-      value: Enhanced
+      value: '-'
       objectReference: {fileID: 0}
     - target: {fileID: 3319456163910118627, guid: ee32bad7107220249989157c2096e601,
         type: 3}
@@ -1181,7 +1207,7 @@ PrefabInstance:
     - target: {fileID: 1834622293024200217, guid: ee32bad7107220249989157c2096e601,
         type: 3}
       propertyPath: m_Text
-      value: Basic
+      value: '-'
       objectReference: {fileID: 0}
     - target: {fileID: 3319456163910118627, guid: ee32bad7107220249989157c2096e601,
         type: 3}
