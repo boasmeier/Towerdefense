@@ -52,6 +52,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tower: {fileID: 0}
   towerName: {fileID: 1834622293024200217}
+  towerButton: {fileID: 4445583097784661571}
 --- !u!114 &6346897712992364820
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -252,9 +253,9 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.8557104, g: 0.09313814, b: 0.8584906, a: 1}
+    m_HighlightedColor: {r: 0.4575472, g: 0.9945195, b: 1, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.8396226, g: 0.099012084, b: 0.099012084, a: 1}
+    m_SelectedColor: {r: 0.754717, g: 0.754717, b: 0.754717, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1

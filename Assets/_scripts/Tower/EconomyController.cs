@@ -12,10 +12,10 @@ public class EconomyController : MonoBehaviour
     public static event Action<int> TowerSelected = delegate { };
     public static event Action<int> DirectionSelected = delegate { };
 
-    private InputController _ic;
     private bool _isPlaceable;
     private LevelManager lM;
     private IList<IArrowsInputController> _aIcs;
+    private IList<ITowerSelector> _aTss;
 
     private void Start()
     {
@@ -32,10 +32,11 @@ public class EconomyController : MonoBehaviour
             aic.HandleDown += MoveArrowDown;
         }
 
-        _ic = GetComponent<InputController>();
-        if (_ic != null)
+        _aTss = FindObjectsOfType<MonoBehaviour>().OfType<ITowerSelector>().ToList();
+
+        foreach (ITowerSelector ts in _aTss)
         {
-            _ic.HandleNumber += BuildTower;
+            ts.HandleTowerSelected += BuildTower;
         }
 
         this.Rotate(0);
@@ -49,6 +50,11 @@ public class EconomyController : MonoBehaviour
             aic.HandleRight -= MoveArrowRight;
             aic.HandleUp -= MoveArrowUp;
             aic.HandleDown -= MoveArrowDown;
+        }
+
+        foreach (ITowerSelector ts in _aTss)
+        {
+            ts.HandleTowerSelected -= BuildTower;
         }
     }
 
