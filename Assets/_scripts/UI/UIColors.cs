@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class UIColors 
 {
-    private static Color highlightColor = Color.cyan;
+    private static Color highlightColor = new Color32(89, 171, 253, 255);
     private static Color normalColor = Color.white;
 
     public static void Highlight(Button button)

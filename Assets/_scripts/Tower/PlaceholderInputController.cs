@@ -4,6 +4,9 @@ public class PlaceholderInputController : MonoBehaviour
 {
     public static event System.Action<Vector3> HandleMouse = delegate { };
 
+    [SerializeField] Material defaultMaterial;
+    [SerializeField] Material highlightMaterial;
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -14,20 +17,20 @@ public class PlaceholderInputController : MonoBehaviour
     private void OnMouseDown()
     {
         HandleMouse(transform.position);
-        this.ChangeColor(Color.gray);
+        this.ChangeColor(highlightMaterial);
     }
 
-    private void ChangeColor(Color color)
+    private void ChangeColor(Material material)
     {
         MeshRenderer renderer = GetComponent<MeshRenderer>();
         if (renderer != null)
         {
-            renderer.material.color = color;
+            renderer.material = material;
         }
     }
 
     private void RemoveHighlight(Vector3 position)
     {
-        this.ChangeColor(Color.green);
+        this.ChangeColor(defaultMaterial);
     }
 }
