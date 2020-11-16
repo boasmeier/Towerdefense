@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.Accessibility;
 
-public class ShootController : MonoBehaviour, IShootController
+public class SplitterShootController : MonoBehaviour, IShootController
 {
     [SerializeField] private SOTower _tower;
     [SerializeField] private AudioSource shootSound;
@@ -21,10 +21,12 @@ public class ShootController : MonoBehaviour, IShootController
         return Time.time >= this.lastShot + (1f / this._tower.AttackSpeed);
     }
 
+
     public void Shoot()
     {
-        Rigidbody p = Instantiate(this._tower.Shot, transform);
-        p.velocity = transform.forward * this._tower.Velocity;
+        this.CreateShot(transform.forward);
+        this.CreateShot(transform.right);
+        this.CreateShot(-transform.right);
     }
 
     public void StartShooting(int w)
@@ -35,6 +37,12 @@ public class ShootController : MonoBehaviour, IShootController
     public void StopShooting(int wOld, int wNew)
     {
         this.shooting = false;
+    }
+
+    private void CreateShot(Vector3 direction)
+    {
+        Rigidbody p = Instantiate(this._tower.Shot, transform);
+        p.velocity = direction * this._tower.Velocity;
     }
 
     private void OnEnable()
