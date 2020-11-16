@@ -4041,7 +4041,7 @@ PrefabInstance:
     - target: {fileID: 5063580969006981834, guid: a0ced792d2362194fb55d3603f592a09,
         type: 3}
       propertyPath: towers.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5063580969006981834, guid: a0ced792d2362194fb55d3603f592a09,
         type: 3}
@@ -4084,6 +4084,18 @@ PrefabInstance:
       propertyPath: towers.Array.data[1].details
       value: 
       objectReference: {fileID: 11400000, guid: 4ecda24035ce0b6489ad2c29e5d8ed5e,
+        type: 2}
+    - target: {fileID: 5063580969006981834, guid: a0ced792d2362194fb55d3603f592a09,
+        type: 3}
+      propertyPath: towers.Array.data[2].geometry
+      value: 
+      objectReference: {fileID: 2882930169567940053, guid: 91c7a0512d85a5c439617616c95e1daf,
+        type: 3}
+    - target: {fileID: 5063580969006981834, guid: a0ced792d2362194fb55d3603f592a09,
+        type: 3}
+      propertyPath: towers.Array.data[2].details
+      value: 
+      objectReference: {fileID: 11400000, guid: 72bd866dc3060e543a72cb7f5826c822,
         type: 2}
     - target: {fileID: 8342387325324673947, guid: a0ced792d2362194fb55d3603f592a09,
         type: 3}
