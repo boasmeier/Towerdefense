@@ -50,6 +50,26 @@ public class InputController : MonoBehaviour, IArrowsInputController, ITowerSele
         {
             this.HandleTowerBuy();
         }
-        
+        else if (Input.GetKeyDown(KeyCode.Keypad3) || Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            this.HandleTowerSelected(3);
+        }
+        else if (Input.GetKeyDown(KeyCode.Keypad4) || Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            this.HandleTowerSelected(4);
+        }
+        else if (Input.GetKeyDown(KeyCode.Keypad5) || Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            this.HandleTowerSelected(5);
+        }
+        else if (Input.GetKeyDown(KeyCode.Keypad6) || Input.GetKeyDown(KeyCode.Alpha6))
+        {
+            this.HandleTowerSelected(6);
+        }
+        else if (Input.GetKeyDown(KeyCode.Keypad7) || Input.GetKeyDown(KeyCode.Alpha7))
+        {
+            this.HandleTowerSelected(7);
+        }
+
     }
 }

@@ -13,7 +13,7 @@ public class EconomyController : MonoBehaviour
     public static event Action<SOTower> TowerSelected = delegate { };
     public static event Action<int> DirectionSelected = delegate { };
 
-    private bool _isPlaceable;
+    private bool _placeholderSelected;
     private LevelManager lM;
 
     private TowerEntry selected;
@@ -85,22 +85,38 @@ public class EconomyController : MonoBehaviour
 
     private void SelectTower(int id)
     {
-        TowerEntry entry = this.getTowerEntry(id);
+        TowerEntry entry = this.GetTowerEntry(id);
         TowerSelected(entry.details);
         selected = entry;
     }
 
     private void BuildTower()
     {
-        Debug.Log("Build Tower");
-        if (!this._isPlaceable) return;
-
+        if (!this.CanBuild()) return;
         TowerController.Build(selected.geometry);
         this.HandleFinance(selected);
-        this._isPlaceable = false;
+        this._placeholderSelected = false;
     }
 
-    private TowerEntry getTowerEntry(int id)
+    private bool CanBuild()
+    {
+        if (!this._placeholderSelected) return false;
+
+        if (selected == null)
+        {
+            Debug.Log(string.Format("No Tower selected"));
+            return false;
+        }
+
+        if (!lM.CheckIfEnoughMoney(selected.details.Price))
+        {
+            DisplayNotEnoughMoney("Not enough money to buy a tower!");
+            return false;
+        }
+        return true;
+    }
+
+    private TowerEntry GetTowerEntry(int id)
     {
         return this.towers
             .Where(t => t.details.Id == id)
@@ -142,7 +158,7 @@ public class EconomyController : MonoBehaviour
 
     private void Rotate(int angle)
     {
-        if (!this._isPlaceable) return;
+        if (!this._placeholderSelected) return;
         DirectionSelected(angle);
         ArrowController.rotation = angle * -1;
         TowerController.rotation = angle;
@@ -154,6 +170,6 @@ public class EconomyController : MonoBehaviour
         position.y = 1;
         TowerController.position = position;
         ArrowController.position = position;
-        this._isPlaceable = true;
+        this._placeholderSelected = true;
     }
 }
