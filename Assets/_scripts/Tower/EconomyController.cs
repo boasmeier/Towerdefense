@@ -9,7 +9,8 @@ public class EconomyController : MonoBehaviour
 
     public static event Action<int> HandleTowerBuyOrSell = delegate { };
     public static event Action<string> DisplayNotEnoughMoney = delegate { };
-    public static event Action<int> TowerSelected = delegate { };
+
+    public static event Action<SOTower> TowerSelected = delegate { };
     public static event Action<int> DirectionSelected = delegate { };
 
     private bool _isPlaceable;
@@ -17,7 +18,7 @@ public class EconomyController : MonoBehaviour
     private IList<IArrowsInputController> _aIcs;
     private IList<ITowerSelector> _aTss;
 
-    private void Start()
+    private void OnEnable()
     {
         lM = FindObjectOfType<LevelManager>();
         PlaceholderInputController.HandleMouse += SelectPlaceholder;
@@ -62,6 +63,7 @@ public class EconomyController : MonoBehaviour
     {
         if (!this._isPlaceable) return;
         TowerEntry entry = this.getTowerEntry(id);
+        TowerSelected(entry.details);
         TowerController.Build(entry.geometry);
         this.HandleFinance(entry);
         this._isPlaceable = false;
