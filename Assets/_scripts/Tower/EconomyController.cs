@@ -89,42 +89,28 @@ public class EconomyController : MonoBehaviour
 
     private void MoveArrowLeft()
     {
-        Debug.Log("MoveArrowLeft");
-        int degree = 270;
-        DirectionSelected(degree);
-        this.Rotate(degree);
+        this.Rotate(270);
     }
 
     private void MoveArrowRight()
     {
-        Debug.Log("MoveArrowRight");
-
-        int degree = 90;
-        DirectionSelected(degree);
-        this.Rotate(degree);
+        this.Rotate(90);
     }
 
     private void MoveArrowUp()
     {
-        Debug.Log("MoveArrowUp");
-
-        int degree = 0;
-        DirectionSelected(degree);
-        this.Rotate(degree);
+        this.Rotate(0);
     }
 
     private void MoveArrowDown()
     {
-        Debug.Log("MoveArrowDown");
-
-        int degree = 180;
-        DirectionSelected(degree);
-        this.Rotate(degree);
+        this.Rotate(180);
     }
 
     private void Rotate(int angle)
     {
         if (!this._isPlaceable) return;
+        DirectionSelected(angle);
         ArrowController.rotation = angle * -1;
         TowerController.rotation = angle;
     }
