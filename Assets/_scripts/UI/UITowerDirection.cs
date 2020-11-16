@@ -22,7 +22,6 @@ public class UITowerDirection : MonoBehaviour, IArrowsInputController
 
     public void OnEnable()
     {
-        select(upButton);
         upButton.onClick.AddListener(() => HandleUp()) ;
         downButton.onClick.AddListener(() => HandleDown());
         leftButton.onClick.AddListener(() => HandleLeft());

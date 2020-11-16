@@ -13,7 +13,7 @@ public class UITowerButton : MonoBehaviour, ITowerSelector
 
     public event Action<int> HandleTowerSelected = delegate { };
 
-    void Start()
+    void OnEnable()
     {
         towerName.text = "[" + this.tower.Id + "] " + this.tower.Name;
         towerButton.onClick.AddListener(() => HandleTowerSelected(this.tower.Id));
