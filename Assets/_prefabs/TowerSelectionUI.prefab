@@ -959,6 +959,7 @@ GameObject:
   - component: {fileID: 6563278071357626597}
   - component: {fileID: 503308673995821595}
   - component: {fileID: 9020839726940032090}
+  - component: {fileID: 8786626493823940569}
   m_Layer: 0
   m_Name: TowerSelectionUI
   m_TagString: Untagged
@@ -1029,6 +1030,19 @@ MonoBehaviour:
   price: {fileID: 4666018895877039631}
   speed: {fileID: 4386505688618206165}
   damage: {fileID: 8707228736670030025}
+--- !u!114 &8786626493823940569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8487977647678593767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42ed49109b5c86c4394aea85d5c4386b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonBuy: {fileID: 1074269571014245641}
 --- !u!1001 &95440598367263803
 PrefabInstance:
   m_ObjectHideFlags: 0

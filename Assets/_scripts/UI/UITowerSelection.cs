@@ -10,7 +10,6 @@ public class UITowerSelection : MonoBehaviour
     [SerializeField] Text speed;
     [SerializeField] Text damage;
 
-
     void OnEnable()
     {
         EconomyController.TowerSelected += TowerSelected;
@@ -23,8 +22,7 @@ public class UITowerSelection : MonoBehaviour
 
     void TowerSelected(SOTower tower)
     {
-        Debug.Log("Tower selected in UITowerSelection");
-        towerName.text = tower.Name;
+       towerName.text = tower.Name;
         price.text = "Price: " + tower.Price + "$";
         speed.text = "Speed: " + tower.AttackSpeed;
         damage.text = "Damage: " + tower.Shot.GetComponent<Shot>().Damage;

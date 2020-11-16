@@ -17,11 +17,24 @@ public class UITowerButton : MonoBehaviour, ITowerSelector
     {
         towerName.text = "[" + this.tower.Id + "] " + this.tower.Name;
         towerButton.onClick.AddListener(() => HandleTowerSelected(this.tower.Id));
+        EconomyController.TowerSelected += CheckIfSelected;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnDisable()
     {
-        
+        EconomyController.TowerSelected -= CheckIfSelected;
+    }
+
+
+    private void CheckIfSelected(SOTower selectedTower)
+    {
+        if(selectedTower == tower)
+        {
+            UIColors.Highlight(towerButton);
+        }
+        else
+        {
+            UIColors.UnHighlight(towerButton);
+        }
     }
 }

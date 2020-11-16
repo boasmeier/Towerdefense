@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-public class InputController : MonoBehaviour, IArrowsInputController, ITowerSelector
+public class InputController : MonoBehaviour, IArrowsInputController, ITowerSelector, ITowerBuyController
 {
     public event Action HandleLeft = delegate { };
 
@@ -12,6 +12,8 @@ public class InputController : MonoBehaviour, IArrowsInputController, ITowerSele
     public event Action HandleDown = delegate { };
 
     public event Action<int> HandleTowerSelected = delegate { };
+
+    public event Action HandleTowerBuy = delegate { };
 
     // Update is called once per frame
     private void Update()
@@ -44,6 +46,9 @@ public class InputController : MonoBehaviour, IArrowsInputController, ITowerSele
         else if (Input.GetKeyDown(KeyCode.Keypad2) || Input.GetKeyDown(KeyCode.Alpha2))
         {
             this.HandleTowerSelected(2);
+        }else if (Input.GetKeyDown(KeyCode.KeypadEnter) || Input.GetKeyDown(KeyCode.Return))
+        {
+            this.HandleTowerBuy();
         }
         
     }

@@ -25,6 +25,8 @@ public class LevelManager : MonoBehaviour
     }
     public bool CheckIfEnoughMoney(int availableMoney)
     {
+        Debug.Log("Money: " + this.money);
+        Debug.Log("Available Moneay: " + availableMoney);
         return availableMoney <= this.money;
     }
 
@@ -98,6 +100,7 @@ public class LevelManager : MonoBehaviour
         _running = true;
         SpawnWave(currentWave);
     }
+
 
     // Start is called before the first frame update
     void Start()

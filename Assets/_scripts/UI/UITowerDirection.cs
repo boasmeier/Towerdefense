@@ -62,33 +62,16 @@ public class UITowerDirection : MonoBehaviour, IArrowsInputController
         }
     }
 
-    private void highlight()
-    {
-        var colors = this.selected.colors;
-        colors.normalColor = Color.red;
-        colors.selectedColor = Color.red;
-        this.selected.colors = colors;
-    }
-
-    private void unHighlight(Button button)
-    {
-        var colors = button.colors;
-        colors.normalColor = Color.white;
-        colors.pressedColor = Color.white; 
-
-        button.colors = colors;
-    }
-
     private void select(Button select)
     {
         var previous = selected;
         this.selected = select;
         if(previous != null)
         {
-            unHighlight(previous);
+            UIColors.UnHighlight(previous);
         }
 
         //select.Select();
-        highlight();
+        UIColors.Highlight(selected);
     }
 }

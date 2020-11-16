@@ -15,8 +15,15 @@ public class EconomyController : MonoBehaviour
 
     private bool _isPlaceable;
     private LevelManager lM;
+
+    private TowerEntry selected;
+    
     private IList<IArrowsInputController> _aIcs;
     private IList<ITowerSelector> _aTss;
+    private IList<ITowerBuyController> _aTbcs;
+
+
+
 
     private void OnEnable()
     {
@@ -37,10 +44,22 @@ public class EconomyController : MonoBehaviour
 
         foreach (ITowerSelector ts in _aTss)
         {
-            ts.HandleTowerSelected += BuildTower;
+            ts.HandleTowerSelected += SelectTower;
+        }
+
+        _aTbcs = FindObjectsOfType<MonoBehaviour>().OfType<ITowerBuyController>().ToList();
+
+        foreach (ITowerBuyController tbc in _aTbcs)
+        {
+            tbc.HandleTowerBuy += BuildTower;
         }
 
         this.Rotate(0);
+    }
+
+    private void Start()
+    {
+        SelectTower(1);
     }
 
     private void OnDisable()
@@ -55,17 +74,29 @@ public class EconomyController : MonoBehaviour
 
         foreach (ITowerSelector ts in _aTss)
         {
-            ts.HandleTowerSelected -= BuildTower;
+            ts.HandleTowerSelected -= SelectTower;
+        }
+
+        foreach (ITowerBuyController tbc in _aTbcs)
+        {
+            tbc.HandleTowerBuy -= BuildTower;
         }
     }
 
-    private void BuildTower(int id)
+    private void SelectTower(int id)
     {
-        if (!this._isPlaceable) return;
         TowerEntry entry = this.getTowerEntry(id);
         TowerSelected(entry.details);
-        TowerController.Build(entry.geometry);
-        this.HandleFinance(entry);
+        selected = entry;
+    }
+
+    private void BuildTower()
+    {
+        Debug.Log("Build Tower");
+        if (!this._isPlaceable) return;
+
+        TowerController.Build(selected.geometry);
+        this.HandleFinance(selected);
         this._isPlaceable = false;
     }
 
