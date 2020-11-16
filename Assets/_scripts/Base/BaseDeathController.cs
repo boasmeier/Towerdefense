@@ -13,7 +13,14 @@ public class BaseDeathController : MonoBehaviour
     private void Awake()
     {
         bhc = GetComponent<IHealthController>();
+    }
+
+    private void OnEnable() {
         bhc.HandleDeath += Die;
+    }
+
+    private void OnDisable() {
+        bhc.HandleDeath -= Die;
     }
 
     private void Die()

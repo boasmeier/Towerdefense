@@ -17,6 +17,10 @@ public class EnemyDeathController : MonoBehaviour
         hc.HandleDeath += Die;
     }
 
+    private void OnDisable() {
+        hc.HandleDeath -= Die;
+    }
+
 
     private void Die()
     {

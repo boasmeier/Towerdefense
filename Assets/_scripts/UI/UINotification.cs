@@ -14,8 +14,12 @@ public class UINotification : MonoBehaviour
 
     private float notificationDelay = 1.0f;
 
-    private void Awake() {
+    private void OnEnable() {
         EconomyController.DisplayNotEnoughMoney += DisplayNotification;
+    }
+
+    private void OnDisable() {
+        EconomyController.DisplayNotEnoughMoney -= DisplayNotification;
     }
 
     private void DisplayNotification(string text) {

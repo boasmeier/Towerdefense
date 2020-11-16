@@ -25,8 +25,6 @@ public class LevelManager : MonoBehaviour
     }
     public bool CheckIfEnoughMoney(int availableMoney)
     {
-        Debug.Log("Money: " + this.money);
-        Debug.Log("Available Moneay: " + availableMoney);
         return availableMoney <= this.money;
     }
 
@@ -51,13 +49,44 @@ public class LevelManager : MonoBehaviour
         bdc = FindObjectOfType<BaseDeathController>();
         em = FindObjectOfType<EnemyManager>();
         uim = FindObjectOfType<UIManager>();
+    }
 
+    private void OnEnable()
+    {
         bhc.HandleHealthChange += DisplayHealthChange;
         bdc.HandleBaseDeath += GameOver;
         em.HandleEnemyDeath += DisplayMoneyChange;
         em.HandleAllEnemiesOfWaveDied += DisplayWaveChange;
         uim.HandleWaveStart += StartWave;
         EconomyController.HandleTowerBuyOrSell += DisplayMoneyChange;
+        SceneManager.sceneLoaded += OnSceneFinishedLoading;
+    }
+
+    private void OnDisable()
+    {
+        bhc.HandleHealthChange -= DisplayHealthChange;
+        bdc.HandleBaseDeath -= GameOver;
+        em.HandleEnemyDeath -= DisplayMoneyChange;
+        em.HandleAllEnemiesOfWaveDied -= DisplayWaveChange;
+        uim.HandleWaveStart -= StartWave;
+        EconomyController.HandleTowerBuyOrSell -= DisplayMoneyChange;
+        SceneManager.sceneLoaded -= OnSceneFinishedLoading;
+    }
+
+    private void Start()
+    {
+        this.money = this._level.StartMoney;
+        this.totalWave = this._level.Waves.Count;
+        this.currentWave = 1;
+        HandleMoneyChange(money);
+        HandleWaveChange(this.currentWave, this.totalWave);
+    }
+
+    private void OnSceneFinishedLoading(Scene scene, LoadSceneMode mode) 
+    {
+        this.totalWave = this._level.Waves.Count;
+        this.currentWave = 1;
+        HandleWaveChange(this.currentWave, this.totalWave);
     }
 
     private void DisplayHealthChange(int newHealth)
@@ -79,37 +108,28 @@ public class LevelManager : MonoBehaviour
         {
             this.currentWave += 1;
             HandleWaveChange(this.currentWave, this.totalWave);
-        } else { 
+        }
+        else
+        {
             IsWon = true;
             HandleGameOver(IsWon);
-            Invoke("Restart", restartDelay*Time.timeScale);
+            Invoke("Restart", restartDelay * Time.timeScale);
         }
     }
 
     private void GameOver()
     {
         _running = false;
-        Debug.Log("GAME OVER: YOU LOOSE");
+        //Debug.Log("GAME OVER: YOU LOOSE");
         IsWon = false;
         HandleGameOver(IsWon);
-        Invoke("Restart", restartDelay*Time.timeScale);
+        Invoke("Restart", restartDelay * Time.timeScale);
     }
 
     private void StartWave()
     {
         _running = true;
         SpawnWave(currentWave);
-    }
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        this.money = this._level.StartMoney;
-        this.totalWave = this._level.Waves.Count;
-        this.currentWave = 1;
-        HandleMoneyChange(money);
-        HandleWaveChange(this.currentWave, this.totalWave);
     }
 
     private void Restart()

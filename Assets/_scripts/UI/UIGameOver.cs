@@ -17,8 +17,16 @@ public class UIGameOver : MonoBehaviour
 
     private void Awake()
     {
-        lm = FindObjectOfType<LevelManager>();
+        lm = FindObjectOfType<LevelManager>();    
+    }
+
+    private void OnEnable() 
+    {
         lm.HandleGameOver += DisplayGameOverMessage;
+    }
+
+    private void OnDisable() {
+        lm.HandleGameOver -= DisplayGameOverMessage;
     }
 
     private void DisplayGameOverMessage(bool isWon) {

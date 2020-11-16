@@ -23,8 +23,6 @@ public class EconomyController : MonoBehaviour
     private IList<ITowerBuyController> _aTbcs;
 
 
-
-
     private void OnEnable()
     {
         lM = FindObjectOfType<LevelManager>();
@@ -131,7 +129,6 @@ public class EconomyController : MonoBehaviour
         }
         else
         {
-            //Debug.Log("Not enough money to buy a tower!");
             DisplayNotEnoughMoney("Not enough money to buy a tower!");
         }
     }

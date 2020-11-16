@@ -10,7 +10,7 @@ public class BaseCollisionController : MonoBehaviour
     public event Action HandleEnemyReachedBase = delegate { };
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         enemyLayer  = LayerMask.NameToLayer("Enemy");
     }

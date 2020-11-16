@@ -12,14 +12,24 @@ public class GameSpeedHandler : MonoBehaviour
     private UIInputController UIInputController;
     private UIGameOver UIGameOver;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         gameSpeedSlider.onValueChanged.AddListener(delegate {ChangeGameSpeed();}); 
         UIInputController = FindObjectOfType<UIInputController>();
         UIGameOver = FindObjectOfType<UIGameOver>();
+    }
+
+    private void OnEnable() 
+    {
         UIInputController.HandleGameSpeedIncrease +=  Increase;
         UIInputController.HandleGameSpeedDecrease += Decrease; 
         UIGameOver.ResetGameSpeed += ResetSlider;
+    }
+
+    private void OnDisable() {
+        UIInputController.HandleGameSpeedIncrease -=  Increase;
+        UIInputController.HandleGameSpeedDecrease -= Decrease; 
+        UIGameOver.ResetGameSpeed -= ResetSlider;
     }
 
     private void ChangeGameSpeed() {

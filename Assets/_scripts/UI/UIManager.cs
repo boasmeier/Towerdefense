@@ -30,11 +30,20 @@ public class UIManager : MonoBehaviour
     private void Awake()
     {
         lm = FindObjectOfType<LevelManager>();
+        startWaveButton.onClick.AddListener(ResetTimerDisplay);
+    }
+
+    private void OnEnable() 
+    {
         lm.HandleBaseHealthChange += DisplayHealth;
         lm.HandleMoneyChange += DisplayMoney;
         lm.HandleWaveChange += DisplayWave;
+    }
 
-        startWaveButton.onClick.AddListener(ResetTimerDisplay);
+    private void OnDisable() {
+        lm.HandleBaseHealthChange -= DisplayHealth;
+        lm.HandleMoneyChange -= DisplayMoney;
+        lm.HandleWaveChange -= DisplayWave;
     }
 
     private void DisplayHealth(int newHealth)
@@ -61,7 +70,7 @@ public class UIManager : MonoBehaviour
         float minutes = Mathf.FloorToInt(timeToDisplay / 60); 
         float seconds = Mathf.FloorToInt(timeToDisplay % 60);
 
-        timerText.text = "Next wave in: " + string.Format("{0:00}:{1:00}", minutes, seconds);
+        timerText.text = "Next wave: " + string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 
     private void ResetTimerDisplay() {
