@@ -1996,7 +1996,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4202479334433926888
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2869,6 +2869,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c73ee82d22be51140b00eb694375f769, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  menuePanel: {fileID: 4202479334433926888}
   resumeButton: {fileID: 447613384585394957}
   restartButton: {fileID: 6677302481292099285}
   exitButton: {fileID: 1823283574920288701}

@@ -42,6 +42,7 @@ public class LevelManager : MonoBehaviour
     private BaseDeathController bdc;
     private EnemyManager em;
     private UIManager uim;
+    private UIMenue UIMenue;
 
     private void Awake()
     {
@@ -49,6 +50,7 @@ public class LevelManager : MonoBehaviour
         bdc = FindObjectOfType<BaseDeathController>();
         em = FindObjectOfType<EnemyManager>();
         uim = FindObjectOfType<UIManager>();
+        UIMenue = FindObjectOfType<UIMenue>();
     }
 
     private void OnEnable()
@@ -58,6 +60,7 @@ public class LevelManager : MonoBehaviour
         em.HandleEnemyDeath += DisplayMoneyChange;
         em.HandleAllEnemiesOfWaveDied += DisplayWaveChange;
         uim.HandleWaveStart += StartWave;
+        UIMenue.HandleRestart += Restart;
         EconomyController.HandleTowerBuyOrSell += DisplayMoneyChange;
         SceneManager.sceneLoaded += OnSceneFinishedLoading;
     }
@@ -69,6 +72,7 @@ public class LevelManager : MonoBehaviour
         em.HandleEnemyDeath -= DisplayMoneyChange;
         em.HandleAllEnemiesOfWaveDied -= DisplayWaveChange;
         uim.HandleWaveStart -= StartWave;
+        UIMenue.HandleRestart -= Restart;
         EconomyController.HandleTowerBuyOrSell -= DisplayMoneyChange;
         SceneManager.sceneLoaded -= OnSceneFinishedLoading;
     }

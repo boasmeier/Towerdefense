@@ -9,6 +9,8 @@ public class UIInputController : MonoBehaviour
     public event Action HandleGameSpeedIncrease = delegate { };
     public event Action HandleGameSpeedDecrease = delegate { };
 
+    public event Action ToggleMenue = delegate { };
+
     // Update is called once per frame
     private void Update()
     {
@@ -24,6 +26,9 @@ public class UIInputController : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.Alpha0))
         {
             this.HandleGameSpeedIncrease();
+        }
+        else if (Input.GetKeyDown(KeyCode.Escape)) {
+            this.ToggleMenue();
         }
     }
 }
