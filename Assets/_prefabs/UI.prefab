@@ -1387,7 +1387,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.2
-  m_Text: YOU LOSS
+  m_Text: YOU LOSE
 --- !u!1 &7762756569230900178
 GameObject:
   m_ObjectHideFlags: 0

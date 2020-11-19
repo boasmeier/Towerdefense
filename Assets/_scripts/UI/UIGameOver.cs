@@ -31,7 +31,7 @@ public class UIGameOver : MonoBehaviour
 
     private void DisplayGameOverMessage(bool isWon) {
         gameOverPanel.gameObject.SetActive(true);
-        gameOverText.text = isWon ? "YOU WON" : "YOU LOOSE";
+        gameOverText.text = isWon ? "YOU WON" : "YOU LOSE";
         ResetGameSpeed();
     }
 }
