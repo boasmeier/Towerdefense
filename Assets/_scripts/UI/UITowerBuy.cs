@@ -13,6 +13,7 @@ public class UITowerBuy : MonoBehaviour, ITowerBuyController
 
     void OnEnable()
     {
+        UIColors.Highlight(buttonBuy);
         _lm = FindObjectOfType<LevelManager>();
         buttonBuy.onClick.AddListener(() => HandleTowerBuy());
         EconomyController.TowerSelected += TowerSelected;
@@ -42,14 +43,16 @@ public class UITowerBuy : MonoBehaviour, ITowerBuyController
         if (_lm.CheckIfEnoughMoney(selectedTower.Price))
         {
             Debug.Log("Enable button");
-            buttonBuy.enabled = true;
+            buttonBuy.interactable = true; 
         }
         else
         {
             Debug.Log("Disable button");
-            buttonBuy.enabled = false;
+            buttonBuy.interactable = false;
         }
     }
+
+
 }
 
 
