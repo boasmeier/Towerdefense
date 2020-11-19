@@ -24,13 +24,16 @@ public class UIManager : MonoBehaviour
 
     [SerializeField]
     private Button startWaveButton;
-
+    [SerializeField]
+    private Button menueButton;
     public event Action HandleWaveStart = delegate { };
+    public event Action ToggleMenue = delegate { };
 
     private void Awake()
     {
         lm = FindObjectOfType<LevelManager>();
         startWaveButton.onClick.AddListener(ResetTimerDisplay);
+        menueButton.onClick.AddListener(HandleMenueButton);
     }
 
     private void OnEnable() 
@@ -80,6 +83,10 @@ public class UIManager : MonoBehaviour
             HandleWaveStart();
             startWaveButton.interactable = false;
         }
+    }
+
+    private void HandleMenueButton() {
+        ToggleMenue();
     }
 
     // Update is called once per frame

@@ -22,15 +22,17 @@ public class UIMenue : MonoBehaviour
     public event Action ResetGameSpeed = delegate { };
 
     private UIInputController UIInputController;
-
+    private UIManager UIManager;
     private void Awake()
     { 
         UIInputController = FindObjectOfType<UIInputController>();
+        UIManager = FindObjectOfType<UIManager>();
     }
 
     private void OnEnable() 
     {
         UIInputController.ToggleMenue += Toggle;
+        UIManager.ToggleMenue += Toggle;
         resumeButton.onClick.AddListener(Resume);
         restartButton.onClick.AddListener(Restart);
         exitButton.onClick.AddListener(Exit); 
