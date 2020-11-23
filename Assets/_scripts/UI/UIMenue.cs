@@ -34,6 +34,7 @@ public class UIMenue : MonoBehaviour
         UIInputController.ToggleMenue += Toggle;
         UIManager.ToggleMenue += Toggle;
         resumeButton.onClick.AddListener(Resume);
+        resumeButton.GetComponentInChildren<Text>().text = "Start";
         restartButton.onClick.AddListener(Restart);
         exitButton.onClick.AddListener(Exit); 
     }
@@ -59,6 +60,8 @@ public class UIMenue : MonoBehaviour
             menuePanel.gameObject.SetActive(false);
         } else {
             menuePanel.gameObject.SetActive(true);
+            resumeButton.GetComponentInChildren<Text>().text = "Resume";
+            restartButton.gameObject.SetActive(true);
         }    
     }
 
