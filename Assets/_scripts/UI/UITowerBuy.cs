@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class UITowerBuy : MonoBehaviour, ITowerBuyController
 {
     [SerializeField] Button buttonBuy;
+    [SerializeField] Text textNoMoneyAvailable;
 
     public event Action HandleTowerBuy = delegate { };
 
@@ -43,12 +44,14 @@ public class UITowerBuy : MonoBehaviour, ITowerBuyController
         if (_lm.CheckIfEnoughMoney(selectedTower.Price))
         {
             Debug.Log("Enable button");
-            buttonBuy.interactable = true; 
+            buttonBuy.interactable = true;
+            textNoMoneyAvailable.gameObject.SetActive(false);
         }
         else
         {
             Debug.Log("Disable button");
             buttonBuy.interactable = false;
+            textNoMoneyAvailable.gameObject.SetActive(true);
         }
     }
 
