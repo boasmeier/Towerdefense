@@ -77,7 +77,6 @@ public class UIMenue : MonoBehaviour
 
     private void ToggleControls()
     {
-        Debug.Log("ToggleControls: " + controlsPanel.activeSelf);
         controlsPanel.SetActive(!controlsPanel.activeSelf);
     }
 
