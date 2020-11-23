@@ -11,7 +11,7 @@ public class UIMenue : MonoBehaviour
     private RectTransform menuePanel;
 
     [SerializeField]
-    private RectTransform controlsPanel;
+    private GameObject controlsPanel;
 
     [SerializeField]
     private Button resumeButton;
@@ -84,19 +84,8 @@ public class UIMenue : MonoBehaviour
 
     private void ToggleControls()
     {
-        Debug.Log("ToggleControls");
-        if (controlsPanel.gameObject.activeSelf)
-        {
-            Debug.Log("SetInactive");
-
-            controlsPanel.gameObject.SetActive(true);
-        }
-        else
-        {
-            Debug.Log("SetActive");
-
-            controlsPanel.gameObject.SetActive(false);
-        }
+        Debug.Log("ToggleControls: " + controlsPanel.activeSelf);
+        controlsPanel.SetActive(!controlsPanel.activeSelf);
     }
 
 
