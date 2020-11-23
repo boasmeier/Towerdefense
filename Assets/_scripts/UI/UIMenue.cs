@@ -27,6 +27,8 @@ public class UIMenue : MonoBehaviour
 
     public event Action HandleRestart = delegate { };
     public event Action ResetGameSpeed = delegate { };
+    public event Action Pause = delegate { };
+    public event Action Continue = delegate { };
 
     private UIInputController UIInputController;
     private UIManager UIManager;
@@ -51,22 +53,13 @@ public class UIMenue : MonoBehaviour
     {
         UIInputController.ToggleMenue -= Toggle; 
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     private void Toggle() {
         if(menuePanel.gameObject.activeSelf) {
+            Continue();
             menuePanel.gameObject.SetActive(false);
         } else {
+            Pause();
             menuePanel.gameObject.SetActive(true);
             resumeButton.GetComponentInChildren<Text>().text = "Resume";
             restartButton.gameObject.SetActive(true);

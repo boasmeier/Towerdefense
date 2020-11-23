@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -27,6 +28,8 @@ public class GameSpeedHandler : MonoBehaviour
         UIInputController.HandleGameSpeedDecrease += Decrease; 
         UIGameOver.ResetGameSpeed += ResetSlider;
         UIMenue.ResetGameSpeed += ResetSlider;
+        UIMenue.Pause += PauseGame;
+        UIMenue.Continue += ContinueGame;
     }
 
     private void OnDisable() {
@@ -76,5 +79,27 @@ public class GameSpeedHandler : MonoBehaviour
     private void ResetSlider() {
         sliderValue = 2;
         gameSpeedSlider.value = sliderValue;
+    }
+
+    private void PauseGame() {
+        Time.timeScale = 0;
+        //Disable scripts that still work while timescale is set to 0
+        PlaceholderInputController[] array = FindObjectsOfType<PlaceholderInputController>();
+        foreach (PlaceholderInputController element in array) {
+            element.GetComponent<PlaceholderInputController>().enabled=false;
+            element.GetComponent<BoxCollider>().enabled=false;
+        }
+        FindObjectOfType<EconomyController>().enabled = false;
+    }
+
+    private void ContinueGame() {
+        this.ChangeGameSpeed();
+        //enable the scripts again
+        PlaceholderInputController[] array = FindObjectsOfType<PlaceholderInputController>();
+        foreach (PlaceholderInputController element in array) {
+            element.GetComponent<PlaceholderInputController>().enabled=true;
+            element.GetComponent<BoxCollider>().enabled=true;
+        }
+        FindObjectOfType<EconomyController>().enabled = true;
     }
 }
