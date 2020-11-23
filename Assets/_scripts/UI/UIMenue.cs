@@ -11,10 +11,17 @@ public class UIMenue : MonoBehaviour
     private RectTransform menuePanel;
 
     [SerializeField]
+    private RectTransform controlsPanel;
+
+    [SerializeField]
     private Button resumeButton;
 
     [SerializeField]
     private Button restartButton;
+
+    [SerializeField]
+    private Button controlsButton;
+
     [SerializeField]
     private Button exitButton;
 
@@ -36,6 +43,7 @@ public class UIMenue : MonoBehaviour
         resumeButton.onClick.AddListener(Resume);
         resumeButton.GetComponentInChildren<Text>().text = "Start";
         restartButton.onClick.AddListener(Restart);
+        controlsButton.onClick.AddListener(ToggleControls);
         exitButton.onClick.AddListener(Exit); 
     }
 
@@ -73,6 +81,24 @@ public class UIMenue : MonoBehaviour
         ResetGameSpeed();
         HandleRestart();
     }
+
+    private void ToggleControls()
+    {
+        Debug.Log("ToggleControls");
+        if (controlsPanel.gameObject.activeSelf)
+        {
+            Debug.Log("SetInactive");
+
+            controlsPanel.gameObject.SetActive(true);
+        }
+        else
+        {
+            Debug.Log("SetActive");
+
+            controlsPanel.gameObject.SetActive(false);
+        }
+    }
+
 
     private void Exit() {
         Application.Quit();
