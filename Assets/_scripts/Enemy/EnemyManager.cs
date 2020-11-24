@@ -25,7 +25,7 @@ public class EnemyManager : MonoBehaviour
 
         //subscribe to events
         levelManager.SpawnWave += NewWave;
-        basis.HandleEnemyReachedBase += EnemyDestroyed;
+        basis.HandleEnemyCollision += EnemyDestroyed;
         EnemyDeathController.HandleEnemyDeath += EnemyDied;
     }
 
@@ -33,7 +33,7 @@ public class EnemyManager : MonoBehaviour
     {
         //unsubscribe from events
         levelManager.SpawnWave -= NewWave;
-        basis.HandleEnemyReachedBase -= EnemyDestroyed;
+        basis.HandleEnemyCollision -= EnemyDestroyed;
         EnemyDeathController.HandleEnemyDeath -= EnemyDied;
     }
 

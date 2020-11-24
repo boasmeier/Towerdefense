@@ -6,8 +6,7 @@ using UnityEngine;
 public class BaseCollisionController : MonoBehaviour
 {
     LayerMask enemyLayer;
-    public event Action HandleCollision = delegate { };
-    public event Action HandleEnemyReachedBase = delegate { };
+    public event Action HandleEnemyCollision = delegate { };
 
     // Start is called before the first frame update
     void Awake()
@@ -22,8 +21,7 @@ public class BaseCollisionController : MonoBehaviour
         if(collision.gameObject.layer == enemyLayer)
         {
             Debug.Log("Base collided");
-            HandleCollision();
-            HandleEnemyReachedBase();
+            HandleEnemyCollision();
             Destroy(collision.gameObject);
         }
     }
