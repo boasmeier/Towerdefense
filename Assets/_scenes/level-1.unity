@@ -4243,6 +4243,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5039196225929479689, guid: df860a1f8f281ce48baecd4b5f375c28,
+        type: 3}
+      propertyPath: m_Name
+      value: Tooltip
+      objectReference: {fileID: 0}
     - target: {fileID: 5389232596030854482, guid: df860a1f8f281ce48baecd4b5f375c28,
         type: 3}
       propertyPath: m_AnchorMin.y
