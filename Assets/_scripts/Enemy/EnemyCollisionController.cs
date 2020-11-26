@@ -15,9 +15,9 @@ public class EnemyCollisionController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.layer == shotLayer)
+        if (collision.gameObject.layer == shotLayer.value)
         {
-            HandleCollision(collision.gameObject.GetComponent<Shot>().Damage);
+            HandleCollision(collision.gameObject.GetComponentInParent<Shot>().Damage);
             Destroy(collision.gameObject);
         }
     }
