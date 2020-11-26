@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 6487013935326637349}
   - component: {fileID: 5254572658439948978}
   - component: {fileID: 7022676296026509620}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4891,7 +4891,7 @@ GameObject:
   - component: {fileID: 3523889418216714837}
   - component: {fileID: 4506605141418023575}
   - component: {fileID: 5706278040923784204}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4984,7 +4984,7 @@ GameObject:
   - component: {fileID: 5498001274048051518}
   - component: {fileID: 1824953961879181800}
   - component: {fileID: 4557137788280583420}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Cube (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5077,7 +5077,7 @@ GameObject:
   - component: {fileID: 4910198111375138146}
   - component: {fileID: 3724279372049685842}
   - component: {fileID: 3975514388572041935}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5170,7 +5170,7 @@ GameObject:
   - component: {fileID: 1557268961928768730}
   - component: {fileID: 4946791126660547239}
   - component: {fileID: 8897941178606453330}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5263,7 +5263,7 @@ GameObject:
   - component: {fileID: 2363437082780351258}
   - component: {fileID: 7651623748999687127}
   - component: {fileID: 4536551446934695470}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Cube (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5355,6 +5355,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: WarningParticles
+      objectReference: {fileID: 0}
+    - target: {fileID: 4272085290455181831, guid: b4acd04db6ac2ec4a86118374acac5be,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 4913963921388198542, guid: b4acd04db6ac2ec4a86118374acac5be,
         type: 3}
@@ -5576,6 +5581,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SmokeParticles
+      objectReference: {fileID: 0}
+    - target: {fileID: 5935513120107795250, guid: 1de8a418edeb63f45abeeda8e78d2966,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 6444428493158043752, guid: 1de8a418edeb63f45abeeda8e78d2966,
         type: 3}

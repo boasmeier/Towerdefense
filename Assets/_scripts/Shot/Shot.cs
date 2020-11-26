@@ -8,6 +8,7 @@ public class Shot : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
+        //TODO playSound!!!
     }
 
     // Update is called once per frame
