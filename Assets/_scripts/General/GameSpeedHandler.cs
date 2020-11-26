@@ -11,32 +11,32 @@ public class GameSpeedHandler : MonoBehaviour
     int sliderValue = 2;
 
     private UIInputController UIInputController;
-    private UIGameOver UIGameOver;
     private UIMenue UIMenue;
+    private LevelManager levelManager;
 
     void Awake()
     {
         gameSpeedSlider.onValueChanged.AddListener(delegate {ChangeGameSpeed();}); 
         UIInputController = FindObjectOfType<UIInputController>();
-        UIGameOver = FindObjectOfType<UIGameOver>();
         UIMenue = FindObjectOfType<UIMenue>();
+        levelManager = FindObjectOfType<LevelManager>();
     }
 
     private void OnEnable() 
     {
         UIInputController.HandleGameSpeedIncrease +=  Increase;
         UIInputController.HandleGameSpeedDecrease += Decrease; 
-        UIGameOver.ResetGameSpeed += ResetSlider;
-        UIMenue.ResetGameSpeed += ResetSlider;
         UIMenue.Pause += PauseGame;
         UIMenue.Continue += ContinueGame;
+        levelManager.ResetGameSpeed += ResetSlider;
     }
 
     private void OnDisable() {
         UIInputController.HandleGameSpeedIncrease -=  Increase;
         UIInputController.HandleGameSpeedDecrease -= Decrease; 
-        UIGameOver.ResetGameSpeed -= ResetSlider;
-        UIMenue.ResetGameSpeed -= ResetSlider;
+        UIMenue.Pause += PauseGame;
+        UIMenue.Continue += ContinueGame;
+        levelManager.ResetGameSpeed -= ResetSlider;
     }
 
     private void ChangeGameSpeed() {

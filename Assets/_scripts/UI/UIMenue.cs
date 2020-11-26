@@ -26,7 +26,6 @@ public class UIMenue : MonoBehaviour
     private Button exitButton;
 
     public event Action HandleRestart = delegate { };
-    public event Action ResetGameSpeed = delegate { };
     public event Action Pause = delegate { };
     public event Action Continue = delegate { };
 
@@ -52,6 +51,15 @@ public class UIMenue : MonoBehaviour
     private void OnDisable() 
     {
         UIInputController.ToggleMenue -= Toggle; 
+        UIManager.ToggleMenue -= Toggle;
+    }
+
+    private void Start() {
+        if(FirstTimeCheck.notFirstTime) {
+            Toggle();
+        } else {
+            FirstTimeCheck.notFirstTime = true;
+        }
     }
 
     private void Toggle() {
@@ -71,7 +79,6 @@ public class UIMenue : MonoBehaviour
     }
 
     private void Restart() {
-        ResetGameSpeed();
         HandleRestart();
     }
 

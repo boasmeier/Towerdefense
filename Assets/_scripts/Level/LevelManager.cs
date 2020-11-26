@@ -15,6 +15,7 @@ public class LevelManager : MonoBehaviour
     public event Action<int, int> HandleWaveChange = delegate { };
     public event Action<int> SpawnWave = delegate { };
     public event Action<bool> HandleGameOver = delegate { };
+    public event Action ResetGameSpeed = delegate { };
     public SOLevel Level
     {
         get { return this._level; }
@@ -138,6 +139,7 @@ public class LevelManager : MonoBehaviour
 
     private void Restart()
     {
+        ResetGameSpeed();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

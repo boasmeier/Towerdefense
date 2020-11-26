@@ -13,8 +13,6 @@ public class UIGameOver : MonoBehaviour
     [SerializeField]
     private Text gameOverText;
 
-    public event Action ResetGameSpeed = delegate { };
-
     private void Awake()
     {
         lm = FindObjectOfType<LevelManager>();    
@@ -32,6 +30,5 @@ public class UIGameOver : MonoBehaviour
     private void DisplayGameOverMessage(bool isWon) {
         gameOverPanel.gameObject.SetActive(true);
         gameOverText.text = isWon ? "YOU WON" : "YOU LOSE";
-        ResetGameSpeed();
     }
 }
