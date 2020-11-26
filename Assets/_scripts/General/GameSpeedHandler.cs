@@ -90,6 +90,7 @@ public class GameSpeedHandler : MonoBehaviour
             element.GetComponent<BoxCollider>().enabled=false;
         }
         FindObjectOfType<EconomyController>().enabled = false;
+        GameObject.Find("StartButton").GetComponent<Button>().enabled = false;
     }
 
     private void ContinueGame() {
@@ -101,5 +102,6 @@ public class GameSpeedHandler : MonoBehaviour
             element.GetComponent<BoxCollider>().enabled=true;
         }
         FindObjectOfType<EconomyController>().enabled = true;
+        GameObject.Find("StartButton").GetComponent<Button>().enabled = true;
     }
 }
