@@ -26,6 +26,17 @@ public class UIManager : MonoBehaviour
     private Button startWaveButton;
     [SerializeField]
     private Button menueButton;
+
+    [SerializeField]
+    private RectTransform nextWaveNotificationPanel;
+
+    [SerializeField]
+    private RectTransform countdownPanel;
+
+    [SerializeField]
+    private Text countdownText;
+
+    private Boolean notified = false;
     public event Action HandleWaveStart = delegate { };
     public event Action ToggleMenue = delegate { };
 
@@ -36,14 +47,15 @@ public class UIManager : MonoBehaviour
         menueButton.onClick.AddListener(HandleMenueButton);
     }
 
-    private void OnEnable() 
+    private void OnEnable()
     {
         lm.HandleBaseHealthChange += DisplayHealth;
         lm.HandleMoneyChange += DisplayMoney;
         lm.HandleWaveChange += DisplayWave;
     }
 
-    private void OnDisable() {
+    private void OnDisable()
+    {
         lm.HandleBaseHealthChange -= DisplayHealth;
         lm.HandleMoneyChange -= DisplayMoney;
         lm.HandleWaveChange -= DisplayWave;
@@ -61,31 +73,71 @@ public class UIManager : MonoBehaviour
     private void DisplayWave(int cur, int tot)
     {
         waveText.text = "Waves: " + cur + "/" + tot;
-        if(cur > 1) {
+        if (cur > 1)
+        {
             timerIsRunning = true;
             timeRemaining = 30;
             Debug.Log("Start Timer!");
             startWaveButton.interactable = true;
         }
     }
-    
-    private void DisplayTimer(float timeToDisplay) {
-        float minutes = Mathf.FloorToInt(timeToDisplay / 60); 
+
+    private void DisplayTimer(float timeToDisplay)
+    {
+        float minutes = Mathf.FloorToInt(timeToDisplay / 60);
         float seconds = Mathf.FloorToInt(timeToDisplay % 60);
 
         timerText.text = "Next wave: " + string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 
-    private void ResetTimerDisplay() {
-        if(timerIsRunning) {
+    private void DisplayCountdown(float timeToDisplay)
+    {
+        countdownPanel.gameObject.SetActive(true);
+        float seconds = Mathf.FloorToInt(timeToDisplay % 60);
+        if (seconds > 0)
+        {
+            countdownText.text = seconds + "s";
+        }
+        else
+        {
+            countdownText.text = "GO!";
+            if(!notified) {
+                NextWaveNotificationToggle();
+                Invoke("NextWaveNotificationToggle", 0.4f);
+                Invoke("NextWaveNotificationToggle", 0.8f);
+                Invoke("NextWaveNotificationToggle", 1.2f);
+                notified = true;
+            }
+        }
+    }
+
+    private void NextWaveNotificationToggle()
+    {
+        if (nextWaveNotificationPanel.gameObject.activeSelf)
+        {
+            nextWaveNotificationPanel.gameObject.SetActive(false);
+        }
+        else
+        {
+            nextWaveNotificationPanel.gameObject.SetActive(true);
+        }
+    }
+
+    private void ResetTimerDisplay()
+    {
+        if (timerIsRunning)
+        {
             timeRemaining = 0;
-        } else {
+        }
+        else
+        {
             HandleWaveStart();
             startWaveButton.interactable = false;
         }
     }
 
-    private void HandleMenueButton() {
+    private void HandleMenueButton()
+    {
         ToggleMenue();
     }
 
@@ -97,6 +149,10 @@ public class UIManager : MonoBehaviour
             if (timeRemaining > 0)
             {
                 timeRemaining -= Time.deltaTime;
+                if (timeRemaining <= 6)
+                {
+                    DisplayCountdown(timeRemaining);
+                }
             }
             else
             {
@@ -104,6 +160,8 @@ public class UIManager : MonoBehaviour
                 timeRemaining = 0;
                 timerIsRunning = false;
                 startWaveButton.interactable = false;
+                countdownPanel.gameObject.SetActive(false);
+                notified = false;
                 HandleWaveStart();
             }
             DisplayTimer(timeRemaining);
