@@ -105,6 +105,12 @@ PrefabInstance:
       propertyPath: m_Mass
       value: 1000
       objectReference: {fileID: 0}
+    - target: {fileID: -2499013354234796598, guid: 3f51d0e5ca8ce1c4eaa79b4a30c1a35d,
+        type: 3}
+      propertyPath: enemy
+      value: 
+      objectReference: {fileID: 11400000, guid: 471eea0909a5bd348b21582d2fb4953f,
+        type: 2}
     - target: {fileID: 931577375575195927, guid: 3f51d0e5ca8ce1c4eaa79b4a30c1a35d,
         type: 3}
       propertyPath: enemy
@@ -112,6 +118,12 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 471eea0909a5bd348b21582d2fb4953f,
         type: 2}
     - target: {fileID: 1738873760799762834, guid: 3f51d0e5ca8ce1c4eaa79b4a30c1a35d,
+        type: 3}
+      propertyPath: enemy
+      value: 
+      objectReference: {fileID: 11400000, guid: 471eea0909a5bd348b21582d2fb4953f,
+        type: 2}
+    - target: {fileID: 2163836921942899983, guid: 3f51d0e5ca8ce1c4eaa79b4a30c1a35d,
         type: 3}
       propertyPath: enemy
       value: 
