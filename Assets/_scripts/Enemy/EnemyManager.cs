@@ -43,9 +43,10 @@ public class EnemyManager : MonoBehaviour
         //As long as wave is not finished
         if (!waveController.AreAllEnemiesOfCurrentWaveSpawned())
         {
+            float spawnDelay = waveController.CurrentSpawnDelay;
             EnemySpawn(waveController.NextEnemy());
             aliveEnemies += 1;
-            Invoke("NextSpawn", UnityEngine.Random.Range(0.8f * waveController.CurrentSpawnDelay, 1.2f * waveController.CurrentSpawnDelay));
+            Invoke("NextSpawn", UnityEngine.Random.Range(0.8f * spawnDelay, 1.2f * spawnDelay));
         }
     }
 

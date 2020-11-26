@@ -17,7 +17,8 @@ public class EnemyMoveController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(nextPosition <= route.Count)
+
+        if(nextPosition < route.Count)
         {
             float step = this.enemy.Speed * Time.deltaTime; // calculate distance to move
             transform.position = Vector3.MoveTowards(transform.position, route[nextPosition],  step);
