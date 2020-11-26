@@ -49,7 +49,7 @@ public class BaseHealthController : MonoBehaviour, IHealthController
         {
             HandleAlmostDead();
         }
-        else if (currentHealth <= 0)
+        if (currentHealth <= 0)
         {
             HandleDeath();
         }
