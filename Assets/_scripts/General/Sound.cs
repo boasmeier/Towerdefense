@@ -12,7 +12,18 @@ public class Sound : MonoBehaviour
         aSource.clip = clip; // define the clip
                              // set other aSource properties here, if desired
         aSource.Play(); // start the sound
-        Destroy(tempGO, clip.length); // destroy object after clip duration
+        aSource.spatialBlend = 0.6f;
+        Destroy(tempGO, clip.length*2); // destroy object after clip duration
         return aSource; // return the AudioSource reference
+    }
+
+    public static float RandomPitch()
+    {
+        return Random.Range(0.8f, 1.2f);
+    }
+
+    public static float RandomVolume()
+    {
+        return Random.Range(0.8f, 1.2f);
     }
 }

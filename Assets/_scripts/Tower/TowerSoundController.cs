@@ -7,6 +7,8 @@ public class TowerSoundController : MonoBehaviour
     [SerializeField] private SOTower tower;
 
     IShootController _sc;
+    private float pitch;
+    private float volume;
 
     void Start()
     {
@@ -14,6 +16,10 @@ public class TowerSoundController : MonoBehaviour
 
         _sc = GetComponent<IShootController>();
         _sc.HandleShoot += PlayShootSound;
+
+
+        pitch = Sound.RandomPitch();
+        volume = Sound.RandomVolume();
     }
 
     private void OnDisable()
@@ -24,8 +30,8 @@ public class TowerSoundController : MonoBehaviour
     private void PlayShootSound()
     {
         AudioSource src = Sound.PlayClipAt(tower.ShootAudio, this.gameObject.transform.position);
-        src.pitch = Random.Range(0.7f, 1.3f);
-        src.volume = Random.Range(0.6f, 1.4f);
+        src.pitch = pitch;
+        src.volume = volume;
         src.spatialBlend = 0.6f;
     }
 }
