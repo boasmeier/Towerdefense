@@ -59,6 +59,7 @@ public class UIMenue : MonoBehaviour
             Toggle();
         } else {
             FirstTimeCheck.notFirstTime = true;
+            Pause();
         }
     }
 
