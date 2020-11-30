@@ -1,11 +1,13 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Accessibility;
 
 public class ShootController : MonoBehaviour, IShootController
 {
     [SerializeField] private SOTower _tower;
-    [SerializeField] private AudioSource shootSound;
+
+    public event Action HandleShoot = delegate { };
 
     private float lastShot = 0;
     private bool shooting;
@@ -23,6 +25,7 @@ public class ShootController : MonoBehaviour, IShootController
 
     public void Shoot()
     {
+        HandleShoot();
         Rigidbody p = Instantiate(this._tower.Shot, transform);
         p.velocity = transform.forward * this._tower.Velocity;
     }

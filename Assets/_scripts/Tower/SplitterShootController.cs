@@ -1,11 +1,13 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Accessibility;
 
 public class SplitterShootController : MonoBehaviour, IShootController
 {
     [SerializeField] private SOTower _tower;
-    [SerializeField] private AudioSource shootSound;
+
+    public event Action HandleShoot = delegate { };
 
     private float lastShot = 0;
     private bool shooting;
@@ -24,6 +26,7 @@ public class SplitterShootController : MonoBehaviour, IShootController
 
     public void Shoot()
     {
+        HandleShoot();
         this.CreateShot(transform.forward);
         this.CreateShot(transform.right);
         this.CreateShot(-transform.right);

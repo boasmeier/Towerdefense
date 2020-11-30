@@ -1,6 +1,11 @@
-﻿internal interface IShootController
+﻿using System;
+
+internal interface IShootController
 {
     SOTower Tower { get; }
+
+    // should be fired, if shot is fired
+    event Action HandleShoot;
 
     // timer has expired since last shot
     bool TimerExpired();

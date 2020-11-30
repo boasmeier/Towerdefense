@@ -25,7 +25,7 @@ public class EnemySoundController : MonoBehaviour
     {
         Debug.Log("Play Death Sound");
         AudioSource src = Sound.PlayClipAt(enemy.DeathAudio, this.gameObject.transform.position);
-        src.pitch = Random.Range(0.2f, 0.8f);
+        src.pitch = Random.Range(0.8f, 1.2f);
         src.volume = Random.Range(0.6f, 0.8f);
         src.spatialBlend = 0.6f;
     }
