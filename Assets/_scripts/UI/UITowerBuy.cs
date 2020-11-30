@@ -8,6 +8,7 @@ public class UITowerBuy : MonoBehaviour, ITowerBuyController
     [SerializeField] Text textNoMoneyAvailable;
 
     public event Action HandleTowerBuy = delegate { };
+    public event Action HandleTowerBuyClickSound = delegate { };
 
     private LevelManager _lm;
     private SOTower selectedTower;
@@ -17,6 +18,7 @@ public class UITowerBuy : MonoBehaviour, ITowerBuyController
         UIColors.Highlight(buttonBuy);
         _lm = FindObjectOfType<LevelManager>();
         buttonBuy.onClick.AddListener(() => HandleTowerBuy());
+        buttonBuy.onClick.AddListener(() => HandleTowerBuyClickSound());
         EconomyController.TowerSelected += TowerSelected;
         _lm.HandleMoneyChange += MoneyChanged;
     }
@@ -54,8 +56,6 @@ public class UITowerBuy : MonoBehaviour, ITowerBuyController
             textNoMoneyAvailable.gameObject.SetActive(true);
         }
     }
-
-
 }
 
 

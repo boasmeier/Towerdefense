@@ -28,6 +28,7 @@ public class UIMenue : MonoBehaviour
     public event Action HandleRestart = delegate { };
     public event Action Pause = delegate { };
     public event Action Continue = delegate { };
+    public event Action HandleMenueButtonClickSound = delegate { };
 
     private UIInputController UIInputController;
     private UIManager UIManager;
@@ -41,11 +42,19 @@ public class UIMenue : MonoBehaviour
     {
         UIInputController.ToggleMenue += Toggle;
         UIManager.ToggleMenue += Toggle;
-        resumeButton.onClick.AddListener(Resume);
+
         resumeButton.GetComponentInChildren<Text>().text = "Start";
+        resumeButton.onClick.AddListener(Resume);
+        resumeButton.onClick.AddListener(PlayClickSound);
+
         restartButton.onClick.AddListener(Restart);
+        restartButton.onClick.AddListener(PlayClickSound);
+
         controlsButton.onClick.AddListener(ToggleControls);
-        exitButton.onClick.AddListener(Exit); 
+        controlsButton.onClick.AddListener(PlayClickSound);
+
+        exitButton.onClick.AddListener(Exit);
+        exitButton.onClick.AddListener(PlayClickSound);
     }
 
     private void OnDisable() 
@@ -88,8 +97,11 @@ public class UIMenue : MonoBehaviour
         controlsPanel.SetActive(!controlsPanel.activeSelf);
     }
 
-
     private void Exit() {
         Application.Quit();
+    }
+
+    private void PlayClickSound() {
+        HandleMenueButtonClickSound();
     }
 }
