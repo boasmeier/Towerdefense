@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class BaseHealthController : MonoBehaviour, IHealthController
 {
-    [SerializeField] private int health;
+    [SerializeField] private int totalHealth;
 
     private int currentHealth;
     private int healthTreshold;
@@ -16,9 +16,11 @@ public class BaseHealthController : MonoBehaviour, IHealthController
     public event Action HandleAlmostDead = delegate { };
     public event Action<float> HandlePercentageHealthChange = delegate { };
 
+    public int TotalHealth { get { return totalHealth; } }
+
     private void Awake()
     {
-        currentHealth = this.health;
+        currentHealth = this.totalHealth;
         bcc = GetComponent<BaseCollisionController>();
         this.healthTreshold = CalculateHealthThreshold();
     }
@@ -57,7 +59,7 @@ public class BaseHealthController : MonoBehaviour, IHealthController
 
     private int CalculateHealthThreshold()
     {
-        if (this.health < 2) return 0;
-        return this.health / 4;
+        if (this.totalHealth < 2) return 0;
+        return this.totalHealth / 4;
     }
 }

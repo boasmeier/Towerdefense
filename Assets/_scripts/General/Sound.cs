@@ -17,6 +17,13 @@ public class Sound : MonoBehaviour
         return aSource; // return the AudioSource reference
     }
 
+    public static AudioSource PlayRepeatingClipAt(AudioClip clip, Vector3 pos)
+    {
+        AudioSource aSource = PlayClipAt(clip, pos);
+        aSource.loop = true;
+        return aSource; // return the AudioSource reference
+    }
+
     public static float RandomPitch()
     {
         return Random.Range(0.8f, 1.2f);

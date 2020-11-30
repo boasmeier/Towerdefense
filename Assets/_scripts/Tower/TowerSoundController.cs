@@ -12,11 +12,8 @@ public class TowerSoundController : MonoBehaviour
 
     void Start()
     {
-        Debug.Log("Start Enemy Sound Controller");
-
         _sc = GetComponent<IShootController>();
         _sc.HandleShoot += PlayShootSound;
-
 
         pitch = Sound.RandomPitch();
         volume = Sound.RandomVolume();
@@ -32,6 +29,5 @@ public class TowerSoundController : MonoBehaviour
         AudioSource src = Sound.PlayClipAt(tower.ShootAudio, this.gameObject.transform.position);
         src.pitch = pitch;
         src.volume = volume;
-        src.spatialBlend = 0.6f;
     }
 }
