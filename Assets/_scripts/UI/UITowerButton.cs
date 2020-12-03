@@ -12,11 +12,13 @@ public class UITowerButton : MonoBehaviour, ITowerSelector
     [SerializeField] Button towerButton;
 
     public event Action<int> HandleTowerSelected = delegate { };
+    public event Action HandleTowerButtonClickSound = delegate { };
 
     void OnEnable()
     {
         towerName.text = "[" + this.tower.Id + "] " + this.tower.Name;
         towerButton.onClick.AddListener(() => HandleTowerSelected(this.tower.Id));
+        towerButton.onClick.AddListener(() => HandleTowerButtonClickSound());
         EconomyController.TowerSelected += CheckIfSelected;
     }
 

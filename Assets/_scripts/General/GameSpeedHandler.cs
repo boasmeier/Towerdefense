@@ -83,7 +83,7 @@ public class GameSpeedHandler : MonoBehaviour
 
     private void PauseGame() {
         Time.timeScale = 0;
-        //Disable scripts that still work while timescale is set to 0
+        // Disable scripts and buttons that still work while timescale is set to 0
         PlaceholderInputController[] array = FindObjectsOfType<PlaceholderInputController>();
         foreach (PlaceholderInputController element in array) {
             element.GetComponent<PlaceholderInputController>().enabled=false;
@@ -91,11 +91,19 @@ public class GameSpeedHandler : MonoBehaviour
         }
         FindObjectOfType<EconomyController>().enabled = false;
         GameObject.Find("StartButton").GetComponent<Button>().enabled = false;
+        GameObject.Find("TowerButton1").GetComponent<Button>().enabled = false;
+        GameObject.Find("TowerButton2").GetComponent<Button>().enabled = false;
+        GameObject.Find("TowerButton3").GetComponent<Button>().enabled = false;
+        GameObject.Find("BuyButton").GetComponent<Button>().enabled = false;
+        GameObject.Find("Arrow Up").GetComponent<Button>().enabled = false;
+        GameObject.Find("Arrow Left").GetComponent<Button>().enabled = false;
+        GameObject.Find("Arrow Right").GetComponent<Button>().enabled = false;
+        GameObject.Find("Arrow Down").GetComponent<Button>().enabled = false;
     }
 
     private void ContinueGame() {
         this.ChangeGameSpeed();
-        //enable the scripts again
+        // enable the scripts and buttons again
         PlaceholderInputController[] array = FindObjectsOfType<PlaceholderInputController>();
         foreach (PlaceholderInputController element in array) {
             element.GetComponent<PlaceholderInputController>().enabled=true;
@@ -103,5 +111,13 @@ public class GameSpeedHandler : MonoBehaviour
         }
         FindObjectOfType<EconomyController>().enabled = true;
         GameObject.Find("StartButton").GetComponent<Button>().enabled = true;
+        GameObject.Find("TowerButton1").GetComponent<Button>().enabled = true;
+        GameObject.Find("TowerButton2").GetComponent<Button>().enabled = true;
+        GameObject.Find("TowerButton3").GetComponent<Button>().enabled = true;
+        GameObject.Find("BuyButton").GetComponent<Button>().enabled = true;
+        GameObject.Find("Arrow Up").GetComponent<Button>().enabled = true;
+        GameObject.Find("Arrow Left").GetComponent<Button>().enabled = true;
+        GameObject.Find("Arrow Right").GetComponent<Button>().enabled = true;
+        GameObject.Find("Arrow Down").GetComponent<Button>().enabled = true;
     }
 }

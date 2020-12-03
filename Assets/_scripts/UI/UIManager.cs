@@ -39,12 +39,15 @@ public class UIManager : MonoBehaviour
     private Boolean notified = false;
     public event Action HandleWaveStart = delegate { };
     public event Action ToggleMenue = delegate { };
+    public event Action HandleManagerButtonClickSound = delegate { };
 
     private void Awake()
     {
         lm = FindObjectOfType<LevelManager>();
         startWaveButton.onClick.AddListener(ResetTimerDisplay);
+        startWaveButton.onClick.AddListener(PlayClickSound);
         menueButton.onClick.AddListener(HandleMenueButton);
+        menueButton.onClick.AddListener(PlayClickSound);
     }
 
     private void OnEnable()
@@ -166,5 +169,9 @@ public class UIManager : MonoBehaviour
             }
             DisplayTimer(timeRemaining);
         }
+    }
+
+    private void PlayClickSound() {
+        HandleManagerButtonClickSound();
     }
 }

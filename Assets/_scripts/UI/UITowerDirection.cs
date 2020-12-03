@@ -10,6 +10,8 @@ public class UITowerDirection : MonoBehaviour, IArrowsInputController
     public event Action HandleRight = delegate { };
     public event Action HandleUp = delegate { };
     public event Action HandleDown = delegate { };
+    public event Action HandleTowerDirectionClickSound = delegate { };
+
 
     [SerializeField] Button upButton;
     [SerializeField] Button leftButton;
@@ -26,6 +28,11 @@ public class UITowerDirection : MonoBehaviour, IArrowsInputController
         downButton.onClick.AddListener(() => HandleDown());
         leftButton.onClick.AddListener(() => HandleLeft());
         rightButton.onClick.AddListener(() => HandleRight());
+
+        upButton.onClick.AddListener(() => HandleTowerDirectionClickSound()) ;
+        downButton.onClick.AddListener(() => HandleTowerDirectionClickSound());
+        leftButton.onClick.AddListener(() => HandleTowerDirectionClickSound());
+        rightButton.onClick.AddListener(() => HandleTowerDirectionClickSound());
 
         EconomyController.DirectionSelected += HighlightSelected;
     }
