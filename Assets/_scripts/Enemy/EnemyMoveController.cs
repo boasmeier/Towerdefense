@@ -9,15 +9,14 @@ public class EnemyMoveController : MonoBehaviour
     private List<Vector3> route;
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
        route = FindObjectOfType<LevelManager>().Level.Route;
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-
         if(nextPosition < route.Count)
         {
             float step = this.enemy.Speed * Time.deltaTime; // calculate distance to move
@@ -29,6 +28,5 @@ public class EnemyMoveController : MonoBehaviour
                 nextPosition += 1;
             }
         }
-        
     }
 }

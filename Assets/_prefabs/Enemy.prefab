@@ -64,7 +64,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 0}
-  shrinkTimeSec: 0.5
+  shrinkTimeSec: 0
 --- !u!114 &1738873760799762834
 MonoBehaviour:
   m_ObjectHideFlags: 0

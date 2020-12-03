@@ -11,11 +11,31 @@ public class ShootController : MonoBehaviour, IShootController
 
     private float lastShot = 0;
     private bool shooting;
-    private LevelManager lM;
+    private LevelManager levelManager;
 
     public SOTower Tower
     {
         get { return this._tower; }
+    }
+
+    private void Awake() {
+        levelManager = FindObjectOfType<LevelManager>();
+    }
+
+    private void OnEnable()
+    {
+        levelManager.HandleWaveChange += StopShooting;
+        levelManager.SpawnWave += StartShooting;
+    }
+
+    private void OnDisable()
+    {
+        levelManager.HandleWaveChange -= StopShooting;
+        levelManager.SpawnWave -= StartShooting;
+    }
+
+    private void Start() {
+        shooting = levelManager.Running;
     }
 
     public bool TimerExpired()
@@ -40,21 +60,6 @@ public class ShootController : MonoBehaviour, IShootController
         this.shooting = false;
     }
 
-    private void OnEnable()
-    {
-        lM = FindObjectOfType<LevelManager>();
-        shooting = lM.Running;
-        lM.HandleWaveChange += StopShooting;
-        lM.SpawnWave += StartShooting;
-    }
-
-    private void OnDisable()
-    {
-        lM.HandleWaveChange -= StopShooting;
-        lM.SpawnWave -= StartShooting;
-    }
-
-    // Update is called once per frame
     private void Update()
     {
         if (!this.TimerExpired() || !shooting) return;

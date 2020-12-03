@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class UIGameOver : MonoBehaviour
 {
-    private LevelManager lm;
+    private LevelManager levelManager;
 
     [SerializeField]
     private RectTransform gameOverPanel;
@@ -15,16 +15,16 @@ public class UIGameOver : MonoBehaviour
 
     private void Awake()
     {
-        lm = FindObjectOfType<LevelManager>();    
+        levelManager = FindObjectOfType<LevelManager>();    
     }
 
     private void OnEnable() 
     {
-        lm.HandleGameOver += DisplayGameOverMessage;
+        levelManager.HandleGameOver += DisplayGameOverMessage;
     }
 
     private void OnDisable() {
-        lm.HandleGameOver -= DisplayGameOverMessage;
+        levelManager.HandleGameOver -= DisplayGameOverMessage;
     }
 
     private void DisplayGameOverMessage(bool isWon) {

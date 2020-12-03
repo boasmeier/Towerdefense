@@ -8,31 +8,32 @@ public class BaseSoundController : MonoBehaviour
     [SerializeField] private AudioClip lostHealthSound;
     [SerializeField] private AudioClip almostDeadSound;
 
-    private BaseHealthController _hc;
+    private BaseHealthController baseHealthController;
 
 
-    void OnEnable()
+    private void OnEnable()
     {
-        _hc = GetComponent<BaseHealthController>();
-        _hc.HandleDeath += PlayDeathSound;
-        _hc.HandleAlmostDead += PlayAlmostDeadSound;
-        _hc.HandleHealthChange += PlayLostHealthSound;
+        baseHealthController = GetComponent<BaseHealthController>();
+        baseHealthController.HandleDeath += PlayDeathSound;
+        baseHealthController.HandleAlmostDead += PlayAlmostDeadSound;
+        baseHealthController.HandleHealthChange += PlayLostHealthSound;
     }
 
-    void OnDisable()
+    private void OnDisable()
     {
-        _hc.HandleDeath -= PlayDeathSound;
-        _hc.HandleAlmostDead -= PlayAlmostDeadSound;
-        _hc.HandleHealthChange -= PlayLostHealthSound;
+        baseHealthController.HandleDeath -= PlayDeathSound;
+        baseHealthController.HandleAlmostDead -= PlayAlmostDeadSound;
+        baseHealthController.HandleHealthChange -= PlayLostHealthSound;
     }
 
     private void PlayDeathSound()
     {
         AudioSource src = Sound.PlayClipAt(deathSound, this.gameObject.transform.position);
     }
+
     private void PlayLostHealthSound(int h)
     {
-        if(h != _hc.TotalHealth)
+        if(h != baseHealthController.TotalHealth)
         {
             AudioSource src = Sound.PlayClipAt(lostHealthSound, this.gameObject.transform.position);
         }

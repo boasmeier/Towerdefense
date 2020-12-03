@@ -10,29 +10,28 @@ public class UITowerBuy : MonoBehaviour, ITowerBuyController
     public event Action HandleTowerBuy = delegate { };
     public event Action HandleTowerBuyClickSound = delegate { };
 
-    private LevelManager _lm;
+    private LevelManager levelManager;
     private SOTower selectedTower;
 
-    void OnEnable()
+    private void OnEnable()
     {
         UIColors.Highlight(buttonBuy);
-        _lm = FindObjectOfType<LevelManager>();
+        levelManager = FindObjectOfType<LevelManager>();
         buttonBuy.onClick.AddListener(() => HandleTowerBuy());
         buttonBuy.onClick.AddListener(() => HandleTowerBuyClickSound());
-        EconomyController.TowerSelected += TowerSelected;
-        _lm.HandleMoneyChange += MoneyChanged;
+        EconomyManager.TowerSelected += TowerSelected;
+        levelManager.HandleMoneyChange += MoneyChanged;
     }
 
-    void OnDisable()
+    private void OnDisable()
     {
-        EconomyController.TowerSelected -= TowerSelected;
-        _lm.HandleMoneyChange -= MoneyChanged;
+        EconomyManager.TowerSelected -= TowerSelected;
+        levelManager.HandleMoneyChange -= MoneyChanged;
     }
 
     private void TowerSelected(SOTower tower)
     {
         selectedTower = tower;
-        Debug.Log("Selected tower");
         CheckPrice();
     }
 
@@ -43,15 +42,13 @@ public class UITowerBuy : MonoBehaviour, ITowerBuyController
 
     private void CheckPrice()
     {
-        if (_lm.CheckIfEnoughMoney(selectedTower.Price))
+        if (levelManager.CheckIfEnoughMoney(selectedTower.Price))
         {
-            Debug.Log("Enable button");
             buttonBuy.interactable = true;
             textNoMoneyAvailable.gameObject.SetActive(false);
         }
         else
         {
-            Debug.Log("Disable button");
             buttonBuy.interactable = false;
             textNoMoneyAvailable.gameObject.SetActive(true);
         }

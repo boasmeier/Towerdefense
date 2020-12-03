@@ -8,11 +8,17 @@ public class EnemySpawnController : MonoBehaviour
     private LevelManager levelManager; 
     private EnemyManager enemyManager;
 
-    private void OnEnable()
-    {
+    private void Awake() {
         levelManager = FindObjectOfType<LevelManager>();
         enemyManager = GetComponent<EnemyManager>();
+    }
+
+    private void Start() {
         spawn = levelManager.Level.Route[0];
+    }
+
+    private void OnEnable()
+    {
         enemyManager.EnemySpawn += Spawn;
     }
 

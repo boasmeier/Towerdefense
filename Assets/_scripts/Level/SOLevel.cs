@@ -4,7 +4,6 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName = "Level", menuName = "Level")]
 public class SOLevel : ScriptableObject
-
 {
     [SerializeField] private int startMoney;
     [SerializeField] private List<Vector3> route;

@@ -6,24 +6,12 @@ using UnityEngine.UI;
 
 public class UIMenue : MonoBehaviour
 {
-
-    [SerializeField]
-    private RectTransform menuePanel;
-
-    [SerializeField]
-    private GameObject controlsPanel;
-
-    [SerializeField]
-    private Button resumeButton;
-
-    [SerializeField]
-    private Button restartButton;
-
-    [SerializeField]
-    private Button controlsButton;
-
-    [SerializeField]
-    private Button exitButton;
+    [SerializeField] private RectTransform menuePanel;
+    [SerializeField] private GameObject controlsPanel;
+    [SerializeField] private Button resumeButton;
+    [SerializeField] private Button restartButton;
+    [SerializeField] private Button controlsButton;
+    [SerializeField] private Button exitButton;
 
     public event Action HandleRestart = delegate { };
     public event Action Pause = delegate { };
@@ -43,7 +31,6 @@ public class UIMenue : MonoBehaviour
         UIInputController.ToggleMenue += Toggle;
         UIManager.ToggleMenue += Toggle;
 
-        resumeButton.GetComponentInChildren<Text>().text = "Start";
         resumeButton.onClick.AddListener(Resume);
         resumeButton.onClick.AddListener(PlayClickSound);
 
@@ -67,6 +54,7 @@ public class UIMenue : MonoBehaviour
         if(FirstTimeCheck.notFirstTime) {
             Toggle();
         } else {
+            resumeButton.GetComponentInChildren<Text>().text = "Start";
             FirstTimeCheck.notFirstTime = true;
             Pause();
         }

@@ -7,21 +7,21 @@ public class BaseDeathController : MonoBehaviour
 {
     [SerializeField] private float explosionForce = 7f;
     [SerializeField] private float explosionRadius = 5f;
-    private IHealthController bhc;
+    private IHealthController healthController;
 
     public event Action HandleBaseDeath = delegate { };
 
     private void Awake()
     {
-        bhc = GetComponent<IHealthController>();
+        healthController = GetComponent<IHealthController>();
     }
 
     private void OnEnable() {
-        bhc.HandleDeath += Die;
+        healthController.HandleDeath += Die;
     }
 
     private void OnDisable() {
-        bhc.HandleDeath -= Die;
+        healthController.HandleDeath -= Die;
     }
 
     private void Die()
@@ -33,18 +33,19 @@ public class BaseDeathController : MonoBehaviour
     private void Explode()
     {
         IList meshObjects = new List<Transform>();
-        foreach (Transform singleObject in transform)
+        foreach (Transform singleObject in transform) {
             meshObjects.Add(singleObject);
-
+        }  
+          
         transform.DetachChildren();
-
         foreach (Transform singleObject in meshObjects)
         {
-            Rigidbody rb = singleObject.gameObject.GetComponent<Rigidbody>();
-            if (rb == null)
-                rb = singleObject.gameObject.AddComponent<Rigidbody>();
-
-            rb.AddExplosionForce(
+            Rigidbody rigidBody = singleObject.gameObject.GetComponent<Rigidbody>();
+            if (rigidBody == null) {
+                rigidBody = singleObject.gameObject.AddComponent<Rigidbody>();
+            }
+                
+            rigidBody.AddExplosionForce(
                 explosionForce, 
                 this.transform.position, 
                 explosionRadius, 

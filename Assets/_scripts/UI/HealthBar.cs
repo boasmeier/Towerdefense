@@ -7,10 +7,13 @@ public class HealthBar : MonoBehaviour
 {
     public IHealthController hc;
     public Slider slider;
+
+    private void Awake() {
+        hc = GetComponentInParent<IHealthController>();
+    }
+
     private void OnEnable()
     {
-        hc = GetComponentInParent<IHealthController>();
-        Debug.Log(hc.ToString());
         hc.HandlePercentageHealthChange += SetHealth;
     }
 

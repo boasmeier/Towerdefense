@@ -4,14 +4,10 @@ using UnityEngine;
 
 public class UISoundManager : MonoBehaviour
 {
-    [SerializeField]
-    private AudioClip hoverSound;
-
-    [SerializeField]
-    private AudioClip clickSound;
-
-    [SerializeField]
-    private AudioClip buySound;
+    
+    [SerializeField] private AudioClip hoverSound;
+    [SerializeField] private AudioClip clickSound;
+    [SerializeField] private AudioClip buySound;
 
     private UIMenue uiMenue;
     private UIManager uIManager;
@@ -19,6 +15,7 @@ public class UISoundManager : MonoBehaviour
     private UITowerBuy uiTowerBuy;
     private UITowerButton[] uiTowerButtonList;
     private UIButtonHoverHandler[] uiButtonHoverHandlerList;
+    
     private void Awake() {
         uiMenue = FindObjectOfType<UIMenue>();
         uIManager = FindObjectOfType<UIManager>();

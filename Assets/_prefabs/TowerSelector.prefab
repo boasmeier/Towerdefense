@@ -9,10 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1021665164131879082}
-  - component: {fileID: 5063580969006981834}
   - component: {fileID: 4745700284500836991}
   - component: {fileID: 5576147221237809519}
   - component: {fileID: 5576147221237809520}
+  - component: {fileID: 4585699049510091913}
+  - component: {fileID: 1428829247}
   m_Layer: 0
   m_Name: TowerSelector
   m_TagString: Untagged
@@ -34,28 +35,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5063580969006981834
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8342387325324673947}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 608510a8ea2695f48a9d97e2d6765044, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  towers:
-  - geometry: {fileID: 5966924657064447139, guid: 64878be8b3366da4f9e922a6d93ec27d,
-      type: 3}
-    details: {fileID: 11400000, guid: e1f6d73749fce694dac2576c90fb56de, type: 2}
-  - geometry: {fileID: 102687932177145928, guid: 154e456221fdf8a47a525f3a6c8f4d62,
-      type: 3}
-    details: {fileID: 11400000, guid: 4ecda24035ce0b6489ad2c29e5d8ed5e, type: 2}
-  - geometry: {fileID: 2882930169567940053, guid: 91c7a0512d85a5c439617616c95e1daf,
-      type: 3}
-    details: {fileID: 11400000, guid: 72bd866dc3060e543a72cb7f5826c822, type: 2}
 --- !u!114 &4745700284500836991
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -92,3 +71,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f114c884c5068274cb09a00de468c8b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4585699049510091913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8342387325324673947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 095daedd20e7d1044b53d67e89d642a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  towers: []
+--- !u!114 &1428829247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8342387325324673947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 095daedd20e7d1044b53d67e89d642a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  towers:
+  - geometry: {fileID: 5966924657064447139, guid: 64878be8b3366da4f9e922a6d93ec27d,
+      type: 3}
+    details: {fileID: 11400000, guid: e1f6d73749fce694dac2576c90fb56de, type: 2}
+  - geometry: {fileID: 102687932177145928, guid: 154e456221fdf8a47a525f3a6c8f4d62,
+      type: 3}
+    details: {fileID: 11400000, guid: 4ecda24035ce0b6489ad2c29e5d8ed5e, type: 2}
+  - geometry: {fileID: 2882930169567940053, guid: 91c7a0512d85a5c439617616c95e1daf,
+      type: 3}
+    details: {fileID: 11400000, guid: 72bd866dc3060e543a72cb7f5826c822, type: 2}

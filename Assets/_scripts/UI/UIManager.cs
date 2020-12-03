@@ -6,35 +6,19 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-    private LevelManager lm;
+    private LevelManager levelManager;
     private float timeRemaining;
     private bool timerIsRunning = false;
 
-    [SerializeField]
-    private Text healthText;
-
-    [SerializeField]
-    private Text moneyText;
-
-    [SerializeField]
-    private Text waveText;
-
-    [SerializeField]
-    private Text timerText;
-
-    [SerializeField]
-    private Button startWaveButton;
-    [SerializeField]
-    private Button menueButton;
-
-    [SerializeField]
-    private RectTransform nextWaveNotificationPanel;
-
-    [SerializeField]
-    private RectTransform countdownPanel;
-
-    [SerializeField]
-    private Text countdownText;
+    [SerializeField] private Text healthText;
+    [SerializeField] private Text moneyText;
+    [SerializeField] private Text waveText;
+    [SerializeField] private Text timerText;
+    [SerializeField] private Button startWaveButton;
+    [SerializeField] private Button menueButton;
+    [SerializeField] private RectTransform nextWaveNotificationPanel;
+    [SerializeField] private RectTransform countdownPanel;
+    [SerializeField] private Text countdownText;
 
     private Boolean notified = false;
     public event Action HandleWaveStart = delegate { };
@@ -43,7 +27,7 @@ public class UIManager : MonoBehaviour
 
     private void Awake()
     {
-        lm = FindObjectOfType<LevelManager>();
+        levelManager = FindObjectOfType<LevelManager>();
         startWaveButton.onClick.AddListener(ResetTimerDisplay);
         startWaveButton.onClick.AddListener(PlayClickSound);
         menueButton.onClick.AddListener(HandleMenueButton);
@@ -52,16 +36,16 @@ public class UIManager : MonoBehaviour
 
     private void OnEnable()
     {
-        lm.HandleBaseHealthChange += DisplayHealth;
-        lm.HandleMoneyChange += DisplayMoney;
-        lm.HandleWaveChange += DisplayWave;
+        levelManager.HandleBaseHealthChange += DisplayHealth;
+        levelManager.HandleMoneyChange += DisplayMoney;
+        levelManager.HandleWaveChange += DisplayWave;
     }
 
     private void OnDisable()
     {
-        lm.HandleBaseHealthChange -= DisplayHealth;
-        lm.HandleMoneyChange -= DisplayMoney;
-        lm.HandleWaveChange -= DisplayWave;
+        levelManager.HandleBaseHealthChange -= DisplayHealth;
+        levelManager.HandleMoneyChange -= DisplayMoney;
+        levelManager.HandleWaveChange -= DisplayWave;
     }
 
     private void DisplayHealth(int newHealth)
@@ -89,7 +73,6 @@ public class UIManager : MonoBehaviour
     {
         float minutes = Mathf.FloorToInt(timeToDisplay / 60);
         float seconds = Mathf.FloorToInt(timeToDisplay % 60);
-
         timerText.text = "Next wave: " + string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 
@@ -144,8 +127,7 @@ public class UIManager : MonoBehaviour
         ToggleMenue();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
         if (timerIsRunning)
         {
@@ -159,7 +141,6 @@ public class UIManager : MonoBehaviour
             }
             else
             {
-                Debug.Log("Time has run out! Next wave has started!");
                 timeRemaining = 0;
                 timerIsRunning = false;
                 startWaveButton.interactable = false;

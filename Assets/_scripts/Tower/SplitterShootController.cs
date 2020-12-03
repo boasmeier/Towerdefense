@@ -5,68 +5,76 @@ using UnityEngine.Accessibility;
 
 public class SplitterShootController : MonoBehaviour, IShootController
 {
-    [SerializeField] private SOTower _tower;
+    [SerializeField] private SOTower tower;
 
     public event Action HandleShoot = delegate { };
 
     private float lastShot = 0;
     private bool shooting;
-    private LevelManager lM;
+    private LevelManager levelManager;
 
     public SOTower Tower
     {
-        get { return this._tower; }
+        get { return tower; }
     }
 
     public bool TimerExpired()
     {
-        return Time.time >= this.lastShot + (1f / this._tower.AttackSpeed);
+        return Time.time >= lastShot + (1f / tower.AttackSpeed);
     }
 
 
     public void Shoot()
     {
         HandleShoot();
-        this.CreateShot(transform.forward);
-        this.CreateShot(transform.right);
-        this.CreateShot(-transform.right);
+        CreateShot(transform.forward);
+        CreateShot(transform.right);
+        CreateShot(-transform.right);
     }
 
     public void StartShooting(int w)
     {
-        this.shooting = true;
+        shooting = true;
     }
 
     public void StopShooting(int wOld, int wNew)
     {
-        this.shooting = false;
+        shooting = false;
     }
 
     private void CreateShot(Vector3 direction)
     {
-        Rigidbody p = Instantiate(this._tower.Shot, transform);
-        p.velocity = direction * this._tower.Velocity;
+        Rigidbody p = Instantiate(tower.Shot, transform);
+        p.velocity = direction * tower.Velocity;
+    }
+
+    private void Awake() {
+        levelManager = FindObjectOfType<LevelManager>();
     }
 
     private void OnEnable()
     {
-        lM = FindObjectOfType<LevelManager>();
-        shooting = lM.Running;
-        lM.HandleWaveChange += StopShooting;
-        lM.SpawnWave += StartShooting;
+        levelManager.HandleWaveChange += StopShooting;
+        levelManager.SpawnWave += StartShooting;
     }
 
     private void OnDisable()
     {
-        lM.HandleWaveChange -= StopShooting;
-        lM.SpawnWave -= StartShooting;
+        levelManager.HandleWaveChange -= StopShooting;
+        levelManager.SpawnWave -= StartShooting;
     }
 
-    // Update is called once per frame
+    private void Start() {
+        shooting = levelManager.Running;
+    }
+
     private void Update()
     {
-        if (!this.TimerExpired() || !shooting) return;
-        this.lastShot = Time.time;
-        this.Shoot();
+        if (!TimerExpired() || !shooting) {
+            return;
+        } else {
+            lastShot = Time.time;
+            Shoot();
+        } 
     }
 }

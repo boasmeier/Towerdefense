@@ -7,7 +7,6 @@ public class EnemyCollisionController : MonoBehaviour
 
     public event Action<int> HandleCollision = delegate { };
 
-    // Start is called before the first frame update
     private void Start()
     {
         shotLayer = LayerMask.NameToLayer("Shot");

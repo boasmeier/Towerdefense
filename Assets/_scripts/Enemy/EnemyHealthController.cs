@@ -9,7 +9,7 @@ public class EnemyHealthController : MonoBehaviour, IHealthController
     [SerializeField] private SOEnemy enemy;
 
 	private int currentHealth;
-	private EnemyCollisionController ecc;
+	private EnemyCollisionController enemyCollisionController;
 
 	public event Action<int> HandleHealthChange = delegate { };
 	public event Action HandleDeath = delegate { };
@@ -19,21 +19,21 @@ public class EnemyHealthController : MonoBehaviour, IHealthController
 	private void Awake()
 	{
 		currentHealth = enemy.Health;
-		ecc = GetComponent<EnemyCollisionController>();
+		enemyCollisionController = GetComponent<EnemyCollisionController>();
 	}
 
 	private void OnEnable()
 	{
-		ecc.HandleCollision += GetDamage;
+		enemyCollisionController.HandleCollision += GetDamage;
 	}
 
 	private void OnDisable()
 	{
-		ecc.HandleCollision -= GetDamage;
+		enemyCollisionController.HandleCollision -= GetDamage;
 	}
 
 
-	void Start()
+	private void Start()
     {
 		HandleHealthChange(currentHealth);
 		HandlePercentageHealthChange(currentHealth / (float) enemy.Health);
@@ -42,7 +42,6 @@ public class EnemyHealthController : MonoBehaviour, IHealthController
 	//Gets called if collision is received by collisoncontroller
 	private void GetDamage(int damage)
     {
-		Debug.Log("lost health");
 		currentHealth -= damage;
 		HandleHealthChange(currentHealth);
 		HandlePercentageHealthChange(currentHealth / (float) enemy.Health);

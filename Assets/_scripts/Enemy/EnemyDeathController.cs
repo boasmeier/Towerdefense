@@ -6,23 +6,23 @@ public class EnemyDeathController : MonoBehaviour
 {
     [SerializeField] private SOEnemy enemy;
     [SerializeField] private float shrinkTimeSec;
-    private Animation anim;
+    private Animation animation;
 
-    private IHealthController hc;
+    private IHealthController healthController;
 
     public static Action<int> HandleEnemyDeath = delegate { };
 
     private void Awake()
     {
-        anim = GetComponent<Animation>();
-        anim.Stop();
-        hc = GetComponent<IHealthController>();
-        hc.HandleDeath += Die;
+        animation = GetComponent<Animation>();
+        animation.Stop();
+        healthController = GetComponent<IHealthController>();
+        healthController.HandleDeath += Die;
     }
 
     private void OnDisable()
     {
-        hc.HandleDeath -= Die;
+        healthController.HandleDeath -= Die;
     }
 
     private void Die()
@@ -34,7 +34,7 @@ public class EnemyDeathController : MonoBehaviour
     private IEnumerator Shrink()
     {
         gameObject.layer = LayerMask.NameToLayer("Default");
-        anim.Play();
+        animation.Play();
         yield return new WaitForSeconds(shrinkTimeSec);
         Destroy(gameObject);
     }

@@ -4,18 +4,12 @@ using UnityEngine;
 public class InputController : MonoBehaviour, IArrowsInputController, ITowerSelector, ITowerBuyController
 {
     public event Action HandleLeft = delegate { };
-
     public event Action HandleRight = delegate { };
-
     public event Action HandleUp = delegate { };
-
     public event Action HandleDown = delegate { };
-
     public event Action<int> HandleTowerSelected = delegate { };
-
     public event Action HandleTowerBuy = delegate { };
 
-    // Update is called once per frame
     private void Update()
     {
         DetectInput();
@@ -70,6 +64,5 @@ public class InputController : MonoBehaviour, IArrowsInputController, ITowerSele
         {
             this.HandleTowerSelected(7);
         }
-
     }
 }

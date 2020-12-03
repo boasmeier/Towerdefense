@@ -52,7 +52,6 @@ public class EnemyManager : MonoBehaviour
 
     private void NewWave(int wave)
     {
-        Debug.Log("Wave " + wave + " will be spawned");
         waveController.CurrentWave = wave;
         NextSpawn();
     }
@@ -73,7 +72,6 @@ public class EnemyManager : MonoBehaviour
     {
         if (waveController.AreAllEnemiesOfCurrentWaveSpawned() && aliveEnemies<=0)
         {
-            Debug.Log("Wave " + waveController.CurrentWave +  " finished");
             HandleAllEnemiesOfWaveDied();
         }
     }
