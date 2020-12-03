@@ -2167,7 +2167,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 17.6, z: 0.6}
+  m_LocalPosition: {x: 0, y: 19, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -4006,6 +4006,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1333154822, guid: df860a1f8f281ce48baecd4b5f375c28, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 40
+      objectReference: {fileID: 0}
     - target: {fileID: 1941081467, guid: df860a1f8f281ce48baecd4b5f375c28, type: 3}
       propertyPath: m_AnchorMin.y
       value: 0
@@ -4116,11 +4120,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1178111178783711960, guid: df860a1f8f281ce48baecd4b5f375c28,
-        type: 3}
-      propertyPath: m_Name
-      value: TowerButton2
       objectReference: {fileID: 0}
     - target: {fileID: 1385412694841969951, guid: df860a1f8f281ce48baecd4b5f375c28,
         type: 3}
@@ -4322,10 +4321,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2717488634359022932, guid: df860a1f8f281ce48baecd4b5f375c28,
+    - target: {fileID: 2733972819177354918, guid: df860a1f8f281ce48baecd4b5f375c28,
         type: 3}
-      propertyPath: m_Name
-      value: TowerButton3
+      propertyPath: m_LocalPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2815038654504462157, guid: df860a1f8f281ce48baecd4b5f375c28,
         type: 3}
@@ -4426,11 +4425,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5161474120218954128, guid: df860a1f8f281ce48baecd4b5f375c28,
-        type: 3}
-      propertyPath: m_Name
-      value: BuyButton
       objectReference: {fileID: 0}
     - target: {fileID: 5389232596030854482, guid: df860a1f8f281ce48baecd4b5f375c28,
         type: 3}
@@ -4752,11 +4746,6 @@ PrefabInstance:
       propertyPath: m_Colors.m_HighlightedColor.b
       value: 0.78431374
       objectReference: {fileID: 0}
-    - target: {fileID: 7057542103969908932, guid: df860a1f8f281ce48baecd4b5f375c28,
-        type: 3}
-      propertyPath: m_Name
-      value: TowerButton1
-      objectReference: {fileID: 0}
     - target: {fileID: 7063761238895138804, guid: df860a1f8f281ce48baecd4b5f375c28,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -4962,6 +4951,11 @@ PrefabInstance:
       propertyPath: m_Color.a
       value: 0.78431374
       objectReference: {fileID: 0}
+    - target: {fileID: 7807032445234580798, guid: df860a1f8f281ce48baecd4b5f375c28,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7807032445419578568, guid: df860a1f8f281ce48baecd4b5f375c28,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -5060,6 +5054,21 @@ PrefabInstance:
     - target: {fileID: 7807032446230326448, guid: df860a1f8f281ce48baecd4b5f375c28,
         type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7807032446230326448, guid: df860a1f8f281ce48baecd4b5f375c28,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7807032446230326449, guid: df860a1f8f281ce48baecd4b5f375c28,
+        type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 7807032446230326449, guid: df860a1f8f281ce48baecd4b5f375c28,
+        type: 3}
+      propertyPath: m_FontData.m_MinSize
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7870768322477081050, guid: df860a1f8f281ce48baecd4b5f375c28,

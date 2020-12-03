@@ -16,7 +16,7 @@ public class UITowerButton : MonoBehaviour, ITowerSelector
 
     void OnEnable()
     {
-        towerName.text = "[" + this.tower.Id + "] " + this.tower.Name;
+        towerName.text = " [" + this.tower.Id + "] " + this.tower.Name;
         towerButton.onClick.AddListener(() => HandleTowerSelected(this.tower.Id));
         towerButton.onClick.AddListener(() => HandleTowerButtonClickSound());
         EconomyController.TowerSelected += CheckIfSelected;
@@ -26,7 +26,6 @@ public class UITowerButton : MonoBehaviour, ITowerSelector
     {
         EconomyController.TowerSelected -= CheckIfSelected;
     }
-
 
     private void CheckIfSelected(SOTower selectedTower)
     {
