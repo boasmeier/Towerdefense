@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class EconomyController : MonoBehaviour
+public class EconomyManager : MonoBehaviour
 {
     [SerializeField] private List<TowerEntry> towers;
 
@@ -25,7 +25,7 @@ public class EconomyController : MonoBehaviour
     private void Awake() {
         levelManager = FindObjectOfType<LevelManager>();
         arrowInputController = FindObjectsOfType<MonoBehaviour>().OfType<IArrowsInputController>().ToList();
-        _aTss = FindObjectsOfType<MonoBehaviour>().OfType<ITowerSelector>().ToList();
+        towerSelector = FindObjectsOfType<MonoBehaviour>().OfType<ITowerSelector>().ToList();
         towerBuyController = FindObjectsOfType<MonoBehaviour>().OfType<ITowerBuyController>().ToList();
     }
 
@@ -41,7 +41,7 @@ public class EconomyController : MonoBehaviour
             aic.HandleDown += MoveArrowDown;
         }
 
-        foreach (ITowerSelector ts in _aTss)
+        foreach (ITowerSelector ts in towerSelector)
         {
             ts.HandleTowerSelected += SelectTower;
         }
@@ -68,7 +68,7 @@ public class EconomyController : MonoBehaviour
             aic.HandleDown -= MoveArrowDown;
         }
 
-        foreach (ITowerSelector ts in _aTss)
+        foreach (ITowerSelector ts in towerSelector)
         {
             ts.HandleTowerSelected -= SelectTower;
         }
