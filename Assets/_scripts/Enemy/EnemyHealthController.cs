@@ -42,13 +42,20 @@ public class EnemyHealthController : MonoBehaviour, IHealthController
 	//Gets called if collision is received by collisoncontroller
 	private void GetDamage(int damage)
     {
-		Debug.Log("lost health");
-		currentHealth -= damage;
-		HandleHealthChange(currentHealth);
-		HandlePercentageHealthChange(currentHealth / (float) enemy.Health);
-		if (currentHealth <= 0)
-        {
-			HandleDeath();
-        }
-    }
+		if(currentHealth > 0) {
+			currentHealth -= damage;
+			if(currentHealth < 0)
+			{
+				currentHealth = 0;
+			}
+
+			HandleHealthChange(currentHealth);
+			HandlePercentageHealthChange(currentHealth / (float) enemy.Health);
+
+			if (currentHealth <= 0)
+			{
+				HandleDeath();
+			}
+		}
+	}
 }
