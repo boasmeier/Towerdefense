@@ -86,7 +86,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultMaterial: {fileID: 2100000, guid: 69c2ec151ebcb9d45be531c553fe921f, type: 2}
-  highlightMaterial: {fileID: 2100000, guid: 3eb9ea14f3788ce4b88ba1a065cc1622, type: 2}
+  highlightMaterial: {fileID: 2100000, guid: 2de3bb82cd28d4947af9c494bb6862b8, type: 2}
+  highlightOnStart: 0
 --- !u!23 &1426201343312288362
 MeshRenderer:
   m_ObjectHideFlags: 0
