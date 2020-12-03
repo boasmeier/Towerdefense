@@ -16,7 +16,8 @@ public class TowerSoundController : MonoBehaviour
         _sc.HandleShoot += PlayShootSound;
 
         pitch = Sound.RandomPitch();
-        volume = Sound.RandomVolume();
+        //reduce volume of shoot sound
+        volume = 0.3f * Sound.RandomVolume();
     }
 
     private void OnDisable()
