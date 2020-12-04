@@ -35,6 +35,16 @@ public class UITowerDirection : MonoBehaviour, IArrowsInputController
 
     public void OnDisable()
     {
+        upButton.onClick.RemoveListener(() => HandleUp()) ;
+        downButton.onClick.RemoveListener(() => HandleDown());
+        leftButton.onClick.RemoveListener(() => HandleLeft());
+        rightButton.onClick.RemoveListener(() => HandleRight());
+
+        upButton.onClick.RemoveListener(() => HandleTowerDirectionClickSound()) ;
+        downButton.onClick.RemoveListener(() => HandleTowerDirectionClickSound());
+        leftButton.onClick.RemoveListener(() => HandleTowerDirectionClickSound());
+        rightButton.onClick.RemoveListener(() => HandleTowerDirectionClickSound());
+        
         EconomyManager.DirectionSelected -= HighlightSelected;
     }
 

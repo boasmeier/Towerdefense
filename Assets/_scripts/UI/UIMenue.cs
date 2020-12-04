@@ -48,6 +48,18 @@ public class UIMenue : MonoBehaviour
     {
         UIInputController.ToggleMenue -= Toggle; 
         UIManager.ToggleMenue -= Toggle;
+
+        resumeButton.onClick.RemoveListener(Resume);
+        resumeButton.onClick.RemoveListener(PlayClickSound);
+
+        restartButton.onClick.RemoveListener(Restart);
+        restartButton.onClick.RemoveListener(PlayClickSound);
+
+        controlsButton.onClick.RemoveListener(ToggleControls);
+        controlsButton.onClick.RemoveListener(PlayClickSound);
+
+        exitButton.onClick.RemoveListener(Exit);
+        exitButton.onClick.RemoveListener(PlayClickSound);
     }
 
     private void Start() {

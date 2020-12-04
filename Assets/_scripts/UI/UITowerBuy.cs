@@ -13,18 +13,26 @@ public class UITowerBuy : MonoBehaviour, ITowerBuyController
     private LevelManager levelManager;
     private SOTower selectedTower;
 
+    private void Awake() {
+        levelManager = FindObjectOfType<LevelManager>();
+    }
+
     private void OnEnable()
     {
-        UIColors.Highlight(buttonBuy);
-        levelManager = FindObjectOfType<LevelManager>();
         buttonBuy.onClick.AddListener(() => HandleTowerBuy());
         buttonBuy.onClick.AddListener(() => HandleTowerBuyClickSound());
         EconomyManager.TowerSelected += TowerSelected;
         levelManager.HandleMoneyChange += MoneyChanged;
     }
 
+    private void Start() {
+        UIColors.Highlight(buttonBuy);
+    }
+
     private void OnDisable()
     {
+        buttonBuy.onClick.RemoveListener(() => HandleTowerBuy());
+        buttonBuy.onClick.RemoveListener(() => HandleTowerBuyClickSound());
         EconomyManager.TowerSelected -= TowerSelected;
         levelManager.HandleMoneyChange -= MoneyChanged;
     }

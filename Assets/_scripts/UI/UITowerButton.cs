@@ -26,6 +26,8 @@ public class UITowerButton : MonoBehaviour, ITowerSelector
 
     private void OnDisable()
     {
+        towerButton.onClick.RemoveListener(() => HandleTowerSelected(this.tower.Id));
+        towerButton.onClick.RemoveListener(() => HandleTowerButtonClickSound());
         EconomyManager.TowerSelected -= CheckIfSelected;
     }
 

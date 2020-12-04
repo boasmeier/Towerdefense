@@ -28,10 +28,6 @@ public class UIManager : MonoBehaviour
     private void Awake()
     {
         levelManager = FindObjectOfType<LevelManager>();
-        startWaveButton.onClick.AddListener(ResetTimerDisplay);
-        startWaveButton.onClick.AddListener(PlayClickSound);
-        menueButton.onClick.AddListener(HandleMenueButton);
-        menueButton.onClick.AddListener(PlayClickSound);
     }
 
     private void OnEnable()
@@ -39,6 +35,10 @@ public class UIManager : MonoBehaviour
         levelManager.HandleBaseHealthChange += DisplayHealth;
         levelManager.HandleMoneyChange += DisplayMoney;
         levelManager.HandleWaveChange += DisplayWave;
+        startWaveButton.onClick.AddListener(ResetTimerDisplay);
+        startWaveButton.onClick.AddListener(PlayClickSound);
+        menueButton.onClick.AddListener(HandleMenueButton);
+        menueButton.onClick.AddListener(PlayClickSound);
     }
 
     private void OnDisable()
@@ -46,6 +46,10 @@ public class UIManager : MonoBehaviour
         levelManager.HandleBaseHealthChange -= DisplayHealth;
         levelManager.HandleMoneyChange -= DisplayMoney;
         levelManager.HandleWaveChange -= DisplayWave;
+        startWaveButton.onClick.RemoveListener(ResetTimerDisplay);
+        startWaveButton.onClick.RemoveListener(PlayClickSound);
+        menueButton.onClick.RemoveListener(HandleMenueButton);
+        menueButton.onClick.RemoveListener(PlayClickSound);
     }
 
     private void DisplayHealth(int newHealth)
