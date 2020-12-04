@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class EconomyController : MonoBehaviour
+public class EconomyManager : MonoBehaviour
 {
     [SerializeField] private List<TowerEntry> towers;
 
@@ -14,23 +14,26 @@ public class EconomyController : MonoBehaviour
     public static event Action<int> DirectionSelected = delegate { };
 
     private bool _placeholderSelected;
-    private LevelManager lM;
+    private LevelManager levelManager;
 
     private TowerEntry selected;
     
-    private IList<IArrowsInputController> _aIcs;
-    private IList<ITowerSelector> _aTss;
-    private IList<ITowerBuyController> _aTbcs;
+    private IList<IArrowsInputController> arrowInputController;
+    private IList<ITowerSelector> towerSelector;
+    private IList<ITowerBuyController> towerBuyController;
 
+    private void Awake() {
+        levelManager = FindObjectOfType<LevelManager>();
+        arrowInputController = FindObjectsOfType<MonoBehaviour>().OfType<IArrowsInputController>().ToList();
+        towerSelector = FindObjectsOfType<MonoBehaviour>().OfType<ITowerSelector>().ToList();
+        towerBuyController = FindObjectsOfType<MonoBehaviour>().OfType<ITowerBuyController>().ToList();
+    }
 
     private void OnEnable()
     {
-        lM = FindObjectOfType<LevelManager>();
         PlaceholderInputController.HandleMouse += SelectPlaceholder;
 
-        _aIcs = FindObjectsOfType<MonoBehaviour>().OfType<IArrowsInputController>().ToList();
-
-        foreach (IArrowsInputController aic in _aIcs)
+        foreach (IArrowsInputController aic in arrowInputController)
         {
             aic.HandleLeft += MoveArrowLeft;
             aic.HandleRight += MoveArrowRight;
@@ -38,31 +41,26 @@ public class EconomyController : MonoBehaviour
             aic.HandleDown += MoveArrowDown;
         }
 
-        _aTss = FindObjectsOfType<MonoBehaviour>().OfType<ITowerSelector>().ToList();
-
-        foreach (ITowerSelector ts in _aTss)
+        foreach (ITowerSelector ts in towerSelector)
         {
             ts.HandleTowerSelected += SelectTower;
         }
 
-        _aTbcs = FindObjectsOfType<MonoBehaviour>().OfType<ITowerBuyController>().ToList();
-
-        foreach (ITowerBuyController tbc in _aTbcs)
+        foreach (ITowerBuyController tbc in towerBuyController)
         {
             tbc.HandleTowerBuy += BuildTower;
         }
-
-        this.Rotate(0);
     }
 
     private void Start()
     {
+        Rotate(0);
         SelectTower(1);
     }
 
     private void OnDisable()
     {
-        foreach (IArrowsInputController aic in _aIcs)
+        foreach (IArrowsInputController aic in arrowInputController)
         {
             aic.HandleLeft -= MoveArrowLeft;
             aic.HandleRight -= MoveArrowRight;
@@ -70,12 +68,12 @@ public class EconomyController : MonoBehaviour
             aic.HandleDown -= MoveArrowDown;
         }
 
-        foreach (ITowerSelector ts in _aTss)
+        foreach (ITowerSelector ts in towerSelector)
         {
             ts.HandleTowerSelected -= SelectTower;
         }
 
-        foreach (ITowerBuyController tbc in _aTbcs)
+        foreach (ITowerBuyController tbc in towerBuyController)
         {
             tbc.HandleTowerBuy -= BuildTower;
         }
@@ -83,22 +81,22 @@ public class EconomyController : MonoBehaviour
 
     private void SelectTower(int id)
     {
-        TowerEntry entry = this.GetTowerEntry(id);
+        TowerEntry entry = GetTowerEntry(id);
         TowerSelected(entry.details);
         selected = entry;
     }
 
     private void BuildTower()
     {
-        if (!this.CanBuild()) return;
+        if (!CanBuild()) return;
         TowerController.Build(selected.geometry);
-        this.HandleFinance(selected);
-        this._placeholderSelected = false;
+        HandleFinance(selected);
+        _placeholderSelected = false;
     }
 
     private bool CanBuild()
     {
-        if (!this._placeholderSelected) return false;
+        if (!_placeholderSelected) return false;
 
         if (selected == null)
         {
@@ -106,7 +104,7 @@ public class EconomyController : MonoBehaviour
             return false;
         }
 
-        if (!lM.CheckIfEnoughMoney(selected.details.Price))
+        if (!levelManager.CheckIfEnoughMoney(selected.details.Price))
         {
             DisplayNotEnoughMoney("Not enough money to buy a tower!");
             return false;
@@ -116,14 +114,14 @@ public class EconomyController : MonoBehaviour
 
     private TowerEntry GetTowerEntry(int id)
     {
-        return this.towers
+        return towers
             .Where(t => t.details.Id == id)
             .FirstOrDefault();
     }
 
     private void HandleFinance(TowerEntry entry)
     {
-        if (lM.CheckIfEnoughMoney(entry.details.Price))
+        if (levelManager.CheckIfEnoughMoney(entry.details.Price))
         {
             HandleTowerBuyOrSell(-entry.details.Price);
         }
@@ -135,27 +133,27 @@ public class EconomyController : MonoBehaviour
 
     private void MoveArrowLeft()
     {
-        this.Rotate(270);
+        Rotate(270);
     }
 
     private void MoveArrowRight()
     {
-        this.Rotate(90);
+        Rotate(90);
     }
 
     private void MoveArrowUp()
     {
-        this.Rotate(0);
+        Rotate(0);
     }
 
     private void MoveArrowDown()
     {
-        this.Rotate(180);
+        Rotate(180);
     }
 
     private void Rotate(int angle)
     {
-        if (!this._placeholderSelected) return;
+        if (!_placeholderSelected) return;
         DirectionSelected(angle);
         ArrowController.rotation = angle * -1;
         TowerController.rotation = angle;
@@ -163,10 +161,9 @@ public class EconomyController : MonoBehaviour
 
     private void SelectPlaceholder(Vector3 position)
     {
-        Debug.Log(string.Format("Select Placeholder (x: {0}, z: {1})", position.x, position.z));
         position.y = 1;
         TowerController.position = position;
         ArrowController.position = position;
-        this._placeholderSelected = true;
+        _placeholderSelected = true;
     }
 }

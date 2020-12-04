@@ -51,8 +51,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tower: {fileID: 0}
-  towerName: {fileID: 1834622293024200217}
-  towerButton: {fileID: 4445583097784661571}
+  towerName: {fileID: 0}
+  towerButton: {fileID: 0}
 --- !u!114 &6346897712992364820
 MonoBehaviour:
   m_ObjectHideFlags: 0

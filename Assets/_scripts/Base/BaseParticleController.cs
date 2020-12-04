@@ -4,27 +4,27 @@ using UnityEngine;
 
 public class BaseParticleController : MonoBehaviour
 {
-    private BaseCollisionController bcc;
-    private BaseHealthController bhc;
+    private BaseCollisionController baseCollisionController;
+    private BaseHealthController baseHealthController;
     [SerializeField] private ParticleSystem smokeParticles;
     [SerializeField] private ParticleSystem warningParticles;
 
     private void Awake()
     {
-        bcc = GetComponent<BaseCollisionController>();
-        bhc = GetComponent<BaseHealthController>();
+        baseCollisionController = GetComponent<BaseCollisionController>();
+        baseHealthController = GetComponent<BaseHealthController>();
     }
 
     private void OnEnable()
     {
-        bcc.HandleEnemyCollision += PlayWarning;
-        bhc.HandleAlmostDead += PlaySmoke;
+        baseCollisionController.HandleEnemyCollision += PlayWarning;
+        baseHealthController.HandleAlmostDead += PlaySmoke;
     }
 
     private void OnDisable()
     {
-        bcc.HandleEnemyCollision -= PlayWarning;
-        bhc.HandleAlmostDead -= PlaySmoke;
+        baseCollisionController.HandleEnemyCollision -= PlayWarning;
+        baseHealthController.HandleAlmostDead -= PlaySmoke;
     }
 
     private void PlayWarning()

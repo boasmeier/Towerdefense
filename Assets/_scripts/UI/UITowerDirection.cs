@@ -5,13 +5,11 @@ using UnityEngine.UI;
 
 public class UITowerDirection : MonoBehaviour, IArrowsInputController
 {
-
     public event Action HandleLeft = delegate { };
     public event Action HandleRight = delegate { };
     public event Action HandleUp = delegate { };
     public event Action HandleDown = delegate { };
     public event Action HandleTowerDirectionClickSound = delegate { };
-
 
     [SerializeField] Button upButton;
     [SerializeField] Button leftButton;
@@ -19,8 +17,6 @@ public class UITowerDirection : MonoBehaviour, IArrowsInputController
     [SerializeField] Button downButton;
 
     private Button selected;
-
-    private EconomyController _ec;
 
     public void OnEnable()
     {
@@ -34,38 +30,41 @@ public class UITowerDirection : MonoBehaviour, IArrowsInputController
         leftButton.onClick.AddListener(() => HandleTowerDirectionClickSound());
         rightButton.onClick.AddListener(() => HandleTowerDirectionClickSound());
 
-        EconomyController.DirectionSelected += HighlightSelected;
+        EconomyManager.DirectionSelected += HighlightSelected;
     }
 
     public void OnDisable()
     {
-        EconomyController.DirectionSelected -= HighlightSelected;
+        upButton.onClick.RemoveListener(() => HandleUp()) ;
+        downButton.onClick.RemoveListener(() => HandleDown());
+        leftButton.onClick.RemoveListener(() => HandleLeft());
+        rightButton.onClick.RemoveListener(() => HandleRight());
+
+        upButton.onClick.RemoveListener(() => HandleTowerDirectionClickSound()) ;
+        downButton.onClick.RemoveListener(() => HandleTowerDirectionClickSound());
+        leftButton.onClick.RemoveListener(() => HandleTowerDirectionClickSound());
+        rightButton.onClick.RemoveListener(() => HandleTowerDirectionClickSound());
+        
+        EconomyManager.DirectionSelected -= HighlightSelected;
     }
 
     public void HighlightSelected(int direction)
     {
-        Debug.Log("highlight selected");
         if (direction == 0)
         {  
             select(upButton);
-            Debug.Log("highlight up");
         }
         else if (direction == 90)
         {
             select(rightButton);
-            Debug.Log("highlight right");
-
         }
         else if (direction == 180)
         {
             select(downButton);
-            Debug.Log("highlight down");
-
         }
         else
         {
             select(leftButton);
-            Debug.Log("highlight left");
         }
     }
 
@@ -77,8 +76,6 @@ public class UITowerDirection : MonoBehaviour, IArrowsInputController
         {
             UIColors.UnHighlight(previous);
         }
-
-        //select.Select();
         UIColors.Highlight(selected);
     }
 }

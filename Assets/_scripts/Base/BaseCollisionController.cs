@@ -9,18 +9,15 @@ public class BaseCollisionController : MonoBehaviour
     public event Action HandleEnemyCollision = delegate { };
 
     // Start is called before the first frame update
-    void Awake()
+    private void Awake()
     {
         enemyLayer  = LayerMask.NameToLayer("Enemy");
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log(collision.gameObject.layer);
-        Debug.Log(enemyLayer);
         if(collision.gameObject.layer == enemyLayer)
         {
-            Debug.Log("Base collided");
             HandleEnemyCollision();
             Destroy(collision.gameObject);
         }

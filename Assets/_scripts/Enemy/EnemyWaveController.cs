@@ -10,7 +10,6 @@ public class EnemyWaveController
     public int CurrentWave {
         get { return currentWave; } set { currentWave = value; currentEnemyNumber = 0; currentEnemyGroup = 0; }
     }
-
     public float CurrentSpawnDelay
     {
         get { return waves[currentWave - 1].wave[currentEnemyGroup].spawnDelay; }

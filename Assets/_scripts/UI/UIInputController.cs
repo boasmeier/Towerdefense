@@ -5,13 +5,10 @@ using UnityEngine;
 
 public class UIInputController : MonoBehaviour
 {
-
     public event Action HandleGameSpeedIncrease = delegate { };
     public event Action HandleGameSpeedDecrease = delegate { };
-
     public event Action ToggleMenue = delegate { };
 
-    // Update is called once per frame
     private void Update()
     {
         CheckInput();
@@ -21,14 +18,14 @@ public class UIInputController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha9))
         {
-            this.HandleGameSpeedDecrease();
+            HandleGameSpeedDecrease();
         }
         else if (Input.GetKeyDown(KeyCode.Alpha0))
         {
-            this.HandleGameSpeedIncrease();
+            HandleGameSpeedIncrease();
         }
         else if (Input.GetKeyDown(KeyCode.Escape)) {
-            this.ToggleMenue();
+            ToggleMenue();
         }
     }
 }

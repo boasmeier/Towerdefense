@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class UITowerButton : MonoBehaviour, ITowerSelector
 {
-    // Start is called before the first frame update
     [SerializeField] SOTower tower;
     [SerializeField] Text towerName;
     [SerializeField] Button towerButton;
@@ -14,17 +13,22 @@ public class UITowerButton : MonoBehaviour, ITowerSelector
     public event Action<int> HandleTowerSelected = delegate { };
     public event Action HandleTowerButtonClickSound = delegate { };
 
-    void OnEnable()
-    {
+    private void Start() {
         towerName.text = " [" + this.tower.Id + "] " + this.tower.Name;
+    }
+    
+    private void OnEnable()
+    {
         towerButton.onClick.AddListener(() => HandleTowerSelected(this.tower.Id));
         towerButton.onClick.AddListener(() => HandleTowerButtonClickSound());
-        EconomyController.TowerSelected += CheckIfSelected;
+        EconomyManager.TowerSelected += CheckIfSelected;
     }
 
     private void OnDisable()
     {
-        EconomyController.TowerSelected -= CheckIfSelected;
+        towerButton.onClick.RemoveListener(() => HandleTowerSelected(this.tower.Id));
+        towerButton.onClick.RemoveListener(() => HandleTowerButtonClickSound());
+        EconomyManager.TowerSelected -= CheckIfSelected;
     }
 
     private void CheckIfSelected(SOTower selectedTower)

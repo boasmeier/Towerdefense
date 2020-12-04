@@ -10,7 +10,7 @@ public class UIButtonHoverHandler : MonoBehaviour, IPointerEnterHandler
     public event Action HandleMenueButtonHoverSound = delegate { };
     
     public void OnPointerEnter(PointerEventData eventData) {
-        if(this.gameObject.GetComponent<Button>().enabled) {
+        if(gameObject.GetComponent<Button>().enabled) {
             HandleMenueButtonHoverSound();
         }
     }

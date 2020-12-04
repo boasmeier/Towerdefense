@@ -8,7 +8,7 @@ public class EnemyDeathController : MonoBehaviour
     [SerializeField] private float shrinkTimeSec;
     private Animation anim;
 
-    private IHealthController hc;
+    private IHealthController healthController;
 
     public static Action<int> HandleEnemyDeath = delegate { };
 
@@ -16,13 +16,13 @@ public class EnemyDeathController : MonoBehaviour
     {
         anim = GetComponent<Animation>();
         anim.Stop();
-        hc = GetComponent<IHealthController>();
-        hc.HandleDeath += Die;
+        healthController = GetComponent<IHealthController>();
+        healthController.HandleDeath += Die;
     }
 
     private void OnDisable()
     {
-        hc.HandleDeath -= Die;
+        healthController.HandleDeath -= Die;
     }
 
     private void Die()

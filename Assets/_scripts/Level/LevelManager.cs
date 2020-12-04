@@ -1,5 +1,4 @@
-﻿﻿
-using System;
+﻿﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -18,80 +17,80 @@ public class LevelManager : MonoBehaviour
     public event Action ResetGameSpeed = delegate { };
     public SOLevel Level
     {
-        get { return this._level; }
+        get { return _level; }
     }
     public bool Running
     {
-        get { return this._running; }
+        get { return running; }
     }
     public bool CheckIfEnoughMoney(int availableMoney)
     {
-        return availableMoney <= this.money;
+        return availableMoney <= money;
     }
 
     public bool IsWon;
-
-    private bool _running;
+    private bool running;
     private int money;
     private int totalWave;
     private int currentWave;
     private int timer;
 
+    // Delay between game over/won and restart of scene in seconds
     private float restartDelay = 4f;
 
-    private IHealthController bhc;
-    private BaseDeathController bdc;
-    private EnemyManager em;
-    private UIManager uim;
-    private UIMenue UIMenue;
+    private IHealthController healthController;
+    private BaseDeathController baseDeathController;
+    private EnemyManager enemyManager;
+    private UIManager uiManager;
+    private UIMenue uiMenue;
 
     private void Awake()
     {
-        bhc = FindObjectOfType<BaseHealthController>();
-        bdc = FindObjectOfType<BaseDeathController>();
-        em = FindObjectOfType<EnemyManager>();
-        uim = FindObjectOfType<UIManager>();
-        UIMenue = FindObjectOfType<UIMenue>();
+        healthController = FindObjectOfType<BaseHealthController>();
+        baseDeathController = FindObjectOfType<BaseDeathController>();
+        enemyManager = FindObjectOfType<EnemyManager>();
+        uiManager = FindObjectOfType<UIManager>();
+        uiMenue = FindObjectOfType<UIMenue>();
     }
 
     private void OnEnable()
     {
-        bhc.HandleHealthChange += DisplayHealthChange;
-        bdc.HandleBaseDeath += GameOver;
-        em.HandleEnemyDeath += DisplayMoneyChange;
-        em.HandleAllEnemiesOfWaveDied += DisplayWaveChange;
-        uim.HandleWaveStart += StartWave;
-        UIMenue.HandleRestart += Restart;
-        EconomyController.HandleTowerBuyOrSell += DisplayMoneyChange;
+        healthController.HandleHealthChange += DisplayHealthChange;
+        baseDeathController.HandleBaseDeath += GameOver;
+        enemyManager.HandleEnemyDeath += DisplayMoneyChange;
+        enemyManager.HandleAllEnemiesOfWaveDied += DisplayWaveChange;
+        uiManager.HandleWaveStart += StartWave;
+        uiMenue.HandleRestart += Restart;
+        EconomyManager.HandleTowerBuyOrSell += DisplayMoneyChange;
         SceneManager.sceneLoaded += OnSceneFinishedLoading;
     }
 
     private void OnDisable()
     {
-        bhc.HandleHealthChange -= DisplayHealthChange;
-        bdc.HandleBaseDeath -= GameOver;
-        em.HandleEnemyDeath -= DisplayMoneyChange;
-        em.HandleAllEnemiesOfWaveDied -= DisplayWaveChange;
-        uim.HandleWaveStart -= StartWave;
-        UIMenue.HandleRestart -= Restart;
-        EconomyController.HandleTowerBuyOrSell -= DisplayMoneyChange;
+        healthController.HandleHealthChange -= DisplayHealthChange;
+        baseDeathController.HandleBaseDeath -= GameOver;
+        enemyManager.HandleEnemyDeath -= DisplayMoneyChange;
+        enemyManager.HandleAllEnemiesOfWaveDied -= DisplayWaveChange;
+        uiManager.HandleWaveStart -= StartWave;
+        uiMenue.HandleRestart -= Restart;
+        EconomyManager.HandleTowerBuyOrSell -= DisplayMoneyChange;
         SceneManager.sceneLoaded -= OnSceneFinishedLoading;
     }
 
     private void Start()
     {
-        this.money = this._level.StartMoney;
-        this.totalWave = this._level.Waves.Count;
-        this.currentWave = 1;
+        money = _level.StartMoney;
+        totalWave = _level.Waves.Count;
+        currentWave = 1;
         HandleMoneyChange(money);
-        HandleWaveChange(this.currentWave, this.totalWave);
+        HandleWaveChange(currentWave, totalWave);
     }
 
     private void OnSceneFinishedLoading(Scene scene, LoadSceneMode mode) 
     {
-        this.totalWave = this._level.Waves.Count;
-        this.currentWave = 1;
-        HandleWaveChange(this.currentWave, this.totalWave);
+        totalWave = _level.Waves.Count;
+        currentWave = 1;
+        HandleWaveChange(currentWave, totalWave);
     }
 
     private void DisplayHealthChange(int newHealth)
@@ -107,12 +106,12 @@ public class LevelManager : MonoBehaviour
 
     private void DisplayWaveChange()
     {
-        _running = false;
+        running = false;
 
-        if (this.currentWave < this.totalWave)
+        if (currentWave < totalWave)
         {
-            this.currentWave += 1;
-            HandleWaveChange(this.currentWave, this.totalWave);
+            currentWave += 1;
+            HandleWaveChange(currentWave, totalWave);
         }
         else
         {
@@ -124,8 +123,7 @@ public class LevelManager : MonoBehaviour
 
     private void GameOver()
     {
-        _running = false;
-        //Debug.Log("GAME OVER: YOU LOOSE");
+        running = false;
         IsWon = false;
         HandleGameOver(IsWon);
         Invoke("Restart", restartDelay * Time.timeScale);
@@ -133,7 +131,7 @@ public class LevelManager : MonoBehaviour
 
     private void StartWave()
     {
-        _running = true;
+        running = true;
         SpawnWave(currentWave);
     }
 

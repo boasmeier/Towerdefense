@@ -5,18 +5,21 @@ using UnityEngine.UI;
 
 public class HealthBar : MonoBehaviour
 {
-    public IHealthController hc;
+    public IHealthController healthController;
     public Slider slider;
+
+    private void Awake() {
+        healthController = GetComponentInParent<IHealthController>();
+    }
+
     private void OnEnable()
     {
-        hc = GetComponentInParent<IHealthController>();
-        Debug.Log(hc.ToString());
-        hc.HandlePercentageHealthChange += SetHealth;
+        healthController.HandlePercentageHealthChange += SetHealth;
     }
 
     private void OnDisable()
     {
-        hc.HandlePercentageHealthChange -= SetHealth;
+        healthController.HandlePercentageHealthChange -= SetHealth;
     }
 
     private void SetHealth(float health)

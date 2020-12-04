@@ -8,11 +8,15 @@ public class ArrowController : MonoBehaviour
     {
         set
         {
-            if (arrow == null) return;
-            value.y = 0.6f;
-            arrow.transform.position = value;
+            if (arrow == null) {
+                return;
+            } else {
+                value.y = 0.6f;
+                arrow.transform.position = value;
+            }
         }
     }
+    
     public static int rotation
     {
         set
@@ -24,7 +28,6 @@ public class ArrowController : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log("Start ArrowController");
         arrow = GameObject.Find("PlaceholderArrow");
     }
 }

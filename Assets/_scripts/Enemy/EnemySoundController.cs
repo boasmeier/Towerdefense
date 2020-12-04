@@ -6,19 +6,20 @@ public class EnemySoundController : MonoBehaviour
 {
     [SerializeField] private SOEnemy enemy;
 
-    private IHealthController _hc;
+    private IHealthController healthControlle;
 
-
-    void Start()
+    private void Awake()
     {
-        _hc = GetComponent<IHealthController>();
-        _hc.HandleDeath += PlayDeathSound;
+        healthControlle = GetComponent<IHealthController>();
+    }
 
+    private void OnEnable() {
+        healthControlle.HandleDeath += PlayDeathSound;
     }
 
     private void OnDisable()
     {
-        _hc.HandleDeath -= PlayDeathSound;
+        healthControlle.HandleDeath -= PlayDeathSound;
     }
 
     private void PlayDeathSound()

@@ -6,36 +6,36 @@ using UnityEngine.UI;
 
 public class GameSpeedHandler : MonoBehaviour
 {
-    [SerializeField]
-    private Slider gameSpeedSlider;
-    int sliderValue = 2;
+    [SerializeField] private Slider gameSpeedSlider;
+    private int sliderValue = 2;
 
-    private UIInputController UIInputController;
-    private UIMenue UIMenue;
+    private UIInputController uiInputController;
+    private UIMenue uiMenue;
     private LevelManager levelManager;
 
-    void Awake()
-    {
-        gameSpeedSlider.onValueChanged.AddListener(delegate {ChangeGameSpeed();}); 
-        UIInputController = FindObjectOfType<UIInputController>();
-        UIMenue = FindObjectOfType<UIMenue>();
+    private void Awake()
+    { 
+        uiInputController = FindObjectOfType<UIInputController>();
+        uiMenue = FindObjectOfType<UIMenue>();
         levelManager = FindObjectOfType<LevelManager>();
     }
 
     private void OnEnable() 
     {
-        UIInputController.HandleGameSpeedIncrease +=  Increase;
-        UIInputController.HandleGameSpeedDecrease += Decrease; 
-        UIMenue.Pause += PauseGame;
-        UIMenue.Continue += ContinueGame;
+        gameSpeedSlider.onValueChanged.AddListener(delegate {ChangeGameSpeed();});
+        uiInputController.HandleGameSpeedIncrease +=  Increase;
+        uiInputController.HandleGameSpeedDecrease += Decrease; 
+        uiMenue.Pause += PauseGame;
+        uiMenue.Continue += ContinueGame;
         levelManager.ResetGameSpeed += ResetSlider;
     }
 
     private void OnDisable() {
-        UIInputController.HandleGameSpeedIncrease -=  Increase;
-        UIInputController.HandleGameSpeedDecrease -= Decrease; 
-        UIMenue.Pause += PauseGame;
-        UIMenue.Continue += ContinueGame;
+        gameSpeedSlider.onValueChanged.RemoveListener(delegate {ChangeGameSpeed();});
+        uiInputController.HandleGameSpeedIncrease -=  Increase;
+        uiInputController.HandleGameSpeedDecrease -= Decrease; 
+        uiMenue.Pause -= PauseGame;
+        uiMenue.Continue -= ContinueGame;
         levelManager.ResetGameSpeed -= ResetSlider;
     }
 
@@ -62,8 +62,7 @@ public class GameSpeedHandler : MonoBehaviour
             case 5:
                 Time.timeScale = 8;
                 break;
-        }
-        Debug.Log("Game speed set to: " + Time.timeScale + "x"); 
+        } 
     }
 
     private void Increase() {
@@ -89,7 +88,7 @@ public class GameSpeedHandler : MonoBehaviour
             element.GetComponent<PlaceholderInputController>().enabled=false;
             element.GetComponent<BoxCollider>().enabled=false;
         }
-        FindObjectOfType<EconomyController>().enabled = false;
+        //FindObjectOfType<EconomyManager>().enabled = false;
         GameObject.Find("StartButton").GetComponent<Button>().enabled = false;
         GameObject.Find("TowerButton1").GetComponent<Button>().enabled = false;
         GameObject.Find("TowerButton2").GetComponent<Button>().enabled = false;
@@ -102,14 +101,14 @@ public class GameSpeedHandler : MonoBehaviour
     }
 
     private void ContinueGame() {
-        this.ChangeGameSpeed();
+        ChangeGameSpeed();
         // enable the scripts and buttons again
         PlaceholderInputController[] array = FindObjectsOfType<PlaceholderInputController>();
         foreach (PlaceholderInputController element in array) {
             element.GetComponent<PlaceholderInputController>().enabled=true;
             element.GetComponent<BoxCollider>().enabled=true;
         }
-        FindObjectOfType<EconomyController>().enabled = true;
+        //FindObjectOfType<EconomyManager>().enabled = true;
         GameObject.Find("StartButton").GetComponent<Button>().enabled = true;
         GameObject.Find("TowerButton1").GetComponent<Button>().enabled = true;
         GameObject.Find("TowerButton2").GetComponent<Button>().enabled = true;

@@ -10,13 +10,13 @@ public class UITooltip : MonoBehaviour
     private int currentTip = 0;
 
     //Show a new tip every 10 seconds
-    void Start()
+    private void Start()
     {
         InvokeRepeating("ShowTip", 0.0f, 10f);
     }
         
     //Shows the next tip
-    void ShowTip()
+    private void ShowTip()
     {
         tipText.text = tips[currentTip];
         currentTip++;

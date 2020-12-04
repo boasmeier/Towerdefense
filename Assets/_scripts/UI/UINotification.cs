@@ -5,21 +5,17 @@ using UnityEngine.UI;
 
 public class UINotification : MonoBehaviour
 {
-
-    [SerializeField]
-    private RectTransform notificationPanel;
-
-    [SerializeField]
-    private Text notificationText;
+    [SerializeField] private RectTransform notificationPanel;
+    [SerializeField] private Text notificationText;
 
     private float notificationDelay = 1.0f;
-
+    
     private void OnEnable() {
-        EconomyController.DisplayNotEnoughMoney += DisplayNotification;
+        EconomyManager.DisplayNotEnoughMoney += DisplayNotification;
     }
 
     private void OnDisable() {
-        EconomyController.DisplayNotEnoughMoney -= DisplayNotification;
+        EconomyManager.DisplayNotEnoughMoney -= DisplayNotification;
     }
 
     private void DisplayNotification(string text) {

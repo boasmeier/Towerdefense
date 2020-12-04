@@ -8,7 +8,14 @@ public class PlaceholderInputController : MonoBehaviour
     [SerializeField] Material highlightMaterial;
     [SerializeField] bool highlightOnStart = false;
 
-    // Start is called before the first frame update
+    private void OnEnable() {
+        HandleMouse += RemoveHighlight;
+    }
+
+    private void OnDisable() {
+        HandleMouse -= RemoveHighlight;
+    }
+
     private void Start()
     {
         if (highlightOnStart)
@@ -16,9 +23,7 @@ public class PlaceholderInputController : MonoBehaviour
             HandleMouse(transform.position);
             this.ChangeColor(highlightMaterial);
         }
-        HandleMouse += RemoveHighlight;
     }
-
 
     private void OnMouseDown()
     {
