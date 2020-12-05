@@ -58,7 +58,7 @@ public class UIManager : MonoBehaviour
     }
     private void DisplayMoney(int newMoney)
     {
-        moneyText.text = "Money: " + newMoney;
+        moneyText.text = "Money: " + newMoney + "$";
     }
 
     private void DisplayWave(int cur, int tot)
