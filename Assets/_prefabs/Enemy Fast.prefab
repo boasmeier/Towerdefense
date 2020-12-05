@@ -205,6 +205,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 1.75
       objectReference: {fileID: 0}
+    - target: {fileID: 6593632900720002158, guid: 3f51d0e5ca8ce1c4eaa79b4a30c1a35d,
+        type: 3}
+      propertyPath: m_PlayAutomatically
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8273782451387237664, guid: 3f51d0e5ca8ce1c4eaa79b4a30c1a35d,
         type: 3}
       propertyPath: m_Name

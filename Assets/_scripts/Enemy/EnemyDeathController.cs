@@ -33,6 +33,7 @@ public class EnemyDeathController : MonoBehaviour
 
     private IEnumerator Shrink()
     {
+        Debug.Log("Shrink Enemy");
         gameObject.layer = LayerMask.NameToLayer("Default");
         anim.Play();
         yield return new WaitForSeconds(shrinkTimeSec);
