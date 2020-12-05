@@ -44,6 +44,7 @@ public class BaseHealthController : MonoBehaviour, IHealthController
     {
         currentHealth -= 1;
         HandleHealthChange(currentHealth);
+        HandlePercentageHealthChange(currentHealth / (float) totalHealth);
         if (currentHealth == healthTreshold)
         {
             HandleAlmostDead();
