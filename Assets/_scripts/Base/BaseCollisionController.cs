@@ -21,9 +21,6 @@ public class BaseCollisionController : MonoBehaviour
             HandleEnemyCollision();
             Destroy(collision.gameObject);
         }
-        else
-        {
-            Destroy(collision.gameObject);
-        }
+        Destroy(collision.gameObject);
     }
 }
