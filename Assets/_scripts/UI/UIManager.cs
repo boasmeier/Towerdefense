@@ -68,7 +68,6 @@ public class UIManager : MonoBehaviour
         {
             timerIsRunning = true;
             timeRemaining = 30;
-            Debug.Log("Start Timer!");
             startWaveButton.interactable = true;
         }
     }
