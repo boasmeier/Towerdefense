@@ -9,9 +9,9 @@ public class EconomyManager : MonoBehaviour
 
     public static event Action<int> HandleTowerBuyOrSell = delegate { };
     public static event Action<string> DisplayNotEnoughMoney = delegate { };
-
     public static event Action<SOTower> TowerSelected = delegate { };
     public static event Action<int> DirectionSelected = delegate { };
+    public static event Action HandleSound = delegate { };
 
     private bool _placeholderSelected;
     private LevelManager levelManager;
@@ -131,6 +131,7 @@ public class EconomyManager : MonoBehaviour
         if (levelManager.CheckIfEnoughMoney(entry.details.Price))
         {
             HandleTowerBuyOrSell(-entry.details.Price);
+            HandleSound();
         }
         else
         {

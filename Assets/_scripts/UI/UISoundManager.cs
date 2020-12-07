@@ -8,6 +8,8 @@ public class UISoundManager : MonoBehaviour
     [SerializeField] private AudioClip hoverSound;
     [SerializeField] private AudioClip clickSound;
     [SerializeField] private AudioClip buySound;
+    [SerializeField] private AudioClip countdownSound;
+    [SerializeField] private AudioClip waveStartSound;
 
     private UIMenue uiMenue;
     private UIManager uIManager;
@@ -15,7 +17,7 @@ public class UISoundManager : MonoBehaviour
     private UITowerBuy uiTowerBuy;
     private UITowerButton[] uiTowerButtonList;
     private UIButtonHoverHandler[] uiButtonHoverHandlerList;
-    private InputController inputController;
+    private EconomyManager economyManager;
     
     private void Awake() {
         uiMenue = FindObjectOfType<UIMenue>();
@@ -24,7 +26,7 @@ public class UISoundManager : MonoBehaviour
         uiTowerBuy = FindObjectOfType<UITowerBuy>();
         uiTowerButtonList = FindObjectsOfType<UITowerButton>();
         uiButtonHoverHandlerList = FindObjectsOfType<UIButtonHoverHandler>();
-        inputController = FindObjectOfType<InputController>();
+        economyManager = FindObjectOfType<EconomyManager>();
     }
 
     private void OnEnable() {
@@ -38,7 +40,7 @@ public class UISoundManager : MonoBehaviour
         foreach (UIButtonHoverHandler handler in uiButtonHoverHandlerList) {
             handler.HandleMenueButtonHoverSound += PlayHover;
         } 
-        inputController.HandleTowerBuy += PlayBuy;
+        EconomyManager.HandleSound += PlayBuy;
     }
 
     private void OnDisable() {
@@ -52,7 +54,7 @@ public class UISoundManager : MonoBehaviour
         foreach (UIButtonHoverHandler handler in uiButtonHoverHandlerList) {
             handler.HandleMenueButtonHoverSound -= PlayHover;
         }
-        inputController.HandleTowerBuy -= PlayBuy;
+        EconomyManager.HandleSound -= PlayBuy;
     }
 
     private void PlayHover() {
@@ -64,6 +66,13 @@ public class UISoundManager : MonoBehaviour
     }
 
     private void PlayBuy() {
+        AudioSource src = Sound.PlayClipAt(buySound, this.gameObject.transform.position);
+    }
+    
+    private void PlayCountdown() {
+        AudioSource src = Sound.PlayClipAt(buySound, this.gameObject.transform.position);
+    }
+    private void PlayWaveStart() {
         AudioSource src = Sound.PlayClipAt(buySound, this.gameObject.transform.position);
     }
 }
