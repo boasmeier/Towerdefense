@@ -66,13 +66,17 @@ public class GameSpeedHandler : MonoBehaviour
     }
 
     private void Increase() {
-        sliderValue++;
-        gameSpeedSlider.value = sliderValue;
+        if(sliderValue <= 4) {
+            sliderValue++;
+            gameSpeedSlider.value = sliderValue;
+        }
     }
 
     private void Decrease() {
-        sliderValue--;
-        gameSpeedSlider.value = sliderValue;
+        if(sliderValue >= 2) {
+            sliderValue--;
+            gameSpeedSlider.value = sliderValue;
+        }
     }
 
     private void ResetSlider() {
