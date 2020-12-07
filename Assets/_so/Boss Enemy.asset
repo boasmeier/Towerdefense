@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b807a75d513ec5d4aaabe34f8cd97b88, type: 3}
-  m_Name: Basic Enemy
+  m_Name: Boss Enemy
   m_EditorClassIdentifier: 
-  health: 6
-  value: 3
+  health: 70
+  value: 10
   speed: 1
-  deathAudio: {fileID: 8300000, guid: eaf2f4a7cf1ab324786a1ab5023f5282, type: 3}
+  deathAudio: {fileID: 8300000, guid: 7d184c0ab4235624f81915f708eea3a9, type: 3}

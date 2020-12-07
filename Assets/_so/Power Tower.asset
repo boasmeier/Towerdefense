@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 2
   towerName: Power
-  price: 30
+  price: 40
   attackSpeed: 1
   velocity: 5
   shot: {fileID: 7236144653128657361, guid: 4bd1ed96bf769814d8f698c4a8ab5028, type: 3}
