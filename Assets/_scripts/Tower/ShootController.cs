@@ -35,7 +35,7 @@ public class ShootController : MonoBehaviour, IShootController
     }
 
     private void Start() {
-        shooting = levelManager.Running;
+        shooting = (levelManager.State == GameState.Running);
     }
 
     public bool TimerExpired()

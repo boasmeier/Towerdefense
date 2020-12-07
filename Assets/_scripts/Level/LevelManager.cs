@@ -1,7 +1,4 @@
-﻿﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.InteropServices.WindowsRuntime;
+﻿using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -10,30 +7,37 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private SOLevel _level;
 
     public event Action<int> HandleBaseHealthChange = delegate { };
-    public event Action<int> HandleMoneyChange = delegate { };
-    public event Action<int, int> HandleWaveChange = delegate { };
-    public event Action<int> SpawnWave = delegate { };
-    public event Action<bool> HandleGameOver = delegate { };
-    public event Action ResetGameSpeed = delegate { };
-    public SOLevel Level
-    {
-        get { return _level; }
-    }
-    public bool Running
-    {
-        get { return running; }
-    }
-    public bool CheckIfEnoughMoney(int availableMoney)
-    {
-        return availableMoney <= money;
-    }
 
-    public bool IsWon;
-    private bool running;
+    public event Action<int> HandleMoneyChange = delegate { };
+
+    public event Action<int, int> HandleWaveChange = delegate { };
+
+    public event Action<int> SpawnWave = delegate { };
+
+    public event Action<bool> HandleGameOver = delegate { };
+
+    public event Action ResetGameSpeed = delegate { };
+
+    private GameState state;
     private int money;
     private int totalWave;
     private int currentWave;
     private int timer;
+
+    public SOLevel Level
+    {
+        get { return _level; }
+    }
+
+    public GameState State
+    {
+        get { return state; }
+    }
+
+    public bool CheckIfEnoughMoney(int availableMoney)
+    {
+        return availableMoney <= money;
+    }
 
     // Delay between game over/won and restart of scene in seconds
     private float restartDelay = 4f;
@@ -46,6 +50,7 @@ public class LevelManager : MonoBehaviour
 
     private void Awake()
     {
+        state = GameState.Running;
         healthController = FindObjectOfType<BaseHealthController>();
         baseDeathController = FindObjectOfType<BaseDeathController>();
         enemyManager = FindObjectOfType<EnemyManager>();
@@ -56,7 +61,7 @@ public class LevelManager : MonoBehaviour
     private void OnEnable()
     {
         healthController.HandleHealthChange += DisplayHealthChange;
-        baseDeathController.HandleBaseDeath += GameOver;
+        baseDeathController.HandleBaseDeath += LoseGame;
         enemyManager.HandleEnemyDeath += DisplayMoneyChange;
         enemyManager.HandleAllEnemiesOfWaveDied += DisplayWaveChange;
         uiManager.HandleWaveStart += StartWave;
@@ -68,7 +73,7 @@ public class LevelManager : MonoBehaviour
     private void OnDisable()
     {
         healthController.HandleHealthChange -= DisplayHealthChange;
-        baseDeathController.HandleBaseDeath -= GameOver;
+        baseDeathController.HandleBaseDeath -= LoseGame;
         enemyManager.HandleEnemyDeath -= DisplayMoneyChange;
         enemyManager.HandleAllEnemiesOfWaveDied -= DisplayWaveChange;
         uiManager.HandleWaveStart -= StartWave;
@@ -86,7 +91,7 @@ public class LevelManager : MonoBehaviour
         HandleWaveChange(currentWave, totalWave);
     }
 
-    private void OnSceneFinishedLoading(Scene scene, LoadSceneMode mode) 
+    private void OnSceneFinishedLoading(Scene scene, LoadSceneMode mode)
     {
         totalWave = _level.Waves.Count;
         currentWave = 1;
@@ -106,32 +111,34 @@ public class LevelManager : MonoBehaviour
 
     private void DisplayWaveChange()
     {
-        running = false;
+        if (state == GameState.Running) {
+            state = GameState.Paused;
+        }
 
         if (currentWave < totalWave)
         {
             currentWave += 1;
             HandleWaveChange(currentWave, totalWave);
         }
-        else
+        else if (state != GameState.Lost)
         {
-            IsWon = true;
-            HandleGameOver(IsWon);
+            state = GameState.Won;
+            HandleGameOver(true);
             Invoke("Restart", restartDelay * Time.timeScale);
         }
     }
 
-    private void GameOver()
+    private void LoseGame()
     {
-        running = false;
-        IsWon = false;
-        HandleGameOver(IsWon);
+        if (state == GameState.Won) return;
+        state = GameState.Lost;
+        HandleGameOver(false);
         Invoke("Restart", restartDelay * Time.timeScale);
     }
 
     private void StartWave()
     {
-        running = true;
+        state = GameState.Running;
         SpawnWave(currentWave);
     }
 
@@ -141,4 +148,3 @@ public class LevelManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
-

@@ -65,7 +65,7 @@ public class SplitterShootController : MonoBehaviour, IShootController
     }
 
     private void Start() {
-        shooting = levelManager.Running;
+        shooting = (levelManager.State == GameState.Running);
     }
 
     private void Update()
