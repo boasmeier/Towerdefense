@@ -42,16 +42,19 @@ public class BaseHealthController : MonoBehaviour, IHealthController
 
     private void GetDamage()
     {
-        currentHealth -= 1;
-        HandleHealthChange(currentHealth);
-        HandlePercentageHealthChange(currentHealth / (float) totalHealth);
-        if (currentHealth == healthTreshold)
+        if (currentHealth >= 1)
         {
-            HandleAlmostDead();
-        }
-        if (currentHealth <= 0)
-        {
-            HandleDeath();
+            currentHealth -= 1;
+            HandleHealthChange(currentHealth);
+            HandlePercentageHealthChange(currentHealth / (float)totalHealth);
+            if (currentHealth == healthTreshold)
+            {
+                HandleAlmostDead();
+            }
+            if (currentHealth <= 0)
+            {
+                HandleDeath();
+            }
         }
     }
 
