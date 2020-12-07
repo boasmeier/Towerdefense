@@ -22,11 +22,18 @@ public class EconomyManager : MonoBehaviour
     private IList<ITowerSelector> towerSelector;
     private IList<ITowerBuyController> towerBuyController;
 
+    private TowerManager towerManager;
+    private ArrowManager arrowManager;
+
+
     private void Awake() {
         levelManager = FindObjectOfType<LevelManager>();
         arrowInputController = FindObjectsOfType<MonoBehaviour>().OfType<IArrowsInputController>().ToList();
         towerSelector = FindObjectsOfType<MonoBehaviour>().OfType<ITowerSelector>().ToList();
         towerBuyController = FindObjectsOfType<MonoBehaviour>().OfType<ITowerBuyController>().ToList();
+
+        towerManager = GetComponent<TowerManager>();
+        arrowManager = GetComponent<ArrowManager>();
     }
 
     private void OnEnable()
@@ -89,7 +96,7 @@ public class EconomyManager : MonoBehaviour
     private void BuildTower()
     {
         if (!CanBuild()) return;
-        TowerController.Build(selected.geometry);
+        towerManager.Build(selected.geometry);
         HandleFinance(selected);
         _placeholderSelected = false;
     }
@@ -155,15 +162,15 @@ public class EconomyManager : MonoBehaviour
     {
         if (!_placeholderSelected) return;
         DirectionSelected(angle);
-        ArrowController.rotation = angle * -1;
-        TowerController.rotation = angle;
+        arrowManager.rotation = angle * -1;
+        towerManager.rotation = angle;
     }
 
     private void SelectPlaceholder(Vector3 position)
     {
         position.y = 1;
-        TowerController.position = position;
-        ArrowController.position = position;
+        towerManager.position = position;
+        arrowManager.position = position;
         _placeholderSelected = true;
     }
 }
