@@ -50,6 +50,10 @@ public class UITowerBuy : MonoBehaviour, ITowerBuyController
 
     private void CheckPrice()
     {
+        if (!selectedTower)
+        {
+            return;
+        }
         if (levelManager.CheckIfEnoughMoney(selectedTower.Price))
         {
             buttonBuy.interactable = true;
