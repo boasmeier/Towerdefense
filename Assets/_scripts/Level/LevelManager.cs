@@ -50,7 +50,7 @@ public class LevelManager : MonoBehaviour
 
     private void Awake()
     {
-        state = GameState.Running;
+        state = GameState.Paused;
         healthController = FindObjectOfType<BaseHealthController>();
         baseDeathController = FindObjectOfType<BaseDeathController>();
         enemyManager = FindObjectOfType<EnemyManager>();
