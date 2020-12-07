@@ -12,6 +12,7 @@ public class UIMenue : MonoBehaviour
     [SerializeField] private Button restartButton;
     [SerializeField] private Button controlsButton;
     [SerializeField] private Button exitButton;
+    [SerializeField] private Button closeButton;
 
     public event Action HandleRestart = delegate { };
     public event Action Pause = delegate { };
@@ -42,6 +43,9 @@ public class UIMenue : MonoBehaviour
 
         exitButton.onClick.AddListener(Exit);
         exitButton.onClick.AddListener(PlayClickSound);
+
+        closeButton.onClick.AddListener(Resume);
+        closeButton.onClick.AddListener(PlayClickSound);
     }
 
     private void OnDisable() 
@@ -60,6 +64,9 @@ public class UIMenue : MonoBehaviour
 
         exitButton.onClick.RemoveListener(Exit);
         exitButton.onClick.RemoveListener(PlayClickSound);
+
+        closeButton.onClick.AddListener(Resume);
+        closeButton.onClick.AddListener(PlayClickSound);
     }
 
     private void Start() {
