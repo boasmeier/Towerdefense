@@ -15,6 +15,7 @@ public class UISoundManager : MonoBehaviour
     private UITowerBuy uiTowerBuy;
     private UITowerButton[] uiTowerButtonList;
     private UIButtonHoverHandler[] uiButtonHoverHandlerList;
+    private InputController inputController;
     
     private void Awake() {
         uiMenue = FindObjectOfType<UIMenue>();
@@ -23,6 +24,7 @@ public class UISoundManager : MonoBehaviour
         uiTowerBuy = FindObjectOfType<UITowerBuy>();
         uiTowerButtonList = FindObjectsOfType<UITowerButton>();
         uiButtonHoverHandlerList = FindObjectsOfType<UIButtonHoverHandler>();
+        inputController = FindObjectOfType<InputController>();
     }
 
     private void OnEnable() {
@@ -36,6 +38,7 @@ public class UISoundManager : MonoBehaviour
         foreach (UIButtonHoverHandler handler in uiButtonHoverHandlerList) {
             handler.HandleMenueButtonHoverSound += PlayHover;
         } 
+        inputController.HandleTowerBuy += PlayBuy;
     }
 
     private void OnDisable() {
@@ -49,6 +52,7 @@ public class UISoundManager : MonoBehaviour
         foreach (UIButtonHoverHandler handler in uiButtonHoverHandlerList) {
             handler.HandleMenueButtonHoverSound -= PlayHover;
         }
+        inputController.HandleTowerBuy -= PlayBuy;
     }
 
     private void PlayHover() {
