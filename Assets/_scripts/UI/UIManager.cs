@@ -21,10 +21,11 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Text countdownText;
 
     private Boolean notified = false;
+    private Boolean countDownStarted = false;
     public event Action HandleWaveStart = delegate { };
     public event Action ToggleMenue = delegate { };
     public event Action HandleManagerButtonClickSound = delegate { };
-
+    public event Action HandleCountdownSound = delegate { };
     private void Awake()
     {
         levelManager = FindObjectOfType<LevelManager>();
@@ -79,8 +80,22 @@ public class UIManager : MonoBehaviour
         timerText.text = "Next wave: " + string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 
+    private IEnumerator PlayCountdownSound() {
+        int count = 5;
+        while(count>=1) {
+            count--;
+            HandleCountdownSound.Invoke();
+            yield return new WaitForSeconds(1.0f);
+        }
+    }
+
     private void DisplayCountdown(float timeToDisplay)
     {
+        if(!countDownStarted) {
+            countDownStarted = true;
+            StartCoroutine(PlayCountdownSound());            
+        }
+
         countdownPanel.gameObject.SetActive(true);
         float seconds = Mathf.FloorToInt(timeToDisplay % 60);
         if (seconds > 0)
@@ -149,6 +164,7 @@ public class UIManager : MonoBehaviour
                 startWaveButton.interactable = false;
                 countdownPanel.gameObject.SetActive(false);
                 notified = false;
+                countDownStarted = false;
                 HandleWaveStart();
             }
             DisplayTimer(timeRemaining);

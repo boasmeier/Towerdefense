@@ -3920,6 +3920,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 128052385, guid: df860a1f8f281ce48baecd4b5f375c28, type: 3}
+      propertyPath: countdownSound
+      value: 
+      objectReference: {fileID: 8300000, guid: e03cfb1fa0f0640449b83b0a2bd42dae, type: 3}
+    - target: {fileID: 128052385, guid: df860a1f8f281ce48baecd4b5f375c28, type: 3}
+      propertyPath: waveStartSound
+      value: 
+      objectReference: {fileID: 8300000, guid: b985d5eebda85284caffd2117136fee5, type: 3}
     - target: {fileID: 408451654, guid: df860a1f8f281ce48baecd4b5f375c28, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
