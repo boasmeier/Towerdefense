@@ -8,10 +8,8 @@ public class UIGameOver : MonoBehaviour
 {
     private LevelManager levelManager;
 
-    [SerializeField]
-    private RectTransform gameOverPanel;
-    [SerializeField]
-    private Text gameOverText;
+    [SerializeField] private RectTransform gameOverPanel;
+    [SerializeField] private Text gameOverText;
 
     private void Awake()
     {

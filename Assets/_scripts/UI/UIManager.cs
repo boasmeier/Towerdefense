@@ -9,6 +9,7 @@ public class UIManager : MonoBehaviour
     private LevelManager levelManager;
     private float timeRemaining;
     private bool timerIsRunning = false;
+    private bool gameIsOver = false;
 
     [SerializeField] private Text healthText;
     [SerializeField] private Text moneyText;
@@ -21,10 +22,12 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Text countdownText;
 
     private Boolean notified = false;
+    private Boolean countDownStarted = false;
     public event Action HandleWaveStart = delegate { };
     public event Action ToggleMenue = delegate { };
     public event Action HandleManagerButtonClickSound = delegate { };
-
+    public event Action HandleCountdownSound = delegate { };
+    public event Action HandleNextWaveSound = delegate { };
     private void Awake()
     {
         levelManager = FindObjectOfType<LevelManager>();
@@ -35,6 +38,7 @@ public class UIManager : MonoBehaviour
         levelManager.HandleBaseHealthChange += DisplayHealth;
         levelManager.HandleMoneyChange += DisplayMoney;
         levelManager.HandleWaveChange += DisplayWave;
+        levelManager.HandleGameOver += SetGameIsOver;
         startWaveButton.onClick.AddListener(ResetTimerDisplay);
         startWaveButton.onClick.AddListener(PlayClickSound);
         menueButton.onClick.AddListener(HandleMenueButton);
@@ -46,6 +50,7 @@ public class UIManager : MonoBehaviour
         levelManager.HandleBaseHealthChange -= DisplayHealth;
         levelManager.HandleMoneyChange -= DisplayMoney;
         levelManager.HandleWaveChange -= DisplayWave;
+        levelManager.HandleGameOver -= SetGameIsOver;
         startWaveButton.onClick.RemoveListener(ResetTimerDisplay);
         startWaveButton.onClick.RemoveListener(PlayClickSound);
         menueButton.onClick.RemoveListener(HandleMenueButton);
@@ -63,6 +68,10 @@ public class UIManager : MonoBehaviour
 
     private void DisplayWave(int cur, int tot)
     {
+        if(gameIsOver) {
+            return;
+        }
+
         waveText.text = "Waves: " + cur + "/" + tot;
         if (cur > 1)
         {
@@ -81,6 +90,11 @@ public class UIManager : MonoBehaviour
 
     private void DisplayCountdown(float timeToDisplay)
     {
+        if(!countDownStarted) {
+            countDownStarted = true;
+            StartCoroutine(PlayCountdownSound());            
+        }
+
         countdownPanel.gameObject.SetActive(true);
         float seconds = Mathf.FloorToInt(timeToDisplay % 60);
         if (seconds > 0)
@@ -91,12 +105,28 @@ public class UIManager : MonoBehaviour
         {
             countdownText.text = "GO!";
             if(!notified) {
-                NextWaveNotificationToggle();
-                Invoke("NextWaveNotificationToggle", 0.4f);
-                Invoke("NextWaveNotificationToggle", 0.8f);
-                Invoke("NextWaveNotificationToggle", 1.2f);
                 notified = true;
+                StartCoroutine(NextWaveNotification());
             }
+        }
+    }
+
+    private IEnumerator PlayCountdownSound() {
+        int count = 5;
+        while(count>=1) {
+            count--;
+            HandleCountdownSound.Invoke();
+            yield return new WaitForSeconds(1.0f);
+        }
+    }
+
+    private IEnumerator NextWaveNotification() {
+        HandleNextWaveSound.Invoke();
+        int count = 4;
+        while(count>=1) {
+            count--;
+            NextWaveNotificationToggle();
+            yield return new WaitForSeconds(0.4f);
         }
     }
 
@@ -149,6 +179,7 @@ public class UIManager : MonoBehaviour
                 startWaveButton.interactable = false;
                 countdownPanel.gameObject.SetActive(false);
                 notified = false;
+                countDownStarted = false;
                 HandleWaveStart();
             }
             DisplayTimer(timeRemaining);
@@ -157,5 +188,9 @@ public class UIManager : MonoBehaviour
 
     private void PlayClickSound() {
         HandleManagerButtonClickSound();
+    }
+
+    private void SetGameIsOver(bool notUsed) {
+        gameIsOver = true;
     }
 }
