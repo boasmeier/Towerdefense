@@ -10,7 +10,6 @@ public class ArrowManager : MonoBehaviour
         set
         {
             if (arrow == null) {
-                Debug.Log("Postion Arrow is Null");
                 return;
             } else {
                 value.y = 0.6f;
@@ -25,8 +24,6 @@ public class ArrowManager : MonoBehaviour
         {
             if (arrow == null)
             {
-                Debug.Log("rotation Arrow is Null");
-
                 return;
             }
             arrow.transform.eulerAngles = new Vector3(90, 0, value);
