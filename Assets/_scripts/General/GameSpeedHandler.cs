@@ -92,7 +92,6 @@ public class GameSpeedHandler : MonoBehaviour
             element.GetComponent<PlaceholderInputController>().enabled=false;
             element.GetComponent<BoxCollider>().enabled=false;
         }
-        //FindObjectOfType<EconomyManager>().enabled = false;
         GameObject.Find("StartButton").GetComponent<Button>().enabled = false;
         GameObject.Find("TowerButton1").GetComponent<Button>().enabled = false;
         GameObject.Find("TowerButton2").GetComponent<Button>().enabled = false;
@@ -112,7 +111,6 @@ public class GameSpeedHandler : MonoBehaviour
             element.GetComponent<PlaceholderInputController>().enabled=true;
             element.GetComponent<BoxCollider>().enabled=true;
         }
-        //FindObjectOfType<EconomyManager>().enabled = true;
         GameObject.Find("StartButton").GetComponent<Button>().enabled = true;
         GameObject.Find("TowerButton1").GetComponent<Button>().enabled = true;
         GameObject.Find("TowerButton2").GetComponent<Button>().enabled = true;
