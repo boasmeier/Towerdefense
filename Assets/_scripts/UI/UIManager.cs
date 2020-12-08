@@ -9,6 +9,7 @@ public class UIManager : MonoBehaviour
     private LevelManager levelManager;
     private float timeRemaining;
     private bool timerIsRunning = false;
+    private bool gameIsOver = false;
 
     [SerializeField] private Text healthText;
     [SerializeField] private Text moneyText;
@@ -36,6 +37,7 @@ public class UIManager : MonoBehaviour
         levelManager.HandleBaseHealthChange += DisplayHealth;
         levelManager.HandleMoneyChange += DisplayMoney;
         levelManager.HandleWaveChange += DisplayWave;
+        levelManager.HandleGameOver += SetGameIsOver;
         startWaveButton.onClick.AddListener(ResetTimerDisplay);
         startWaveButton.onClick.AddListener(PlayClickSound);
         menueButton.onClick.AddListener(HandleMenueButton);
@@ -47,6 +49,7 @@ public class UIManager : MonoBehaviour
         levelManager.HandleBaseHealthChange -= DisplayHealth;
         levelManager.HandleMoneyChange -= DisplayMoney;
         levelManager.HandleWaveChange -= DisplayWave;
+        levelManager.HandleGameOver -= SetGameIsOver;
         startWaveButton.onClick.RemoveListener(ResetTimerDisplay);
         startWaveButton.onClick.RemoveListener(PlayClickSound);
         menueButton.onClick.RemoveListener(HandleMenueButton);
@@ -64,6 +67,10 @@ public class UIManager : MonoBehaviour
 
     private void DisplayWave(int cur, int tot)
     {
+        if(gameIsOver) {
+            return;
+        }
+        
         waveText.text = "Waves: " + cur + "/" + tot;
         if (cur > 1)
         {
@@ -78,15 +85,6 @@ public class UIManager : MonoBehaviour
         float minutes = Mathf.FloorToInt(timeToDisplay / 60);
         float seconds = Mathf.FloorToInt(timeToDisplay % 60);
         timerText.text = "Next wave: " + string.Format("{0:00}:{1:00}", minutes, seconds);
-    }
-
-    private IEnumerator PlayCountdownSound() {
-        int count = 5;
-        while(count>=1) {
-            count--;
-            HandleCountdownSound.Invoke();
-            yield return new WaitForSeconds(1.0f);
-        }
     }
 
     private void DisplayCountdown(float timeToDisplay)
@@ -112,6 +110,15 @@ public class UIManager : MonoBehaviour
                 Invoke("NextWaveNotificationToggle", 1.2f);
                 notified = true;
             }
+        }
+    }
+
+    private IEnumerator PlayCountdownSound() {
+        int count = 5;
+        while(count>=1) {
+            count--;
+            HandleCountdownSound.Invoke();
+            yield return new WaitForSeconds(1.0f);
         }
     }
 
@@ -173,5 +180,9 @@ public class UIManager : MonoBehaviour
 
     private void PlayClickSound() {
         HandleManagerButtonClickSound();
+    }
+
+    private void SetGameIsOver(bool notUsed) {
+        gameIsOver = true;
     }
 }
