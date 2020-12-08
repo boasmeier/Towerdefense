@@ -27,6 +27,7 @@ public class UIManager : MonoBehaviour
     public event Action ToggleMenue = delegate { };
     public event Action HandleManagerButtonClickSound = delegate { };
     public event Action HandleCountdownSound = delegate { };
+    public event Action HandleNextWaveSound = delegate { };
     private void Awake()
     {
         levelManager = FindObjectOfType<LevelManager>();
@@ -70,7 +71,7 @@ public class UIManager : MonoBehaviour
         if(gameIsOver) {
             return;
         }
-        
+
         waveText.text = "Waves: " + cur + "/" + tot;
         if (cur > 1)
         {
@@ -104,11 +105,8 @@ public class UIManager : MonoBehaviour
         {
             countdownText.text = "GO!";
             if(!notified) {
-                NextWaveNotificationToggle();
-                Invoke("NextWaveNotificationToggle", 0.4f);
-                Invoke("NextWaveNotificationToggle", 0.8f);
-                Invoke("NextWaveNotificationToggle", 1.2f);
                 notified = true;
+                StartCoroutine(NextWaveNotification());
             }
         }
     }
@@ -119,6 +117,16 @@ public class UIManager : MonoBehaviour
             count--;
             HandleCountdownSound.Invoke();
             yield return new WaitForSeconds(1.0f);
+        }
+    }
+
+    private IEnumerator NextWaveNotification() {
+        HandleNextWaveSound.Invoke();
+        int count = 4;
+        while(count>=1) {
+            count--;
+            NextWaveNotificationToggle();
+            yield return new WaitForSeconds(0.4f);
         }
     }
 

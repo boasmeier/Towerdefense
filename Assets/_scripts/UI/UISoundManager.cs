@@ -33,6 +33,7 @@ public class UISoundManager : MonoBehaviour
         uiMenue.HandleMenueButtonClickSound += PlayClick;
         uIManager.HandleManagerButtonClickSound += PlayClick;
         uIManager.HandleCountdownSound += PlayCountdown;
+        uIManager.HandleNextWaveSound += PlayWaveStart;
         uiTowerDirection.HandleTowerDirectionClickSound += PlayClick;
         uiTowerBuy.HandleTowerBuyClickSound += PlayBuy;
         foreach (UITowerButton handler in uiTowerButtonList) {
@@ -48,6 +49,7 @@ public class UISoundManager : MonoBehaviour
         uiMenue.HandleMenueButtonClickSound -= PlayClick;
         uIManager.HandleManagerButtonClickSound -= PlayClick;
         uIManager.HandleCountdownSound -= PlayCountdown;
+        uIManager.HandleNextWaveSound -= PlayWaveStart;
         uiTowerDirection.HandleTowerDirectionClickSound -= PlayClick;
         uiTowerBuy.HandleTowerBuyClickSound -= PlayBuy;
         foreach (UITowerButton handler in uiTowerButtonList) {
