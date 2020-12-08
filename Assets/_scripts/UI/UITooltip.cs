@@ -18,7 +18,7 @@ public class UITooltip : MonoBehaviour
     //Shows the next tip
     private void ShowTip()
     {
-        Invoke("ShowTip", 3.0f * Time.timeScale);
+        Invoke("ShowTip", 3.0f * Time.timeScale);  
         tipText.text = tips[currentTip];
         currentTip++;
         if (currentTip >= tips.Count)
