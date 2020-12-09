@@ -105,6 +105,16 @@ PrefabInstance:
       propertyPath: m_Mass
       value: 0.0000001
       objectReference: {fileID: 0}
+    - target: {fileID: 518006567365291325, guid: 85ac06fd31fc2dc40b69a3fe0997e16b,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 824363801095091772, guid: 85ac06fd31fc2dc40b69a3fe0997e16b,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2745286624471668698, guid: 85ac06fd31fc2dc40b69a3fe0997e16b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -172,6 +182,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: f449256ae3e1cf744a48a70472975877,
         type: 2}
+    - target: {fileID: 8255416337438864527, guid: 85ac06fd31fc2dc40b69a3fe0997e16b,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8282017890784021423, guid: 85ac06fd31fc2dc40b69a3fe0997e16b,
         type: 3}
       propertyPath: m_Name
