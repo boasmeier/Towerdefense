@@ -4527,7 +4527,7 @@ PrefabInstance:
     - target: {fileID: 1758876557731038016, guid: 6ad7db71bc096104ba2fe1d5b28544ae,
         type: 3}
       propertyPath: m_Text
-      value: Orient arrow left
+      value: Set orientation left
       objectReference: {fileID: 0}
     - target: {fileID: 2186594052407897298, guid: 6ad7db71bc096104ba2fe1d5b28544ae,
         type: 3}
@@ -4914,7 +4914,7 @@ PrefabInstance:
     - target: {fileID: 1758876557731038016, guid: 6ad7db71bc096104ba2fe1d5b28544ae,
         type: 3}
       propertyPath: m_Text
-      value: Orient arrow right
+      value: Set orientation right
       objectReference: {fileID: 0}
     - target: {fileID: 2186594052407897298, guid: 6ad7db71bc096104ba2fe1d5b28544ae,
         type: 3}
@@ -5043,7 +5043,7 @@ PrefabInstance:
     - target: {fileID: 1758876557731038016, guid: 6ad7db71bc096104ba2fe1d5b28544ae,
         type: 3}
       propertyPath: m_Text
-      value: Orient arrow down
+      value: Set orientation down
       objectReference: {fileID: 0}
     - target: {fileID: 2186594052407897298, guid: 6ad7db71bc096104ba2fe1d5b28544ae,
         type: 3}
@@ -5430,7 +5430,7 @@ PrefabInstance:
     - target: {fileID: 1758876557731038016, guid: 6ad7db71bc096104ba2fe1d5b28544ae,
         type: 3}
       propertyPath: m_Text
-      value: Orient arrow forward
+      value: Set orientation forward
       objectReference: {fileID: 0}
     - target: {fileID: 2186594052407897298, guid: 6ad7db71bc096104ba2fe1d5b28544ae,
         type: 3}
