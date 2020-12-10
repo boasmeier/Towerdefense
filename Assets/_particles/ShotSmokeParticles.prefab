@@ -35,7 +35,7 @@ PrefabInstance:
     - target: {fileID: 2346004299665773275, guid: 1de8a418edeb63f45abeeda8e78d2966,
         type: 3}
       propertyPath: EmissionModule.rateOverDistance.scalar
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2346004299665773275, guid: 1de8a418edeb63f45abeeda8e78d2966,
         type: 3}
@@ -106,6 +106,11 @@ PrefabInstance:
         type: 3}
       propertyPath: ShapeModule.radius.value
       value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2346004299665773275, guid: 1de8a418edeb63f45abeeda8e78d2966,
+        type: 3}
+      propertyPath: SizeModule.separateAxes
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5935513120107795250, guid: 1de8a418edeb63f45abeeda8e78d2966,
         type: 3}
