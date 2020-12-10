@@ -579,6 +579,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7958089368523199967, guid: c8deda10482665344bac35913b7f4d0a,
+        type: 3}
+      propertyPath: highlightOnStart
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c8deda10482665344bac35913b7f4d0a, type: 3}
 --- !u!4 &275929153 stripped
@@ -3439,6 +3444,11 @@ PrefabInstance:
     - target: {fileID: 2657930189329799329, guid: c8deda10482665344bac35913b7f4d0a,
         type: 3}
       propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7958089368523199967, guid: c8deda10482665344bac35913b7f4d0a,
+        type: 3}
+      propertyPath: highlightOnStart
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
