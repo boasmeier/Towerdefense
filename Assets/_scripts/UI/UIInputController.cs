@@ -8,6 +8,7 @@ public class UIInputController : MonoBehaviour
     public event Action HandleGameSpeedIncrease = delegate { };
     public event Action HandleGameSpeedDecrease = delegate { };
     public event Action ToggleMenue = delegate { };
+    public event Action StartWave = delegate { }; 
 
     private void Update()
     {
@@ -24,8 +25,13 @@ public class UIInputController : MonoBehaviour
         {
             HandleGameSpeedIncrease();
         }
-        else if (Input.GetKeyDown(KeyCode.Escape)) {
+        else if (Input.GetKeyDown(KeyCode.Escape)) 
+        {
             ToggleMenue();
+        } 
+        else if (Input.GetKeyDown(KeyCode.Space))
+        {
+            StartWave();
         }
     }
 }
