@@ -12,6 +12,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c88fb0f2f1741424da8c8cb32dd48b5b, type: 3}
   m_Name: Level2
   m_EditorClassIdentifier: 
-  startMoney: 30
-  route: []
-  waves: []
+  startMoney: 20
+  route:
+  - {x: 9.5, y: 0.51, z: 7.5}
+  - {x: 9.5, y: 0.51, z: 5.5}
+  - {x: 7.5, y: 0.51, z: 5.5}
+  - {x: 7.5, y: 0.51, z: 7.5}
+  - {x: -2.5, y: 0.51, z: 7.5}
+  - {x: -2.5, y: 0.51, z: 5.5}
+  - {x: 4.5, y: 0.51, z: 5.5}
+  - {x: 4.5, y: 0.51, z: -1.5}
+  - {x: 7.5, y: 0.51, z: -1.5}
+  - {x: 7.5, y: 0.51, z: -5.5}
+  - {x: -0.5, y: 0.51, z: -5.5}
+  - {x: -0.5, y: 0.51, z: -0.5}
+  - {x: 0, y: 0.51, z: 0}
+  - {x: 0, y: 0.51, z: 0}
+  - {x: 0, y: 0.51, z: 0}
+  - {x: 0, y: 0.51, z: 0}
+  - {x: 0, y: 0.51, z: 0}
+  - {x: 0, y: 0.51, z: 0}
+  waves:
+  - wave:
+    - enemy: {fileID: 8969278124392032957, guid: 887b92c23ea54484888d5663af79b1ba,
+        type: 3}
+      amount: 2
+      spawnDelay: 1
