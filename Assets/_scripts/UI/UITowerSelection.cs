@@ -9,6 +9,7 @@ public class UITowerSelection : MonoBehaviour
     [SerializeField] Text price;
     [SerializeField] Text speed;
     [SerializeField] Text damage;
+    [SerializeField] Image preview;
 
     private void OnEnable()
     {
@@ -26,5 +27,6 @@ public class UITowerSelection : MonoBehaviour
         price.text = "Price: " + tower.Price + "$";
         speed.text = "Speed: " + tower.AttackSpeed;
         damage.text = "Damage: " + tower.Shot.GetComponent<Shot>().Damage;
+        preview.sprite = tower.PreviewImage;
     }
 }

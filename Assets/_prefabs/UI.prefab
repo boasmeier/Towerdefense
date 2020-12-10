@@ -2792,6 +2792,8 @@ MonoBehaviour:
   hoverSound: {fileID: 8300000, guid: 285ddc28aeb1eec419c2a6268b596c5f, type: 3}
   clickSound: {fileID: 8300000, guid: d7d3d49c5a360f845993c1f098d334c1, type: 3}
   buySound: {fileID: 8300000, guid: 397739df4eae80045a250aab3c64dfb2, type: 3}
+  countdownSound: {fileID: 0}
+  waveStartSound: {fileID: 0}
 --- !u!1 &7807032446230326463
 GameObject:
   m_ObjectHideFlags: 0
@@ -3504,6 +3506,26 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2497615270785632996, guid: 074e6d8f124e00345b868e14f2198c3a,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2564611195962389179, guid: 074e6d8f124e00345b868e14f2198c3a,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2564611195962389179, guid: 074e6d8f124e00345b868e14f2198c3a,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2564611195962389179, guid: 074e6d8f124e00345b868e14f2198c3a,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2564611195962389179, guid: 074e6d8f124e00345b868e14f2198c3a,
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
@@ -4505,7 +4527,7 @@ PrefabInstance:
     - target: {fileID: 1758876557731038016, guid: 6ad7db71bc096104ba2fe1d5b28544ae,
         type: 3}
       propertyPath: m_Text
-      value: Orient arrow left
+      value: Set orientation left
       objectReference: {fileID: 0}
     - target: {fileID: 2186594052407897298, guid: 6ad7db71bc096104ba2fe1d5b28544ae,
         type: 3}
@@ -4892,7 +4914,7 @@ PrefabInstance:
     - target: {fileID: 1758876557731038016, guid: 6ad7db71bc096104ba2fe1d5b28544ae,
         type: 3}
       propertyPath: m_Text
-      value: Orient arrow right
+      value: Set orientation right
       objectReference: {fileID: 0}
     - target: {fileID: 2186594052407897298, guid: 6ad7db71bc096104ba2fe1d5b28544ae,
         type: 3}
@@ -5021,7 +5043,7 @@ PrefabInstance:
     - target: {fileID: 1758876557731038016, guid: 6ad7db71bc096104ba2fe1d5b28544ae,
         type: 3}
       propertyPath: m_Text
-      value: Orient arrow down
+      value: Set orientation down
       objectReference: {fileID: 0}
     - target: {fileID: 2186594052407897298, guid: 6ad7db71bc096104ba2fe1d5b28544ae,
         type: 3}
@@ -5408,7 +5430,7 @@ PrefabInstance:
     - target: {fileID: 1758876557731038016, guid: 6ad7db71bc096104ba2fe1d5b28544ae,
         type: 3}
       propertyPath: m_Text
-      value: Orient arrow forward
+      value: Set orientation forward
       objectReference: {fileID: 0}
     - target: {fileID: 2186594052407897298, guid: 6ad7db71bc096104ba2fe1d5b28544ae,
         type: 3}
