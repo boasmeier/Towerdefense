@@ -163,15 +163,15 @@ public class EconomyManager : MonoBehaviour
     {
         if (!_placeholderSelected) return;
         DirectionSelected(angle);
-        arrowManager.rotation = angle * -1;
-        towerManager.rotation = angle;
+        arrowManager.Rotation = angle * -1;
+        towerManager.Rotation = angle;
     }
 
     private void SelectPlaceholder(Vector3 position)
     {
         position.y = 1;
-        towerManager.position = position;
-        arrowManager.position = position;
+        towerManager.Position = position;
+        arrowManager.Position = position;
         _placeholderSelected = true;
     }
 }
