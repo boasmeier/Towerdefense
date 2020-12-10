@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     private LevelManager levelManager;
+    private UIInputController uiInputController;
+
     private float timeRemaining;
     private bool timerIsRunning = false;
     private bool gameIsOver = false;
@@ -31,6 +33,7 @@ public class UIManager : MonoBehaviour
     private void Awake()
     {
         levelManager = FindObjectOfType<LevelManager>();
+        uiInputController = FindObjectOfType<UIInputController>();
     }
 
     private void OnEnable()
@@ -39,6 +42,7 @@ public class UIManager : MonoBehaviour
         levelManager.HandleMoneyChange += DisplayMoney;
         levelManager.HandleWaveChange += DisplayWave;
         levelManager.HandleGameOver += SetGameIsOver;
+        uiInputController.StartWave += ResetTimerDisplay;
         startWaveButton.onClick.AddListener(ResetTimerDisplay);
         startWaveButton.onClick.AddListener(PlayClickSound);
         menueButton.onClick.AddListener(HandleMenueButton);
@@ -51,6 +55,7 @@ public class UIManager : MonoBehaviour
         levelManager.HandleMoneyChange -= DisplayMoney;
         levelManager.HandleWaveChange -= DisplayWave;
         levelManager.HandleGameOver -= SetGameIsOver;
+        uiInputController.StartWave -= ResetTimerDisplay;
         startWaveButton.onClick.RemoveListener(ResetTimerDisplay);
         startWaveButton.onClick.RemoveListener(PlayClickSound);
         menueButton.onClick.RemoveListener(HandleMenueButton);
