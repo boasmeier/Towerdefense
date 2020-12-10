@@ -19,3 +19,4 @@ MonoBehaviour:
   velocity: 10
   shot: {fileID: 2667120749479865547, guid: 02d61a8b8735d9c4a8fdff2ad39c2d7c, type: 3}
   shootAudio: {fileID: 8300000, guid: b0f872fccfdaf054a801bcedd6cd2810, type: 3}
+  previewImage: {fileID: 21300000, guid: 5aac096d349209a46a9f6d05fe4d4f0a, type: 3}
