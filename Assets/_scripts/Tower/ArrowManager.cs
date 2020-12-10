@@ -5,7 +5,7 @@ public class ArrowManager : MonoBehaviour
 {
     [SerializeField] private GameObject arrow;
 
-    public Vector3 position
+    public Vector3 Position
     {
         set
         {
@@ -18,7 +18,7 @@ public class ArrowManager : MonoBehaviour
         }
     }
     
-    public int rotation
+    public int Rotation
     {
         set
         {

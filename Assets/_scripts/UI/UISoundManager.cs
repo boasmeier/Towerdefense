@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class UISoundManager : MonoBehaviour
-{
-    
+{ 
     [SerializeField] private AudioClip hoverSound;
     [SerializeField] private AudioClip clickSound;
     [SerializeField] private AudioClip buySound;
@@ -17,7 +16,6 @@ public class UISoundManager : MonoBehaviour
     private UITowerBuy uiTowerBuy;
     private UITowerButton[] uiTowerButtonList;
     private UIButtonHoverHandler[] uiButtonHoverHandlerList;
-    private EconomyManager economyManager;
     
     private void Awake() {
         uiMenue = FindObjectOfType<UIMenue>();
@@ -26,7 +24,6 @@ public class UISoundManager : MonoBehaviour
         uiTowerBuy = FindObjectOfType<UITowerBuy>();
         uiTowerButtonList = FindObjectsOfType<UITowerButton>();
         uiButtonHoverHandlerList = FindObjectsOfType<UIButtonHoverHandler>();
-        economyManager = FindObjectOfType<EconomyManager>();
     }
 
     private void OnEnable() {
@@ -62,21 +59,21 @@ public class UISoundManager : MonoBehaviour
     }
 
     private void PlayHover() {
-        AudioSource src = Sound.PlayClipAt(hoverSound, this.gameObject.transform.position);
+        Sound.PlayClipAt(hoverSound, this.gameObject.transform.position);
     }
 
     private void PlayClick() {
-        AudioSource src = Sound.PlayClipAt(clickSound, this.gameObject.transform.position);
+        Sound.PlayClipAt(clickSound, this.gameObject.transform.position);
     }
 
     private void PlayBuy() {
-        AudioSource src = Sound.PlayClipAt(buySound, this.gameObject.transform.position);
+        Sound.PlayClipAt(buySound, this.gameObject.transform.position);
     }
     
     private void PlayCountdown() {
-        AudioSource src = Sound.PlayClipAt(countdownSound, this.gameObject.transform.position);
+        Sound.PlayClipAt(countdownSound, this.gameObject.transform.position);
     }
     private void PlayWaveStart() {
-        AudioSource src = Sound.PlayClipAt(waveStartSound, this.gameObject.transform.position);
+        Sound.PlayClipAt(waveStartSound, this.gameObject.transform.position);
     }
 }

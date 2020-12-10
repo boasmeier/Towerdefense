@@ -57,7 +57,7 @@ public class EnemyManager : MonoBehaviour
     private void EnemyDestroyed()
     {
         aliveEnemies -= 1;
-        checkWaveFinished();
+        CheckWaveFinished();
     }
 
     private void EnemyDied(int value)
@@ -66,7 +66,7 @@ public class EnemyManager : MonoBehaviour
         EnemyDestroyed();
     }
 
-    private void checkWaveFinished()
+    private void CheckWaveFinished()
     {
         if (waveController.AreAllEnemiesOfCurrentWaveSpawned() && aliveEnemies<=0)
         {

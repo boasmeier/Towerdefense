@@ -28,19 +28,19 @@ public class BaseSoundController : MonoBehaviour
 
     private void PlayDeathSound()
     {
-        AudioSource src = Sound.PlayClipAt(deathSound, this.gameObject.transform.position);
+        Sound.PlayClipAt(deathSound, this.gameObject.transform.position);
     }
 
     private void PlayLostHealthSound(int h)
     {
         if(h != baseHealthController.TotalHealth)
         {
-            AudioSource src = Sound.PlayClipAt(lostHealthSound, this.gameObject.transform.position);
+            Sound.PlayClipAt(lostHealthSound, this.gameObject.transform.position);
         }
     }
 
     private void PlayAlmostDeadSound()
     {
-        AudioSource src = Sound.PlayRepeatingClipAt(almostDeadSound, this.gameObject.transform.position);
+        Sound.PlayRepeatingClipAt(almostDeadSound, this.gameObject.transform.position);
     }
 }

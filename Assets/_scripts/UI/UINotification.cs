@@ -8,7 +8,7 @@ public class UINotification : MonoBehaviour
     [SerializeField] private RectTransform notificationPanel;
     [SerializeField] private Text notificationText;
 
-    private float notificationDelay = 1.0f;
+    private readonly float notificationDelay = 1.0f;
     
     private void OnEnable() {
         EconomyManager.DisplayNotEnoughMoney += DisplayNotification;
