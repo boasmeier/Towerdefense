@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-
 public class EnemyWaveController
 {
-    private List<Wave> waves;
+    private readonly List<Wave> waves;
     private int currentEnemyGroup = 0;
     private int currentEnemyNumber = 0;
     private int currentWave;

@@ -52,23 +52,23 @@ public class UITowerDirection : MonoBehaviour, IArrowsInputController
     {
         if (direction == 0)
         {  
-            select(upButton);
+            Select(upButton);
         }
         else if (direction == 90)
         {
-            select(rightButton);
+            Select(rightButton);
         }
         else if (direction == 180)
         {
-            select(downButton);
+            Select(downButton);
         }
         else
         {
-            select(leftButton);
+            Select(leftButton);
         }
     }
 
-    private void select(Button select)
+    private void Select(Button select)
     {
         var previous = selected;
         this.selected = select;

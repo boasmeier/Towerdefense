@@ -22,7 +22,6 @@ public class LevelManager : MonoBehaviour
     private int money;
     private int totalWave;
     private int currentWave;
-    private int timer;
 
     public SOLevel Level
     {
@@ -40,7 +39,7 @@ public class LevelManager : MonoBehaviour
     }
 
     // Delay between game over/won and restart of scene in seconds
-    private float restartDelay = 4f;
+    private readonly float restartDelay = 4f;
 
     private IHealthController healthController;
     private BaseDeathController baseDeathController;
