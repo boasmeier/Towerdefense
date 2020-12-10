@@ -26,15 +26,80 @@ MonoBehaviour:
   - {x: 7.5, y: 0.51, z: -5.5}
   - {x: -0.5, y: 0.51, z: -5.5}
   - {x: -0.5, y: 0.51, z: -0.5}
-  - {x: 0, y: 0.51, z: 0}
-  - {x: 0, y: 0.51, z: 0}
-  - {x: 0, y: 0.51, z: 0}
-  - {x: 0, y: 0.51, z: 0}
-  - {x: 0, y: 0.51, z: 0}
-  - {x: 0, y: 0.51, z: 0}
+  - {x: -3.5, y: 0.51, z: -0.5}
+  - {x: -3.5, y: 0.51, z: -5.5}
+  - {x: -7.5, y: 0.51, z: -5.5}
+  - {x: -7.5, y: 0.51, z: 7.5}
+  - {x: -5.5, y: 0.51, z: 7.5}
+  - {x: -5.5, y: 0.51, z: 2.5}
+  - {x: 0.5, y: 0.51, z: 2.5}
   waves:
+  - wave:
+    - enemy: {fileID: 5953705220294465188, guid: 3f0c15c62f043c7458184d636ad2bbad,
+        type: 3}
+      amount: 4
+      spawnDelay: 1
+    - enemy: {fileID: 8969278124392032957, guid: 887b92c23ea54484888d5663af79b1ba,
+        type: 3}
+      amount: 10
+      spawnDelay: 0.5
+  - wave:
+    - enemy: {fileID: 5953705220294465188, guid: 3f0c15c62f043c7458184d636ad2bbad,
+        type: 3}
+      amount: 10
+      spawnDelay: 1
+    - enemy: {fileID: 8969278124392032957, guid: 887b92c23ea54484888d5663af79b1ba,
+        type: 3}
+      amount: 25
+      spawnDelay: 0.25
+    - enemy: {fileID: 5953705220294465188, guid: 3f0c15c62f043c7458184d636ad2bbad,
+        type: 3}
+      amount: 5
+      spawnDelay: 2
+    - enemy: {fileID: 8969278124392032957, guid: 887b92c23ea54484888d5663af79b1ba,
+        type: 3}
+      amount: 40
+      spawnDelay: 0.25
+    - enemy: {fileID: 8969278124392032957, guid: 887b92c23ea54484888d5663af79b1ba,
+        type: 3}
+      amount: 25
+      spawnDelay: 0.25
+  - wave:
+    - enemy: {fileID: 5953705220294465188, guid: 3f0c15c62f043c7458184d636ad2bbad,
+        type: 3}
+      amount: 4
+      spawnDelay: 1
+    - enemy: {fileID: 8969278124392032957, guid: 887b92c23ea54484888d5663af79b1ba,
+        type: 3}
+      amount: 10
+      spawnDelay: 0.5
+  - wave:
+    - enemy: {fileID: 5953705220294465188, guid: 3f0c15c62f043c7458184d636ad2bbad,
+        type: 3}
+      amount: 4
+      spawnDelay: 1
+    - enemy: {fileID: 8969278124392032957, guid: 887b92c23ea54484888d5663af79b1ba,
+        type: 3}
+      amount: 10
+      spawnDelay: 0.5
   - wave:
     - enemy: {fileID: 8969278124392032957, guid: 887b92c23ea54484888d5663af79b1ba,
         type: 3}
+      amount: 50
+      spawnDelay: 0.1
+    - enemy: {fileID: 1532600242418313800, guid: 0c408692d97ef1a489ae2ba02dd37758,
+        type: 3}
       amount: 2
-      spawnDelay: 1
+      spawnDelay: 10
+    - enemy: {fileID: 5953705220294465188, guid: 3f0c15c62f043c7458184d636ad2bbad,
+        type: 3}
+      amount: 5
+      spawnDelay: 2
+    - enemy: {fileID: 1532600242418313800, guid: 0c408692d97ef1a489ae2ba02dd37758,
+        type: 3}
+      amount: 1
+      spawnDelay: 2
+    - enemy: {fileID: 8969278124392032957, guid: 887b92c23ea54484888d5663af79b1ba,
+        type: 3}
+      amount: 10
+      spawnDelay: 0.1
