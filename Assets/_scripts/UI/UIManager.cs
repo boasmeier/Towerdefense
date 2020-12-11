@@ -119,6 +119,10 @@ public class UIManager : MonoBehaviour
     private IEnumerator PlayCountdownSound() {
         int count = 5;
         while(count>=1) {
+            if(!timerIsRunning)
+            {
+                yield break;
+            }
             count--;
             HandleCountdownSound.Invoke();
             yield return new WaitForSeconds(1.0f);
