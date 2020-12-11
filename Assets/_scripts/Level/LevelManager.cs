@@ -122,8 +122,8 @@ public class LevelManager : MonoBehaviour
         else if (state != GameState.Lost)
         {
             state = GameState.Won;
+            Invoke("LoadNextLevel", restartDelay * Time.timeScale);
             HandleGameOver(true);
-            Invoke("Restart", restartDelay * Time.timeScale);
         }
     }
 
@@ -131,8 +131,8 @@ public class LevelManager : MonoBehaviour
     {
         if (state == GameState.Won) return;
         state = GameState.Lost;
-        HandleGameOver(false);
         Invoke("Restart", restartDelay * Time.timeScale);
+        HandleGameOver(false);
     }
 
     private void StartWave()
@@ -143,7 +143,24 @@ public class LevelManager : MonoBehaviour
 
     private void Restart()
     {
+        LoadLevel(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    private void LoadNextLevel()
+    {
+        int activeScene = SceneManager.GetActiveScene().buildIndex;
+        if (activeScene == 0)
+        {
+            LoadLevel(1);
+        } else if (activeScene == 1)
+        {
+            LoadLevel(0);
+        }
+    }
+
+    private void LoadLevel(int index)
+    {
         ResetGameSpeed();
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene(index);
     }
 }

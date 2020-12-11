@@ -31,7 +31,10 @@ public class UIInputController : MonoBehaviour
         } 
         else if (Input.GetKeyDown(KeyCode.Space))
         {
-            StartWave();
+            if(Time.timeScale != 0)
+            {
+                StartWave();
+            }
         }
     }
 }
