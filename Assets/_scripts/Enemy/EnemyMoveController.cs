@@ -6,18 +6,23 @@ public class EnemyMoveController : MonoBehaviour
 {
     [SerializeField] private SOEnemy enemy;
     private int nextPosition = 1;
+    private bool alive = true;
     private List<Vector3> route;
 
-    // Start is called before the first frame update
-    private void Start()
+    private IHealthController enemyHealthController;
+
+    private void Awake()
     {
-       route = FindObjectOfType<LevelManager>().Level.Route;
+
+        enemyHealthController = GetComponent<IHealthController>();
+        enemyHealthController.HandleDeath += Die;
+        route = FindObjectOfType<LevelManager>().Level.Route;
     }
 
     // Update is called once per frame
     private void Update()
     {
-        if(nextPosition < route.Count)
+        if(alive && nextPosition < route.Count)
         {
             float step = this.enemy.Speed * Time.deltaTime; // calculate distance to move
             transform.position = Vector3.MoveTowards(transform.position, route[nextPosition],  step);
@@ -28,5 +33,10 @@ public class EnemyMoveController : MonoBehaviour
                 nextPosition += 1;
             }
         }
+    }
+
+    private void Die()
+    {
+        alive = false;
     }
 }
