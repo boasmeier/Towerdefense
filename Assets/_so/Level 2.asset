@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c88fb0f2f1741424da8c8cb32dd48b5b, type: 3}
-  m_Name: Level2
+  m_Name: Level 2
   m_EditorClassIdentifier: 
   startMoney: 20
   route:
@@ -114,4 +114,9 @@ MonoBehaviour:
     - enemy: {fileID: 1532600242418313800, guid: 0c408692d97ef1a489ae2ba02dd37758,
         type: 3}
       amount: 1
+      spawnDelay: 2
+  - wave:
+    - enemy: {fileID: 1532600242418313800, guid: 0c408692d97ef1a489ae2ba02dd37758,
+        type: 3}
+      amount: 15
       spawnDelay: 2
