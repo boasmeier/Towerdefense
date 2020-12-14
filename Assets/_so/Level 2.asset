@@ -119,4 +119,4 @@ MonoBehaviour:
     - enemy: {fileID: 1532600242418313800, guid: 0c408692d97ef1a489ae2ba02dd37758,
         type: 3}
       amount: 15
-      spawnDelay: 2
+      spawnDelay: 3
