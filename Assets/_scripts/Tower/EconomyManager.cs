@@ -89,6 +89,10 @@ public class EconomyManager : MonoBehaviour
     private void SelectTower(int id)
     {
         TowerEntry entry = GetTowerEntry(id);
+        if (entry == null)
+        {
+            return;
+        }
         TowerSelected(entry.details);
         selected = entry;
     }
@@ -103,7 +107,10 @@ public class EconomyManager : MonoBehaviour
 
     private bool CanBuild()
     {
-        if (!_placeholderSelected) return false;
+        if (!_placeholderSelected)
+        {
+            return false;
+        }
 
         if (selected == null)
         {
